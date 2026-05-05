@@ -1,0 +1,132 @@
+.luma-reviews-plus-shell {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px 40px;
+}
+
+.luma-reviews-plus-card {
+    background: #f8f6ef;
+    border: 1px solid #d8d0c0;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+}
+
+.luma-reviews-plus-header h1,
+.luma-shop-reviews-summary h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #31422f;
+    margin-top: 0;
+}
+
+.luma-reviews-plus-message {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    background: #e9f3e3;
+    border-left: 4px solid #406144;
+}
+
+.luma-reviews-plus-section {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #d8d0c0;
+}
+
+.luma-reviews-plus-product-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e2dccf;
+}
+
+.luma-reviews-plus-product-item img {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.luma-reviews-plus-product-item label,
+.luma-reviews-plus-shop-review-fields label {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.luma-reviews-plus-product-item span,
+.luma-reviews-plus-shop-review-fields span,
+.luma-reviews-plus-shop-review-fields legend {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.luma-reviews-plus-product-item textarea,
+.luma-reviews-plus-product-item select,
+.luma-reviews-plus-shop-review-fields textarea,
+.luma-reviews-plus-shop-review-fields select,
+.luma-reviews-plus-shop-review-fields input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #bfc3b0;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.luma-reviews-plus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+}
+
+.luma-reviews-plus-tags label,
+.luma-reviews-plus-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.luma-reviews-plus-checkbox span {
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.luma-reviews-plus-submit {
+    margin-top: 24px;
+}
+
+.luma-reviews-plus-submit .button {
+    background: #406144;
+    border-color: #406144;
+    color: #fff;
+    padding: 12px 20px;
+    height: auto;
+}
+
+.luma-shop-reviews-summary {
+    padding: 24px;
+    background: #f2f1ea;
+    border-radius: 16px;
+}
+
+.luma-shop-reviews-summary__quotes {
+    display: grid;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.luma-shop-reviews-summary__quote {
+    margin: 0;
+    padding: 18px;
+    background: #fff;
+    border-left: 4px solid #406144;
+}
+
+@media (max-width: 680px) {
+    .luma-reviews-plus-card {
+        padding: 20px;
+    }
+
+    .luma-reviews-plus-product-item {
+        grid-template-columns: 1fr;
+    }
+}
