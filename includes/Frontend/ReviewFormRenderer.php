@@ -36,10 +36,13 @@ class ReviewFormRenderer {
      * Renders the review page.
      *
      * @param array $context View context.
-     * @return void
+     * @return string
      */
     public function render_page( array $context ) {
+        ob_start();
         include LUMA_REVIEWS_PLUS_PATH . 'templates/review-page.php';
+
+        return (string) ob_get_clean();
     }
 
 
@@ -63,5 +66,23 @@ class ReviewFormRenderer {
      */
     public function render_shop_review_section( array $context ) {
         include LUMA_REVIEWS_PLUS_PATH . 'templates/shop-experience-review.php';
+    }
+
+
+    /**
+     * Replaces supported placeholders in public-facing page copy.
+     *
+     * @param string $text Source text.
+     * @param array  $context View context.
+     * @return string
+     */
+    public function replace_page_placeholders( $text, array $context ) {
+        $order = $context['order'] ?? null;
+
+        $replacements = array(
+            '{first_name}' => $order instanceof \WC_Order ? $order->get_billing_first_name() : '',
+        );
+
+        return strtr( (string) $text, $replacements );
     }
 }

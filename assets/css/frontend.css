@@ -1,35 +1,21 @@
-.luma-reviews-plus-shell {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px 40px;
-}
-
-.luma-reviews-plus-card {
-    background: #f8f6ef;
-    border: 1px solid #d8d0c0;
-    border-radius: 18px;
-    padding: 32px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
-}
-
-.luma-reviews-plus-header h1,
-.luma-shop-reviews-summary h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    color: #31422f;
-    margin-top: 0;
-}
-
 .luma-reviews-plus-message {
     margin: 0 0 16px;
+}
+
+.luma-reviews-plus-form-summary {
+    margin: 0 0 18px;
     padding: 12px 14px;
-    background: #e9f3e3;
-    border-left: 4px solid #406144;
+    border: 1px solid #c53030;
+    background: #fff5f5;
+}
+
+.luma-reviews-plus-helper {
+    margin: 0 0 18px;
 }
 
 .luma-reviews-plus-section {
     margin-top: 28px;
     padding-top: 18px;
-    border-top: 1px solid #d8d0c0;
 }
 
 .luma-reviews-plus-product-item {
@@ -37,26 +23,51 @@
     grid-template-columns: 120px 1fr;
     gap: 18px;
     padding: 18px 0;
-    border-bottom: 1px solid #e2dccf;
+}
+
+.luma-reviews-plus-section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 12px;
+}
+
+.luma-reviews-plus-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #f2f2f2;
+    font-size: 0.9em;
+}
+
+.luma-reviews-plus-section-summary {
+    margin: 0 0 12px;
+}
+
+.luma-review-section .luma-reviews-plus-section-fields[hidden] {
+    display: none;
 }
 
 .luma-reviews-plus-product-item img {
     display: block;
     width: 100%;
-    border-radius: 12px;
 }
 
-.luma-reviews-plus-product-item label,
-.luma-reviews-plus-shop-review-fields label {
+.luma-reviews-plus-product-item .form-row,
+.luma-reviews-plus-shop-review-fields .form-row,
+.luma-reviews-plus-product-item .comment-form-rating,
+.luma-reviews-plus-shop-review-fields .comment-form-rating {
     display: block;
     margin-bottom: 14px;
 }
 
-.luma-reviews-plus-product-item span,
-.luma-reviews-plus-shop-review-fields span,
+.luma-reviews-plus-product-item > .luma-reviews-plus-product-item__content > .form-row > label,
+.luma-reviews-plus-product-item > .luma-reviews-plus-product-item__content > .comment-form-rating > label,
+.luma-reviews-plus-shop-review-fields .form-row > label,
+.luma-reviews-plus-shop-review-fields .comment-form-rating > label,
 .luma-reviews-plus-shop-review-fields legend {
     display: block;
-    font-weight: 600;
     margin-bottom: 6px;
 }
 
@@ -66,10 +77,21 @@
 .luma-reviews-plus-shop-review-fields select,
 .luma-reviews-plus-shop-review-fields input[type="text"] {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #bfc3b0;
-    border-radius: 10px;
-    background: #fff;
+    box-sizing: border-box;
+}
+
+.luma-reviews-plus-shop-review-fields .form-row small {
+    display: block;
+    margin-top: 6px;
+}
+
+.luma-reviews-plus-field-error {
+    margin: 6px 0 0;
+    color: #b42318;
+}
+
+.luma-reviews-plus-invalid {
+    border-color: #b42318 !important;
 }
 
 .luma-reviews-plus-tags {
@@ -78,15 +100,25 @@
     gap: 10px 14px;
 }
 
-.luma-reviews-plus-tags label,
-.luma-reviews-plus-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.luma-reviews-plus-shop-review-fields fieldset {
+    margin: 0 0 14px;
+    padding: 0;
+    border: 0;
 }
 
+.luma-reviews-plus-tags label,
+.luma-reviews-plus-checkbox {
+    display: block;
+}
+
+.luma-reviews-plus-tags label input,
+.luma-reviews-plus-checkbox input {
+    margin-right: 8px;
+}
+
+.luma-reviews-plus-tags span,
 .luma-reviews-plus-checkbox span {
-    font-weight: 400;
+    display: inline;
     margin-bottom: 0;
 }
 
@@ -94,18 +126,8 @@
     margin-top: 24px;
 }
 
-.luma-reviews-plus-submit .button {
-    background: #406144;
-    border-color: #406144;
-    color: #fff;
-    padding: 12px 20px;
-    height: auto;
-}
-
 .luma-shop-reviews-summary {
     padding: 24px;
-    background: #f2f1ea;
-    border-radius: 16px;
 }
 
 .luma-shop-reviews-summary__quotes {
@@ -116,16 +138,10 @@
 
 .luma-shop-reviews-summary__quote {
     margin: 0;
-    padding: 18px;
-    background: #fff;
-    border-left: 4px solid #406144;
+    padding: 18px 0;
 }
 
 @media (max-width: 680px) {
-    .luma-reviews-plus-card {
-        padding: 20px;
-    }
-
     .luma-reviews-plus-product-item {
         grid-template-columns: 1fr;
     }

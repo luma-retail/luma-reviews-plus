@@ -104,22 +104,6 @@ class Helpers {
 
 
     /**
-     * Returns a safe public display name for quotes.
-     *
-     * @param \WC_Order $order WooCommerce order.
-     * @param string    $mode Display mode.
-     * @return string
-     */
-    public static function get_public_display_name( \WC_Order $order, $mode = 'first_name_only' ) {
-        if ( 'full_name' === $mode ) {
-            return self::get_order_customer_name( $order );
-        }
-
-        return self::get_order_first_name( $order );
-    }
-
-
-    /**
      * Returns a displayable billing location.
      *
      * @param \WC_Order $order WooCommerce order.

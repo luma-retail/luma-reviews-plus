@@ -166,7 +166,7 @@ class ReviewEmail extends \WC_Email {
      * @return string
      */
     public function get_default_heading() {
-        return __( 'Vi vil gjerne hore hva du synes', 'luma-reviews-plus' );
+        return __( 'We would love to hear what you think', 'luma-reviews-plus' );
     }
 
 
@@ -176,7 +176,7 @@ class ReviewEmail extends \WC_Email {
      * @return string
      */
     public function get_default_body_text() {
-        return __( 'Hei {first_name},\n\nTakk for kjopet hos {site_title}. Del gjerne dine vurderinger her: {review_link}', 'luma-reviews-plus' );
+        return __( 'Hi {first_name},\n\nThank you for your purchase from {site_title}. Feel free to share your reviews here: {review_link}', 'luma-reviews-plus' );
     }
 
 
@@ -187,6 +187,16 @@ class ReviewEmail extends \WC_Email {
      */
     public function get_body_text() {
         return $this->format_string( $this->get_option( 'body_text', $this->get_default_body_text() ) );
+    }
+
+
+    /**
+     * Returns the configured body text before placeholder formatting.
+     *
+     * @return string
+     */
+    protected function get_body_text_template() {
+        return (string) $this->get_option( 'body_text', $this->get_default_body_text() );
     }
 
 
@@ -204,6 +214,9 @@ class ReviewEmail extends \WC_Email {
                 'body_text'      => nl2br( wp_kses_post( $this->get_body_text() ) ),
                 'review_link'    => $this->review_link,
                 'review_button'  => $this->get_review_button_markup(),
+                'append_review_button' => $this->should_append_review_button(),
+                'append_review_link'   => $this->should_append_review_link(),
+                'review_link_fallback_text' => $this->get_review_link_fallback_text(),
                 'sent_to_admin'  => false,
                 'plain_text'     => false,
                 'email'          => $this,
@@ -227,6 +240,8 @@ class ReviewEmail extends \WC_Email {
                 'email_heading' => $this->get_heading(),
                 'body_text'     => wp_strip_all_tags( $this->get_body_text() ),
                 'review_link'   => $this->review_link,
+                'append_review_link' => $this->should_append_review_link(),
+                'review_link_fallback_text' => $this->get_review_link_fallback_text(),
                 'sent_to_admin' => false,
                 'plain_text'    => true,
                 'email'         => $this,
@@ -234,6 +249,36 @@ class ReviewEmail extends \WC_Email {
             '',
             $this->template_base
         );
+    }
+
+
+    /**
+     * Returns whether the HTML email should append the review button.
+     *
+     * @return bool
+     */
+    protected function should_append_review_button() {
+        return false === strpos( $this->get_body_text_template(), '{review_button}' );
+    }
+
+
+    /**
+     * Returns whether the email should append the raw review link fallback.
+     *
+     * @return bool
+     */
+    protected function should_append_review_link() {
+        return false === strpos( $this->get_body_text_template(), '{review_link}' );
+    }
+
+
+    /**
+     * Returns the fallback text shown before the raw review link.
+     *
+     * @return string
+     */
+    protected function get_review_link_fallback_text() {
+        return __( 'You can use this link if the button does not work:', 'luma-reviews-plus' );
     }
 
 
@@ -247,6 +292,6 @@ class ReviewEmail extends \WC_Email {
             return $this->review_link;
         }
 
-        return '<a href="' . esc_url( $this->review_link ) . '" style="display:inline-block;padding:12px 18px;background:#406144;color:#ffffff;text-decoration:none;border-radius:4px;">' . esc_html__( 'Gi din vurdering', 'luma-reviews-plus' ) . '</a>';
+        return '<a href="' . esc_url( $this->review_link ) . '" style="display:inline-block;padding:12px 18px;background:#406144;color:#ffffff;text-decoration:none;border-radius:4px;">' . esc_html__( 'Leave your review', 'luma-reviews-plus' ) . '</a>';
     }
 }

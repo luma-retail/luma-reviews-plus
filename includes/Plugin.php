@@ -110,8 +110,7 @@ class Plugin {
         }
 
         $link_generator = new ReviewLinkGenerator( $settings );
-        $review_email   = new ReviewEmail( $settings, $link_generator );
-        $scheduler      = new ReviewEmailScheduler( $settings, $token_repository, $link_generator, $review_email );
+        $scheduler      = new ReviewEmailScheduler( $settings, $token_repository, $link_generator );
         $scheduler->register();
 
         \add_filter( 'woocommerce_email_classes', array( $this, 'register_review_email' ) );
@@ -179,5 +178,18 @@ class Plugin {
     public function register_assets() {
         \wp_register_style( 'luma-reviews-plus-frontend', LUMA_REVIEWS_PLUS_URL . 'assets/css/frontend.css', array(), LUMA_REVIEWS_PLUS_VERSION );
         \wp_register_script( 'luma-reviews-plus-frontend', LUMA_REVIEWS_PLUS_URL . 'assets/js/frontend.js', array(), LUMA_REVIEWS_PLUS_VERSION, true );
+        \wp_localize_script(
+            'luma-reviews-plus-frontend',
+            'lumaReviewsPlusI18n',
+            array(
+                'shopRatingRequired'      => __( 'Choose a rating for the shopping experience, or skip the store review.', 'luma-reviews-plus' ),
+                'productRatingRequired'   => __( 'Choose a rating for this product, or skip it.', 'luma-reviews-plus' ),
+                'productCommentRequired'  => __( 'Write a short comment for this product.', 'luma-reviews-plus' ),
+                'shopDisplayNameRequired' => __( 'Enter your display name for the store review.', 'luma-reviews-plus' ),
+                'selectAtLeastOne'        => __( 'Choose at least one product or the store review before submitting.', 'luma-reviews-plus' ),
+                'selectProductForStore'   => __( 'Choose at least one product if you also want to submit the store review.', 'luma-reviews-plus' ),
+                'reviewErrorsSummary'     => __( 'Please review the highlighted fields below before submitting.', 'luma-reviews-plus' ),
+            )
+        );
     }
 }

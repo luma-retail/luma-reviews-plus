@@ -2,6 +2,7 @@
 
 namespace Luma\ReviewsPlus\Admin;
 
+use Luma\ReviewsPlus\Activation\Activator;
 use Luma\ReviewsPlus\Settings\Settings;
 
 /**
@@ -11,7 +12,7 @@ use Luma\ReviewsPlus\Settings\Settings;
  * - Add the Reviews Plus section under WooCommerce product settings.
  * - Render grouped plugin settings fields.
  * - Sanitize and persist the grouped settings option.
- * - Flush rewrite rules when the review page slug changes.
+ * - Keep the managed review page synced with the configured slug and title.
  */
 class SettingsPage {
 
@@ -98,6 +99,11 @@ class SettingsPage {
     public function render_fields() {
         $values = $this->settings->get_all();
 
+        echo '<tr valign="top">';
+        echo '<th scope="row">' . esc_html__( 'Email content', 'luma-reviews-plus' ) . '</th>';
+        echo '<td><p class="description">' . wp_kses_post( sprintf( __( 'Edit the review request email subject, heading, and body in <a href="%s">WooCommerce email settings</a>.', 'luma-reviews-plus' ), esc_url( $this->get_review_email_settings_url() ) ) ) . '</p></td>';
+        echo '</tr>';
+
         foreach ( $this->settings->get_settings_fields() as $field ) {
             $value = $values[ $field['key'] ] ?? '';
             echo '<tr valign="top">';
@@ -128,10 +134,8 @@ class SettingsPage {
 
         update_option( Settings::OPTION_NAME, $clean );
 
-        if ( $previous['review_page_slug'] !== $clean['review_page_slug'] ) {
-            add_rewrite_tag( '%luma_reviews_plus_review_page%', '1' );
-            add_rewrite_rule( '^' . $clean['review_page_slug'] . '/?$', 'index.php?luma_reviews_plus_review_page=1', 'top' );
-            flush_rewrite_rules();
+        if ( ! $this->settings->get_review_page_id() || $previous['review_page_slug'] !== $clean['review_page_slug'] || $previous['review_page_heading'] !== $clean['review_page_heading'] ) {
+            Activator::ensure_review_page( $this->settings );
         }
     }
 
@@ -178,5 +182,19 @@ class SettingsPage {
                 echo '<input type="text" class="regular-text" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( (string) $value ) . '" />';
                 break;
         }
+
+        if ( ! empty( $field['description'] ) ) {
+            echo '<p class="description">' . esc_html( $field['description'] ) . '</p>';
+        }
+    }
+
+
+    /**
+     * Returns the admin URL for the review request email settings.
+     *
+     * @return string
+     */
+    protected function get_review_email_settings_url() {
+        return admin_url( 'admin.php?page=wc-settings&tab=email&section=luma_reviews_plus_review_request' );
     }
 }

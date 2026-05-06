@@ -58,26 +58,16 @@ class ReviewEmailScheduler {
 
 
     /**
-     * Review email.
-     *
-     * @var ReviewEmail
-     */
-    protected $review_email;
-
-
-    /**
      * Creates the scheduler.
      *
      * @param Settings            $settings Settings service.
      * @param TokenRepository     $token_repository Token repository.
      * @param ReviewLinkGenerator $link_generator Link generator.
-     * @param ReviewEmail         $review_email Email instance.
      */
-    public function __construct( Settings $settings, TokenRepository $token_repository, ReviewLinkGenerator $link_generator, ReviewEmail $review_email ) {
+    public function __construct( Settings $settings, TokenRepository $token_repository, ReviewLinkGenerator $link_generator ) {
         $this->settings         = $settings;
         $this->token_repository = $token_repository;
         $this->link_generator   = $link_generator;
-        $this->review_email     = $review_email;
     }
 
 
@@ -278,7 +268,14 @@ class ReviewEmailScheduler {
 
         $review_link = $this->link_generator->get_review_page_url( $token['raw_token'], $order );
 
-        $this->review_email->trigger( $order->get_id(), $review_link );
+        $review_email = $this->get_review_email();
+
+        if ( ! $review_email ) {
+            Helpers::log( 'Unable to load review email class before sending order ' . \absint( $order->get_id() ), 'error' );
+            return;
+        }
+
+        $review_email->trigger( $order->get_id(), $review_link );
         $this->token_repository->mark_sent( $token['id'] );
 
         $order->update_meta_data( '_luma_reviews_plus_review_request_sent_at', current_time( 'mysql' ) );
@@ -311,5 +308,26 @@ class ReviewEmailScheduler {
         }
 
         return in_array( $order->get_status(), $this->get_eligible_statuses(), true );
+    }
+
+
+    /**
+     * Returns the registered WooCommerce review email instance.
+     *
+     * @return object|null
+     */
+    protected function get_review_email() {
+        if ( ! \function_exists( 'WC' ) || ! \WC() || ! \method_exists( \WC(), 'mailer' ) ) {
+            return null;
+        }
+
+        $mailer = \WC()->mailer();
+        $emails = \is_object( $mailer ) && \method_exists( $mailer, 'get_emails' ) ? $mailer->get_emails() : array();
+
+        if ( isset( $emails['luma_reviews_plus_review_request'] ) && \is_object( $emails['luma_reviews_plus_review_request'] ) && \method_exists( $emails['luma_reviews_plus_review_request'], 'trigger' ) ) {
+            return $emails['luma_reviews_plus_review_request'];
+        }
+
+        return null;
     }
 }

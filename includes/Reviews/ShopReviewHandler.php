@@ -58,6 +58,7 @@ class ShopReviewHandler {
 
         if ( $rating < 1 || $rating > 5 ) {
             return array(
+                'errors'    => array(),
                 'saved'     => false,
                 'review_id' => 0,
             );
@@ -67,9 +68,24 @@ class ShopReviewHandler {
         $selected_tags = array_values( array_intersect( $allowed_tags, array_map( 'sanitize_text_field', (array) ( $submitted['tags'] ?? array() ) ) ) );
         $display_name  = sanitize_text_field( (string) ( $submitted['display_name'] ?? '' ) );
         $location      = sanitize_text_field( (string) ( $submitted['display_location'] ?? '' ) );
+        $errors        = array();
 
         if ( '' === $display_name ) {
-            $display_name = Helpers::get_public_display_name( $order, $this->settings->get_public_display_name_mode() );
+            $display_name = Helpers::get_order_customer_name( $order );
+        }
+
+        $first_name = trim( (string) $order->get_billing_first_name() );
+
+        if ( '' !== $first_name && false === stripos( $display_name, $first_name ) ) {
+            $errors[] = __( 'Your display name must include your first name so we can match the review to the order.', 'luma-reviews-plus' );
+        }
+
+        if ( ! empty( $errors ) ) {
+            return array(
+                'errors'    => $errors,
+                'saved'     => false,
+                'review_id' => 0,
+            );
         }
 
         if ( '' === $location ) {
@@ -93,6 +109,7 @@ class ShopReviewHandler {
         do_action( 'luma_reviews_plus_shop_review_created', $review_id, $order->get_id(), $token->id );
 
         return array(
+            'errors'    => array(),
             'saved'     => $review_id > 0,
             'review_id' => $review_id,
         );

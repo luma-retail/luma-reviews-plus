@@ -67,7 +67,15 @@ The plugin uses a mixed storage model:
 - Review tokens are stored in a dedicated custom table.
 - Duplicate review protection per order item is stored in a dedicated custom table.
 
+Review tokens are not stored in order meta. The plugin stores a hashed token in the `wp_luma_review_tokens` table and only keeps send-related references on the order, such as the sent timestamp and token row id.
+
 This keeps WooCommerce compatibility for product reviews while still allowing a separate trust-focused review layer for the store experience.
+
+## Testing Email Sends
+
+- Set the review email delay to `0` if you want the request queued for immediate processing.
+- Use the WooCommerce order action `Send review request` when you want to trigger a test email for a specific order right away.
+- Email preview tools may not show a real review link, because the tokenized URL is generated during the actual send flow for a real order.
 
 ## Extensibility
 

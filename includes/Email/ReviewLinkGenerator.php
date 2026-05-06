@@ -40,7 +40,8 @@ class ReviewLinkGenerator {
      * @return string
      */
     public function get_review_page_url( $raw_token, $order = null ) {
-        $base_url = home_url( '/' . trim( $this->settings->get_review_page_slug(), '/' ) . '/' );
+        $page_id  = $this->settings->get_review_page_id();
+        $base_url = $page_id ? get_permalink( $page_id ) : home_url( '/' . trim( $this->settings->get_review_page_slug(), '/' ) . '/' );
         $url      = add_query_arg( 'token', rawurlencode( (string) $raw_token ), $base_url );
 
         return (string) apply_filters( 'luma_reviews_plus_review_page_url', $url, $raw_token, $order );

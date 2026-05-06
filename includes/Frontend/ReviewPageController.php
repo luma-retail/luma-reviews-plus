@@ -8,6 +8,7 @@ use Luma\ReviewsPlus\Database\TokenRepository;
 use Luma\ReviewsPlus\Reviews\ProductReviewHandler;
 use Luma\ReviewsPlus\Reviews\ShopReviewHandler;
 use Luma\ReviewsPlus\Settings\Settings;
+use Luma\ReviewsPlus\Utils\Helpers;
 
 /**
  * Controls the tokenized public review page.
@@ -41,6 +42,9 @@ class ReviewPageController {
     /** @var ReviewFormRenderer */
     protected $form_renderer;
 
+    /** @var array|null */
+    protected $current_context;
+
 
     /**
      * Creates the controller.
@@ -70,59 +74,93 @@ class ReviewPageController {
      * @return void
      */
     public function register() {
-        add_action( 'init', array( $this, 'register_rewrite_rules' ) );
-        add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
-        add_action( 'template_redirect', array( $this, 'maybe_render_review_page' ) );
+        add_action( 'template_redirect', array( $this, 'prepare_review_page' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+        add_filter( 'body_class', array( $this, 'add_body_classes' ) );
+        add_filter( 'the_content', array( $this, 'filter_review_page_content' ) );
     }
 
 
     /**
-     * Registers rewrite rules.
+     * Prepares the managed review page state.
      *
      * @return void
      */
-    public function register_rewrite_rules() {
-        add_rewrite_tag( '%luma_reviews_plus_review_page%', '1' );
-        add_rewrite_rule( '^' . $this->settings->get_review_page_slug() . '/?$', 'index.php?luma_reviews_plus_review_page=1', 'top' );
-    }
-
-
-    /**
-     * Adds custom query vars.
-     *
-     * @param array $vars Existing query vars.
-     * @return array
-     */
-    public function add_query_vars( $vars ) {
-        $vars[] = 'luma_reviews_plus_review_page';
-
-        return $vars;
-    }
-
-
-    /**
-     * Renders the virtual review page when requested.
-     *
-     * @return void
-     */
-    public function maybe_render_review_page() {
-        if ( '1' !== (string) get_query_var( 'luma_reviews_plus_review_page' ) ) {
+    public function prepare_review_page() {
+        if ( ! $this->is_review_page_request() ) {
             return;
+        }
+
+        $this->current_context = $this->build_context();
+
+        if ( 'POST' === strtoupper( $_SERVER['REQUEST_METHOD'] ?? '' ) ) {
+            $this->current_context = $this->handle_submission( $this->current_context );
+        }
+
+        nocache_headers();
+    }
+
+
+    /**
+     * Enqueues frontend assets on the managed review page.
+     *
+     * @return void
+     */
+    public function enqueue_assets() {
+        if ( ! $this->is_review_page_request() ) {
+            return;
+        }
+
+        foreach ( array( 'woocommerce-layout', 'woocommerce-smallscreen', 'woocommerce-general' ) as $style_handle ) {
+            if ( wp_style_is( $style_handle, 'registered' ) ) {
+                wp_enqueue_style( $style_handle );
+            }
+        }
+
+        if ( wp_script_is( 'wc-single-product', 'registered' ) ) {
+            wp_enqueue_script( 'wc-single-product' );
         }
 
         wp_enqueue_style( 'luma-reviews-plus-frontend' );
         wp_enqueue_script( 'luma-reviews-plus-frontend' );
+    }
 
-        $context = $this->build_context();
 
-        if ( 'POST' === strtoupper( $_SERVER['REQUEST_METHOD'] ?? '' ) ) {
-            $context = $this->handle_submission( $context );
+    /**
+     * Adds WooCommerce-compatible body classes on the review page.
+     *
+     * @param array $classes Existing body classes.
+     * @return array
+     */
+    public function add_body_classes( $classes ) {
+        if ( ! $this->is_review_page_request() ) {
+            return $classes;
         }
 
-        status_header( 200 );
-        nocache_headers();
-        $this->form_renderer->render_page( $context );
-        exit;
+        $classes[] = 'luma-reviews-plus-page';
+        $classes[] = 'woocommerce';
+        $classes[] = 'woocommerce-page';
+
+        return array_values( array_unique( $classes ) );
+    }
+
+
+    /**
+     * Replaces the managed page content with the review form.
+     *
+     * @param string $content Existing content.
+     * @return string
+     */
+    public function filter_review_page_content( $content ) {
+        if ( ! $this->is_review_page_request() || ! is_main_query() || ! in_the_loop() ) {
+            return $content;
+        }
+
+        if ( null === $this->current_context ) {
+            $this->current_context = $this->build_context();
+        }
+
+        return $this->form_renderer->render_page( $this->current_context );
     }
 
 
@@ -169,13 +207,13 @@ class ReviewPageController {
 
         if ( ! $order instanceof \WC_Order ) {
             $context['state']      = 'order_not_found';
-            $context['messages'][] = __( 'Ordren ble ikke funnet.', 'luma-reviews-plus' );
+            $context['messages'][] = __( 'The order could not be found.', 'luma-reviews-plus' );
             return $context;
         }
 
         if ( ! $this->is_order_eligible( $order ) ) {
             $context['state']      = 'order_not_eligible';
-            $context['messages'][] = __( 'Denne ordren er ikke lenger tilgjengelig for vurdering.', 'luma-reviews-plus' );
+            $context['messages'][] = __( 'This order is no longer available for review.', 'luma-reviews-plus' );
             return $context;
         }
 
@@ -191,6 +229,14 @@ class ReviewPageController {
         $context['order']        = $order;
         $context['shop_review']  = $shop_review;
         $context['review_items'] = $review_items;
+
+        if ( empty( $context['posted_shop_review'] ) ) {
+            $context['posted_shop_review'] = array(
+                'display_name'     => Helpers::get_order_customer_name( $order ),
+                'display_location' => Helpers::get_order_location( $order ),
+                'public_consent'   => 1,
+            );
+        }
 
         return $context;
     }
@@ -211,12 +257,12 @@ class ReviewPageController {
         }
 
         if ( ! isset( $_POST['luma_reviews_plus_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['luma_reviews_plus_nonce'] ) ), 'luma_reviews_plus_submit_review' ) ) {
-            $context['messages'][] = __( 'Sikkerhetskontrollen feilet. Last inn siden pa nytt og prov igjen.', 'luma-reviews-plus' );
+            $context['messages'][] = __( 'The security check failed. Please reload the page and try again.', 'luma-reviews-plus' );
             return $context;
         }
 
         if ( ! $this->settings->allow_partial_product_reviews() && ! $this->all_items_have_ratings( $context['review_items'], $context['posted_product_reviews'] ) ) {
-            $context['messages'][] = __( 'Du ma vurdere alle produktene i bestillingen i denne innsendingen.', 'luma-reviews-plus' );
+            $context['messages'][] = __( 'You must review all products in this order in the same submission.', 'luma-reviews-plus' );
             return $context;
         }
 
@@ -227,14 +273,18 @@ class ReviewPageController {
         }
 
         if ( ! $this->settings->allow_shop_review_without_products() && empty( $product_result['created'] ) && ! empty( $context['posted_shop_review']['rating'] ) ) {
-            $context['messages'][] = __( 'Butikkvurdering krever minst en produktvurdering.', 'luma-reviews-plus' );
+            $context['messages'][] = __( 'A store review requires at least one product review.', 'luma-reviews-plus' );
             return $context;
         }
 
         $shop_result = $this->shop_review_handler->handle_submission( $context['order'], $context['token'], $context['posted_shop_review'] );
 
+        foreach ( $shop_result['errors'] as $error ) {
+            $context['messages'][] = $error;
+        }
+
         if ( empty( $product_result['created'] ) && empty( $shop_result['saved'] ) ) {
-            $context['messages'][] = __( 'Send inn minst en gyldig vurdering for a fortsette.', 'luma-reviews-plus' );
+            $context['messages'][] = __( 'Submit at least one valid review to continue.', 'luma-reviews-plus' );
             return $context;
         }
 
@@ -339,5 +389,17 @@ class ReviewPageController {
      */
     protected function is_order_eligible( \WC_Order $order ) {
         return in_array( $order->get_status(), (array) apply_filters( 'luma_reviews_plus_eligible_order_statuses', array( 'completed' ) ), true );
+    }
+
+
+    /**
+     * Returns whether the current request is for the managed review page.
+     *
+     * @return bool
+     */
+    protected function is_review_page_request() {
+        $page_id = $this->settings->get_review_page_id();
+
+        return $page_id > 0 && is_page( $page_id );
     }
 }

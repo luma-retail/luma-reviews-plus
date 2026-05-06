@@ -71,15 +71,15 @@ class PublicTrustRenderer {
         ob_start();
         ?>
         <div class="luma-shop-reviews-summary">
-            <h2><?php echo esc_html( sprintf( __( 'Trygg netthandel hos %s', 'luma-reviews-plus' ), get_bloginfo( 'name' ) ) ); ?></h2>
+            <h2><?php echo esc_html( sprintf( __( 'Trusted online shopping at %s', 'luma-reviews-plus' ), get_bloginfo( 'name' ) ) ); ?></h2>
             <?php if ( 'yes' === $atts['show_rating'] ) : ?>
                 <p class="luma-shop-reviews-summary__rating">
-                    <?php echo esc_html( sprintf( __( 'Kundene vurderer handleopplevelsen til %1$s / 5.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ) ) ); ?>
+                    <?php echo esc_html( sprintf( __( 'Customers rate the shopping experience %1$s / 5.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ) ) ); ?>
                 </p>
             <?php endif; ?>
             <?php if ( 'yes' === $atts['show_count'] ) : ?>
                 <p class="luma-shop-reviews-summary__count">
-                    <?php echo esc_html( sprintf( __( 'Basert pa %d bekreftede kjopsopplevelser.', 'luma-reviews-plus' ), \absint( $data['review_count'] ) ) ); ?>
+                    <?php echo esc_html( sprintf( __( 'Based on %d verified shopping experiences.', 'luma-reviews-plus' ), \absint( $data['review_count'] ) ) ); ?>
                 </p>
             <?php endif; ?>
             <?php if ( 'yes' === $atts['show_quotes'] && ! empty( $data['quotes'] ) ) : ?>

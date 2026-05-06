@@ -24,6 +24,14 @@ class Settings {
 
 
     /**
+     * Review page option name.
+     *
+     * @var string
+     */
+    const REVIEW_PAGE_ID_OPTION = 'luma_reviews_plus_review_page_id';
+
+
+    /**
      * Returns all default settings.
      *
      * @return array
@@ -33,33 +41,32 @@ class Settings {
             'review_requests_enabled'             => 1,
             'review_email_delay_days'            => 5,
             'token_expiry_days'                  => 90,
-            'review_page_slug'                   => 'vurdering',
-            'review_page_heading'                => __( 'Del din vurdering', 'luma-reviews-plus' ),
-            'review_page_intro'                  => __( 'Takk for kjopet. Vi vil gjerne hore hvordan du opplevde produktene og handelen.', 'luma-reviews-plus' ),
-            'product_reviews_heading'            => __( 'Hvordan var produktene du kjopte?', 'luma-reviews-plus' ),
-            'product_reviews_intro'              => __( 'Du kan vurdere ett eller flere produkter fra denne bestillingen.', 'luma-reviews-plus' ),
-            'shop_review_heading'                => __( 'Hvordan var handleopplevelsen hos Fru Kvist?', 'luma-reviews-plus' ),
-            'shop_review_intro'                  => __( 'Del gjerne hvordan du opplevde nettbutikken, levering og service.', 'luma-reviews-plus' ),
+            'review_page_slug'                   => 'review',
+            'review_page_heading'                => __( 'Share your review', 'luma-reviews-plus' ),
+            'review_page_intro'                  => __( 'Thank you for your purchase. We would love to hear how you experienced the products and the shopping experience.', 'luma-reviews-plus' ),
+            'product_reviews_heading'            => __( 'How were the products you bought?', 'luma-reviews-plus' ),
+            'product_reviews_intro'              => __( 'You can review one or more products from this order.', 'luma-reviews-plus' ),
+            'shop_review_heading'                => __( 'How was your shopping experience with Fru Kvist?', 'luma-reviews-plus' ),
+            'shop_review_intro'                  => __( 'Feel free to share how you experienced the store, delivery, and service.', 'luma-reviews-plus' ),
             'shop_review_tags'                   => array(
-                __( 'Rask levering', 'luma-reviews-plus' ),
-                __( 'Pent pakket', 'luma-reviews-plus' ),
-                __( 'Riktig lagerstatus', 'luma-reviews-plus' ),
-                __( 'God kundeservice', 'luma-reviews-plus' ),
-                __( 'God hjelp/radgivning', 'luma-reviews-plus' ),
-                __( 'Lett a handle', 'luma-reviews-plus' ),
-                __( 'Annet', 'luma-reviews-plus' ),
+                __( 'Fast delivery', 'luma-reviews-plus' ),
+                __( 'Beautifully packaged', 'luma-reviews-plus' ),
+                __( 'Accurate stock information', 'luma-reviews-plus' ),
+                __( 'Helpful customer service', 'luma-reviews-plus' ),
+                __( 'Good advice and guidance', 'luma-reviews-plus' ),
+                __( 'Easy to shop', 'luma-reviews-plus' ),
+                __( 'Other', 'luma-reviews-plus' ),
             ),
             'product_review_comment_required'    => 0,
             'auto_approve_product_reviews'       => 0,
             'allow_shop_review_without_products' => 1,
             'allow_partial_product_reviews'      => 1,
-            'public_display_name_mode'           => 'first_name_only',
-            'submit_button_text'                 => __( 'Send vurderinger', 'luma-reviews-plus' ),
-            'success_message'                    => __( 'Takk. Vurderingen din er registrert.', 'luma-reviews-plus' ),
-            'expired_token_message'              => __( 'Denne vurderingslenken har utlopet.', 'luma-reviews-plus' ),
-            'invalid_token_message'              => __( 'Denne vurderingslenken er ugyldig.', 'luma-reviews-plus' ),
-            'already_reviewed_message'           => __( 'Alle produktene i denne bestillingen er allerede vurdert.', 'luma-reviews-plus' ),
-            'public_consent_text'                => __( 'Fru Kvist kan vise kommentaren min pa nettsiden. Den vises kun med fornavn og eventuelt sted.', 'luma-reviews-plus' ),
+            'submit_button_text'                 => __( 'Submit reviews', 'luma-reviews-plus' ),
+            'success_message'                    => __( 'Thank you. Your review has been submitted.', 'luma-reviews-plus' ),
+            'expired_token_message'              => __( 'This review link has expired.', 'luma-reviews-plus' ),
+            'invalid_token_message'              => __( 'This review link is invalid.', 'luma-reviews-plus' ),
+            'already_reviewed_message'           => __( 'All products in this order have already been reviewed.', 'luma-reviews-plus' ),
+            'public_consent_text'                => $this->get_default_public_consent_text(),
         );
     }
 
@@ -134,6 +141,7 @@ class Settings {
                 'key'   => 'review_page_intro',
                 'label' => __( 'Review page introduction text', 'luma-reviews-plus' ),
                 'type'  => 'richtext',
+                'description' => __( 'Available placeholder: {first_name} (customer first name)', 'luma-reviews-plus' ),
             ),
             array(
                 'key'   => 'product_reviews_heading',
@@ -179,15 +187,6 @@ class Settings {
                 'key'   => 'allow_partial_product_reviews',
                 'label' => __( 'Allow partial product review submissions', 'luma-reviews-plus' ),
                 'type'  => 'checkbox',
-            ),
-            array(
-                'key'     => 'public_display_name_mode',
-                'label'   => __( 'Public display name mode', 'luma-reviews-plus' ),
-                'type'    => 'select',
-                'options' => array(
-                    'first_name_only' => __( 'First name only', 'luma-reviews-plus' ),
-                    'full_name'       => __( 'Full name', 'luma-reviews-plus' ),
-                ),
             ),
             array(
                 'key'   => 'submit_button_text',
@@ -251,7 +250,6 @@ class Settings {
         $clean['auto_approve_product_reviews']       = Sanitizer::bool_to_int( $input['auto_approve_product_reviews'] ?? 0 );
         $clean['allow_shop_review_without_products'] = Sanitizer::bool_to_int( $input['allow_shop_review_without_products'] ?? 0 );
         $clean['allow_partial_product_reviews']      = Sanitizer::bool_to_int( $input['allow_partial_product_reviews'] ?? 0 );
-        $clean['public_display_name_mode']           = in_array( $input['public_display_name_mode'] ?? '', array( 'first_name_only', 'full_name' ), true ) ? $input['public_display_name_mode'] : $defaults['public_display_name_mode'];
         $clean['submit_button_text']                 = Sanitizer::text( $input['submit_button_text'] ?? $defaults['submit_button_text'] );
         $clean['success_message']                    = Sanitizer::text( $input['success_message'] ?? $defaults['success_message'] );
         $clean['expired_token_message']              = Sanitizer::text( $input['expired_token_message'] ?? $defaults['expired_token_message'] );
@@ -299,7 +297,17 @@ class Settings {
      * @return string
      */
     public function get_review_page_slug() {
-        return (string) $this->get_setting( 'review_page_slug', 'vurdering' );
+        return (string) $this->get_setting( 'review_page_slug', 'review' );
+    }
+
+
+    /**
+     * Returns the managed review page ID.
+     *
+     * @return int
+     */
+    public function get_review_page_id() {
+        return absint( get_option( self::REVIEW_PAGE_ID_OPTION, 0 ) );
     }
 
 
@@ -404,16 +412,6 @@ class Settings {
 
 
     /**
-     * Returns the public display name mode.
-     *
-     * @return string
-     */
-    public function get_public_display_name_mode() {
-        return (string) $this->get_setting( 'public_display_name_mode', 'first_name_only' );
-    }
-
-
-    /**
      * Returns allowed shop review tags.
      *
      * @return array
@@ -479,7 +477,17 @@ class Settings {
      * @return string
      */
     public function get_public_consent_text() {
-        return (string) $this->get_setting( 'public_consent_text', '' );
+        return (string) $this->get_setting( 'public_consent_text', $this->get_default_public_consent_text() );
+    }
+
+
+    /**
+     * Returns the default public consent text.
+     *
+     * @return string
+     */
+    protected function get_default_public_consent_text() {
+        return __( 'Fru Kvist may show my comment on the website with the name I provide here and, optionally, my location.', 'luma-reviews-plus' );
     }
 
 
