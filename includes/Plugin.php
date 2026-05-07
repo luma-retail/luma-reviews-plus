@@ -8,6 +8,7 @@ use Luma\ReviewsPlus\Database\ProductReviewLogRepository;
 use Luma\ReviewsPlus\Database\ShopReviewRepository;
 use Luma\ReviewsPlus\Database\TableManager;
 use Luma\ReviewsPlus\Database\TokenRepository;
+use Luma\ReviewsPlus\Email\ShopReviewNotification;
 use Luma\ReviewsPlus\Email\ReviewEmail;
 use Luma\ReviewsPlus\Email\ReviewEmailScheduler;
 use Luma\ReviewsPlus\Email\ReviewLinkGenerator;
@@ -112,6 +113,9 @@ class Plugin {
         $link_generator = new ReviewLinkGenerator( $settings );
         $scheduler      = new ReviewEmailScheduler( $settings, $token_repository, $link_generator );
         $scheduler->register();
+
+        $shop_review_notification = new ShopReviewNotification( $settings, $shop_review_repository );
+        $shop_review_notification->register();
 
         \add_filter( 'woocommerce_email_classes', array( $this, 'register_review_email' ) );
         \add_filter( 'woocommerce_locate_template', array( $this, 'locate_email_template' ), 10, 3 );

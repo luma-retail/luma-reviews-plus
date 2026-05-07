@@ -49,6 +49,8 @@ class Settings {
             'product_reviews_intro'              => __( 'You can review one or more products from this order.', 'luma-reviews-plus' ),
             'shop_review_heading'                => __( 'How was your shopping experience with Fru Kvist?', 'luma-reviews-plus' ),
             'shop_review_intro'                  => __( 'Feel free to share how you experienced the store, delivery, and service.', 'luma-reviews-plus' ),
+            'shop_review_notifications_enabled'  => 1,
+            'shop_review_notification_email'     => \sanitize_email( (string) \get_option( 'admin_email', '' ) ),
             'shop_review_tags'                   => array(
                 __( 'Fast delivery', 'luma-reviews-plus' ),
                 __( 'Beautifully packaged', 'luma-reviews-plus' ),
@@ -171,6 +173,18 @@ class Settings {
                 'type'  => 'richtext',
             ),
             array(
+                'key'         => 'shop_review_notifications_enabled',
+                'label'       => __( 'Enable shop review notifications', 'luma-reviews-plus' ),
+                'type'        => 'checkbox',
+                'description' => __( 'Send an admin email when a new shop-experience review is submitted.', 'luma-reviews-plus' ),
+            ),
+            array(
+                'key'         => 'shop_review_notification_email',
+                'label'       => __( 'Shop review notification email', 'luma-reviews-plus' ),
+                'type'        => 'email',
+                'description' => __( 'New shop-experience reviews will be emailed to this address.', 'luma-reviews-plus' ),
+            ),
+            array(
                 'key'   => 'shop_review_tags',
                 'label' => __( 'Shop-experience tags', 'luma-reviews-plus' ),
                 'type'  => 'textarea_array',
@@ -253,6 +267,8 @@ class Settings {
         $clean['product_reviews_intro']              = Sanitizer::rich_text( $input['product_reviews_intro'] ?? $defaults['product_reviews_intro'] );
         $clean['shop_review_heading']                = Sanitizer::text( $input['shop_review_heading'] ?? $defaults['shop_review_heading'] );
         $clean['shop_review_intro']                  = Sanitizer::rich_text( $input['shop_review_intro'] ?? $defaults['shop_review_intro'] );
+        $clean['shop_review_notifications_enabled']  = Sanitizer::bool_to_int( $input['shop_review_notifications_enabled'] ?? 0 );
+        $clean['shop_review_notification_email']     = $this->sanitize_notification_email( $input['shop_review_notification_email'] ?? $defaults['shop_review_notification_email'] );
         $clean['shop_review_tags']                   = $this->sanitize_tags( $input['shop_review_tags'] ?? $defaults['shop_review_tags'] );
         $clean['product_review_comment_required']    = Sanitizer::bool_to_int( $input['product_review_comment_required'] ?? 0 );
         $clean['auto_approve_product_reviews']       = Sanitizer::bool_to_int( $input['auto_approve_product_reviews'] ?? 0 );
@@ -400,6 +416,26 @@ class Settings {
 
 
     /**
+     * Returns whether shop review admin notifications are enabled.
+     *
+     * @return bool
+     */
+    public function are_shop_review_notifications_enabled() {
+        return (bool) $this->get_setting( 'shop_review_notifications_enabled', 1 );
+    }
+
+
+    /**
+     * Returns the recipient for shop review notifications.
+     *
+     * @return string
+     */
+    public function get_shop_review_notification_email() {
+        return $this->sanitize_notification_email( $this->get_setting( 'shop_review_notification_email', '' ) );
+    }
+
+
+    /**
      * Returns whether product comments are required.
      *
      * @return bool
@@ -466,6 +502,23 @@ class Settings {
         }
 
         return $style;
+    }
+
+
+    /**
+     * Sanitizes the shop review notification email address.
+     *
+     * @param mixed $email Raw email address.
+     * @return string
+     */
+    protected function sanitize_notification_email( $email ) {
+        $email = Sanitizer::email( $email );
+
+        if ( '' === $email || ! \is_email( $email ) ) {
+            $email = Sanitizer::email( \get_option( 'admin_email', '' ) );
+        }
+
+        return \is_email( $email ) ? $email : '';
     }
 
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-06 15:57+0000\n"
-"PO-Revision-Date: 2026-05-07 12:42+0000\n"
+"PO-Revision-Date: 2026-05-07 14:19+0000\n"
 "Last-Translator: Terje Johansen\n"
 "Language-Team: Norsk bokmål\n"
 "Language: nb_NO\n"
@@ -33,11 +33,16 @@ msgid_plural "%s weeks ago"
 msgstr[0] "%s uke siden"
 msgstr[1] "%s uker siden"
 
+#: includes/Email/ShopReviewNotification.php:90
+#, php-format
+msgid "A new shop-experience review was submitted on %s."
+msgstr "En ny anmeldelse av butikkopplevelse ble sendt inn %s."
+
 #: includes/Frontend/ReviewPageController.php:278
 msgid "A store review requires at least one product review."
 msgstr "En butikkvurdering krever minst én produktvurdering."
 
-#: includes/Settings/Settings.php:55
+#: includes/Settings/Settings.php:57
 msgid "Accurate stock information"
 msgstr "Nøyaktig lagerinformasjon"
 
@@ -45,19 +50,19 @@ msgstr "Nøyaktig lagerinformasjon"
 msgid "Actions"
 msgstr "Handlinger"
 
-#: includes/Settings/Settings.php:220
+#: includes/Settings/Settings.php:234
 msgid "All items already reviewed message"
 msgstr "Melding om alle varer allerede vurdert"
 
-#: includes/Settings/Settings.php:69
+#: includes/Settings/Settings.php:71
 msgid "All products in this order have already been reviewed."
 msgstr "Alle produkter i denne bestillingen er allerede vurdert."
 
-#: includes/Settings/Settings.php:195
+#: includes/Settings/Settings.php:209
 msgid "Allow partial product review submissions"
 msgstr "Tillat delvise produktvurderinger"
 
-#: includes/Settings/Settings.php:190
+#: includes/Settings/Settings.php:204
 msgid "Allow shop-experience review without product review"
 msgstr "Tillat butikkopplevelsesvurdering uten produktvurdering"
 
@@ -65,11 +70,11 @@ msgstr "Tillat butikkopplevelsesvurdering uten produktvurdering"
 msgid "Approve for public display"
 msgstr "Godkjenn for offentlig visning"
 
-#: includes/Settings/Settings.php:185
+#: includes/Settings/Settings.php:199
 msgid "Auto-approve product reviews"
 msgstr "Automatisk godkjenning av produktvurderinger"
 
-#: includes/Settings/Settings.php:151
+#: includes/Settings/Settings.php:153
 msgid "Available placeholder: {first_name} (customer first name)"
 msgstr "Tilgjengelig plassholder: {first_name} (kundens fornavn)"
 
@@ -97,7 +102,7 @@ msgstr "Gjennomsnitt"
 msgid "Based on %d customer reviews after purchase."
 msgstr "Basert på %d omtaler fra kunder som har handlet hos oss."
 
-#: includes/Settings/Settings.php:54
+#: includes/Settings/Settings.php:56
 msgid "Beautifully packaged"
 msgstr "Vakkert pakket"
 
@@ -105,21 +110,21 @@ msgstr "Vakkert pakket"
 msgid "Body text"
 msgstr "Brødtekst"
 
-#: includes/Plugin.php:186
+#: includes/Plugin.php:190
 msgid "Choose a rating for the shopping experience, or skip the store review."
 msgstr ""
 "Velg en vurdering for handleopplevelsen, eller hopp over butikkvurderingen."
 
-#: includes/Plugin.php:187
+#: includes/Plugin.php:191
 msgid "Choose a rating for this product, or skip it."
 msgstr "Velg en vurdering for dette produktet, eller hopp over det."
 
-#: includes/Plugin.php:191
+#: includes/Plugin.php:195
 msgid ""
 "Choose at least one product if you also want to submit the store review."
 msgstr "Velg minst ett produkt hvis du også vil sende inn butikkvurderingen."
 
-#: includes/Plugin.php:190
+#: includes/Plugin.php:194
 msgid "Choose at least one product or the store review before submitting."
 msgstr "Velg minst ett produkt eller butikkvurdering før innsending."
 
@@ -131,6 +136,10 @@ msgstr "Velg e-postformat."
 #: includes/Admin/ShopReviewsPage.php:133
 msgid "Comment"
 msgstr "Kommentar"
+
+#: includes/Email/ShopReviewNotification.php:100
+msgid "Comment:"
+msgstr "Kommentar:"
 
 #: includes/Admin/SettingsPage.php:80
 msgid ""
@@ -144,11 +153,16 @@ msgstr ""
 msgid "Customer"
 msgstr "Kunde"
 
+#: includes/Email/ShopReviewNotification.php:93
+#, php-format
+msgid "Customer: %s"
+msgstr "Kunde: %s"
+
 #: includes/Admin/ShopReviewsPage.php:128
 msgid "Date"
 msgstr "Dato"
 
-#: includes/Settings/Settings.php:119
+#: includes/Settings/Settings.php:121
 msgid "Days after completed order before review email is sent"
 msgstr "Dager etter fullført bestilling før vurderings-e-post sendes"
 
@@ -164,7 +178,7 @@ msgstr "Visningsnavn"
 msgid "Displayed in the email heading area."
 msgstr "Vist i e-postoverskriftsområdet."
 
-#: includes/Settings/Settings.php:58
+#: includes/Settings/Settings.php:60
 msgid "Easy to shop"
 msgstr "Enkelt å handle"
 
@@ -189,9 +203,13 @@ msgstr "E-postoverskrift"
 msgid "Email type"
 msgstr "E-posttype"
 
-#: includes/Settings/Settings.php:114
+#: includes/Settings/Settings.php:116
 msgid "Enable review requests"
 msgstr "Aktiver vurderingsforespørsler"
+
+#: includes/Settings/Settings.php:177
+msgid "Enable shop review notifications"
+msgstr "Aktiver varsling om butikkvurderinger"
 
 #: includes/Email/ReviewEmail.php:85
 msgid "Enable this email notification"
@@ -205,15 +223,15 @@ msgstr "Aktiver/Deaktiver"
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: includes/Plugin.php:189
+#: includes/Plugin.php:193
 msgid "Enter your display name for the store review."
 msgstr "Skriv inn ditt visningsnavn for butikkvurderingen."
 
-#: includes/Settings/Settings.php:210
+#: includes/Settings/Settings.php:224
 msgid "Expired token message"
 msgstr "Utløpt token-melding"
 
-#: includes/Settings/Settings.php:53
+#: includes/Settings/Settings.php:55
 msgid "Fast delivery"
 msgstr "Rask levering"
 
@@ -222,7 +240,7 @@ msgid ""
 "Feel free to share how you experienced the store, delivery, and service."
 msgstr "Del gjerne hvordan du opplevde butikken, leveringen og servicen."
 
-#: includes/Settings/Settings.php:548
+#: includes/Settings/Settings.php:601
 msgid ""
 "Fru Kvist may show my comment on the website with the name I provide here "
 "and, optionally, my location."
@@ -234,11 +252,11 @@ msgstr ""
 msgid "Good"
 msgstr "Bra"
 
-#: includes/Settings/Settings.php:57
+#: includes/Settings/Settings.php:59
 msgid "Good advice and guidance"
 msgstr "Godt råd og veiledning"
 
-#: includes/Settings/Settings.php:56
+#: includes/Settings/Settings.php:58
 msgid "Helpful customer service"
 msgstr "Hjelpsom kundeservice"
 
@@ -267,11 +285,11 @@ msgstr "https://github.com/luma-retail/luma-reviews-plus"
 msgid "Hvordan var bestilling #{order_number}?"
 msgstr "Hvordan var bestillingen #{order_number}?"
 
-#: includes/Settings/Settings.php:215
+#: includes/Settings/Settings.php:229
 msgid "Invalid token message"
 msgstr "Ugyldig token-melding"
 
-#: includes/Settings/Settings.php:368
+#: includes/Settings/Settings.php:384
 msgid "It is not too late to review these products as well."
 msgstr "Det er ikke for sent å gi en vurdering av disse produktene også."
 
@@ -287,12 +305,17 @@ msgstr "Legg igjen din vurdering"
 msgid "Location"
 msgstr "Sted"
 
+#: includes/Email/ShopReviewNotification.php:94
+#, php-format
+msgid "Location: %s"
+msgstr "Sted: %s"
+
 #. Name of the plugin
 #: includes/Admin/SettingsPage.php:77
 msgid "Luma Reviews Plus"
 msgstr "Luma Anmeldelser Plus"
 
-#: includes/Plugin.php:72
+#: includes/Plugin.php:73
 msgid "Luma Reviews Plus requires WooCommerce to be active."
 msgstr "Luma Anmeldelser Plus krever at WooCommerce er aktivt."
 
@@ -300,22 +323,43 @@ msgstr "Luma Anmeldelser Plus krever at WooCommerce er aktivt."
 msgid "Luma Reviews Plus review request sent manually."
 msgstr "Luma Anmeldelser Plus forespørsel om vurdering sendt manuelt."
 
-#: includes/Settings/Settings.php:450
+#: includes/Settings/Settings.php:486
 msgid "Minimal"
 msgstr "Minimal"
 
+#: includes/Email/ShopReviewNotification.php:85
+#, php-format
+msgid "New shop review received for order #%s"
+msgstr "Ny butikkvurdering mottatt for bestilling #%s"
+
+#: includes/Settings/Settings.php:185
+msgid "New shop-experience reviews will be emailed to this address."
+msgstr ""
+"Nye vurderinger av butikkopplevelser vil bli sendt på e-post til denne "
+"adressen."
+
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
+#: includes/Email/ShopReviewNotification.php:97
 msgid "No"
 msgstr "Nei"
+
+#: includes/Email/ShopReviewNotification.php:101
+msgid "No comment provided."
+msgstr "Ingen kommentar gitt."
 
 #: includes/Admin/ShopReviewsPage.php:140
 msgid "No shop reviews found yet."
 msgstr "Ingen butikkvurderinger funnet ennå."
 
-#: includes/Settings/Settings.php:449
+#: includes/Email/ShopReviewNotification.php:96
+#: includes/Settings/Settings.php:485
 msgid "None"
 msgstr "Ingen"
+
+#: includes/Email/ShopReviewNotification.php:94
+msgid "Not provided"
+msgstr "Ikke oppgitt"
 
 #: templates/product-review-item.php:57 templates/shop-experience-review.php:47
 msgid "Not that bad"
@@ -325,6 +369,14 @@ msgstr "Ikke så verst"
 msgid "One tag per line."
 msgstr "Én tag per linje."
 
+#: includes/Email/ShopReviewNotification.php:109
+msgid "Open order:"
+msgstr "Gå til ordre"
+
+#: includes/Email/ShopReviewNotification.php:103
+msgid "Open shop reviews:"
+msgstr "Gå til butikkvurderinger:"
+
 #: templates/product-review-item.php:21 templates/shop-experience-review.php:16
 msgid "Optional"
 msgstr "Valgfritt"
@@ -333,7 +385,12 @@ msgstr "Valgfritt"
 msgid "Order"
 msgstr "Bestilling"
 
-#: includes/Settings/Settings.php:59
+#: includes/Email/ShopReviewNotification.php:92
+#, php-format
+msgid "Order: #%s"
+msgstr "Bestilling: #%s"
+
+#: includes/Settings/Settings.php:61
 msgid "Other"
 msgstr "Annet"
 
@@ -358,7 +415,7 @@ msgstr "Perfekt"
 msgid "Please add a comment for %s."
 msgstr "Vennligst legg igjen en kommentar for %s."
 
-#: includes/Plugin.php:192
+#: includes/Plugin.php:196
 msgid "Please review the highlighted fields below before submitting."
 msgstr "Vennligst gjennomgå de uthevede feltene nedenfor før innsending."
 
@@ -366,11 +423,11 @@ msgstr "Vennligst gjennomgå de uthevede feltene nedenfor før innsending."
 msgid "Product review"
 msgstr "Produktvurdering"
 
-#: includes/Settings/Settings.php:160
+#: includes/Settings/Settings.php:162
 msgid "Product reviews section description"
 msgstr "Beskrivelse av seksjonen for produktvurderinger"
 
-#: includes/Settings/Settings.php:155
+#: includes/Settings/Settings.php:157
 msgid "Product reviews section heading"
 msgstr "Overskrift for seksjonen for produktvurderinger"
 
@@ -382,11 +439,16 @@ msgstr "Offentlig godkjent"
 msgid "Public consent"
 msgstr "Samtykke til offentlig visning"
 
-#: includes/Settings/Settings.php:225
+#: includes/Settings/Settings.php:239
 msgid "Public consent text"
 msgstr "Tekst for offentlig samtykke"
 
-#: includes/Settings/Settings.php:133
+#: includes/Email/ShopReviewNotification.php:97
+#, fuzzy, php-format
+msgid "Public consent: %s"
+msgstr "Offentlig samtykke: %s"
+
+#: includes/Settings/Settings.php:135
 #, fuzzy
 msgid "Public summary style"
 msgstr "Offentlig sammendragsstil"
@@ -405,11 +467,15 @@ msgstr "Vurdert %s av 5"
 msgid "Rating"
 msgstr "Vurdering"
 
+#: includes/Email/ShopReviewNotification.php:95
+msgid "Rating: %d/5"
+msgstr "Vurdering: %d/5"
+
 #: includes/Admin/ShopReviewsPage.php:145
 msgid "Remove public approval"
 msgstr "Fjern offentlig godkjenning"
 
-#: includes/Settings/Settings.php:180
+#: includes/Settings/Settings.php:194
 msgid "Require product review comment"
 msgstr "Krev kommentar for produktvurdering"
 
@@ -417,15 +483,15 @@ msgstr "Krev kommentar for produktvurdering"
 msgid "Required if you review this product."
 msgstr "Påkrevd hvis du vurderer dette produktet."
 
-#: includes/Settings/Settings.php:144
+#: includes/Settings/Settings.php:146
 msgid "Review page heading"
 msgstr "Overskrift for vurderingssiden"
 
-#: includes/Settings/Settings.php:149
+#: includes/Settings/Settings.php:151
 msgid "Review page introduction text"
 msgstr "Innledende tekst for vurderingssiden"
 
-#: includes/Settings/Settings.php:139
+#: includes/Settings/Settings.php:141
 msgid "Review page slug"
 msgstr "Slug for vurderingssiden"
 
@@ -445,6 +511,12 @@ msgstr "Vurder dette produktet"
 msgid "Reviews Plus"
 msgstr "Reviews Plus"
 
+#: includes/Settings/Settings.php:179
+msgid "Send an admin email when a new shop-experience review is submitted."
+msgstr ""
+"Send en administrasjons-e-post når en ny vurdering av butikkopplevelse er "
+"sendt inn."
+
 #: includes/Email/ReviewEmailScheduler.php:125
 msgid "Send review request"
 msgstr "Send forespørsel om vurdering"
@@ -461,20 +533,24 @@ msgstr ""
 msgid "Share your review"
 msgstr "Del din vurdering"
 
+#: includes/Settings/Settings.php:183
+msgid "Shop review notification email"
+msgstr "E-post for varsling av butikkvurdering"
+
 #: includes/Admin/ShopReviewsPage.php:65 includes/Admin/ShopReviewsPage.php:66
 #: includes/Admin/ShopReviewsPage.php:125
 msgid "Shop Reviews"
 msgstr "Butikkvurderinger"
 
-#: includes/Settings/Settings.php:170
+#: includes/Settings/Settings.php:172
 msgid "Shop-experience section description"
 msgstr "Beskrivelse av seksjonen for butikkopplevelse"
 
-#: includes/Settings/Settings.php:165
+#: includes/Settings/Settings.php:167
 msgid "Shop-experience section heading"
 msgstr "Overskrift for seksjonen for butikkopplevelse"
 
-#: includes/Settings/Settings.php:175
+#: includes/Settings/Settings.php:189
 msgid "Shop-experience tags"
 msgstr "Tags for butikkopplevelse"
 
@@ -503,21 +579,26 @@ msgstr "Emne"
 msgid "Submit at least one valid review to continue."
 msgstr "Send inn minst én gyldig vurdering for å fortsette."
 
-#: includes/Settings/Settings.php:200
+#: includes/Settings/Settings.php:214
 msgid "Submit button text"
 msgstr "Tekst på send inn-knappen"
 
-#: includes/Settings/Settings.php:65
+#: includes/Settings/Settings.php:67
 msgid "Submit reviews"
 msgstr "Send vurderinger"
 
-#: includes/Settings/Settings.php:205
+#: includes/Settings/Settings.php:219
 msgid "Success message"
 msgstr "Suksessmelding"
 
 #: includes/Admin/ShopReviewsPage.php:132
 msgid "Tags"
 msgstr "Tagger"
+
+#: includes/Email/ShopReviewNotification.php:96
+#, php-format
+msgid "Tags: %s"
+msgstr "Tagger: %s"
 
 #. Author of the plugin
 msgid "Terje Johansen"
@@ -531,7 +612,7 @@ msgstr ""
 "Takk for kjøpet. Vi vil gjerne høre hvordan du opplevde produktene og "
 "handleopplevelsen."
 
-#: includes/Settings/Settings.php:66
+#: includes/Settings/Settings.php:68
 msgid "Thank you. Your review has been submitted."
 msgstr "Takk. Din vurdering er sendt inn."
 
@@ -561,11 +642,11 @@ msgstr "Denne bestillingen er ikke lenger tilgjengelig for vurdering."
 msgid "This product will not be reviewed."
 msgstr "Dette produktet vil ikke bli vurdert."
 
-#: includes/Settings/Settings.php:67
+#: includes/Settings/Settings.php:69
 msgid "This review link has expired."
 msgstr "Denne vurderingslenken har utløpt."
 
-#: includes/Settings/Settings.php:68
+#: includes/Settings/Settings.php:70
 msgid "This review link is invalid."
 msgstr "Denne vurderingslenken er ugyldig."
 
@@ -573,17 +654,13 @@ msgstr "Denne vurderingslenken er ugyldig."
 msgid "Today"
 msgstr "I dag"
 
-#: includes/Settings/Settings.php:126
+#: includes/Settings/Settings.php:128
 msgid "Token expiry in days"
 msgstr "Token utløper i dager"
 
-#. Description of the plugin
-msgid ""
-"Tokenized WooCommerce review requests with native product reviews and "
-"verified shop-experience reviews."
-msgstr ""
-"Tokeniserte WooCommerce-vurderingsforespørsler med innebygde "
-"produktvurderinger og verifiserte butikkopplevelsesvurderinger."
+#: includes/Email/ShopReviewNotification.php:98
+msgid "Token ID: %d"
+msgstr "Token-ID: %d"
 
 #: includes/Frontend/PublicTrustRenderer.php:225
 msgid "Two weeks ago"
@@ -606,16 +683,29 @@ msgstr "Vi vil gjerne høre hva du synes"
 msgid "What worked well?"
 msgstr "Hva fungerte bra?"
 
+#. Description of the plugin
+#, fuzzy
+#| msgid ""
+#| "Tokenized WooCommerce review requests with native product reviews and "
+#| "verified shop-experience reviews."
+msgid ""
+"WooCommerce review requests with native product reviews and verified shop-"
+"experience reviews."
+msgstr ""
+"Tokeniserte WooCommerce-vurderingsforespørsler med innebygde "
+"produktvurderinger og verifiserte butikkopplevelsesvurderinger."
+
 #: templates/product-review-item.php:25
 msgid "Would you like to review this product?"
 msgstr "Ønsker du å vurdere dette produktet?"
 
-#: includes/Plugin.php:188
+#: includes/Plugin.php:192
 msgid "Write a short comment for this product."
 msgstr "Skriv en kort kommentar for dette produktet."
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
+#: includes/Email/ShopReviewNotification.php:97
 msgid "Yes"
 msgstr "Ja"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-07 12:41+0000\n"
+"POT-Creation-Date: 2026-05-07 14:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -34,11 +34,16 @@ msgid_plural "%s weeks ago"
 msgstr[0] ""
 msgstr[1] ""
 
+#: includes/Email/ShopReviewNotification.php:90
+#, php-format
+msgid "A new shop-experience review was submitted on %s."
+msgstr ""
+
 #: includes/Frontend/ReviewPageController.php:278
 msgid "A store review requires at least one product review."
 msgstr ""
 
-#: includes/Settings/Settings.php:55
+#: includes/Settings/Settings.php:57
 msgid "Accurate stock information"
 msgstr ""
 
@@ -46,19 +51,19 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: includes/Settings/Settings.php:220
+#: includes/Settings/Settings.php:234
 msgid "All items already reviewed message"
 msgstr ""
 
-#: includes/Settings/Settings.php:69
+#: includes/Settings/Settings.php:71
 msgid "All products in this order have already been reviewed."
 msgstr ""
 
-#: includes/Settings/Settings.php:195
+#: includes/Settings/Settings.php:209
 msgid "Allow partial product review submissions"
 msgstr ""
 
-#: includes/Settings/Settings.php:190
+#: includes/Settings/Settings.php:204
 msgid "Allow shop-experience review without product review"
 msgstr ""
 
@@ -66,11 +71,11 @@ msgstr ""
 msgid "Approve for public display"
 msgstr ""
 
-#: includes/Settings/Settings.php:185
+#: includes/Settings/Settings.php:199
 msgid "Auto-approve product reviews"
 msgstr ""
 
-#: includes/Settings/Settings.php:151
+#: includes/Settings/Settings.php:153
 msgid "Available placeholder: {first_name} (customer first name)"
 msgstr ""
 
@@ -94,7 +99,7 @@ msgstr ""
 msgid "Based on %d customer reviews after purchase."
 msgstr ""
 
-#: includes/Settings/Settings.php:54
+#: includes/Settings/Settings.php:56
 msgid "Beautifully packaged"
 msgstr ""
 
@@ -102,20 +107,20 @@ msgstr ""
 msgid "Body text"
 msgstr ""
 
-#: includes/Plugin.php:186
+#: includes/Plugin.php:190
 msgid "Choose a rating for the shopping experience, or skip the store review."
 msgstr ""
 
-#: includes/Plugin.php:187
+#: includes/Plugin.php:191
 msgid "Choose a rating for this product, or skip it."
 msgstr ""
 
-#: includes/Plugin.php:191
+#: includes/Plugin.php:195
 msgid ""
 "Choose at least one product if you also want to submit the store review."
 msgstr ""
 
-#: includes/Plugin.php:190
+#: includes/Plugin.php:194
 msgid "Choose at least one product or the store review before submitting."
 msgstr ""
 
@@ -128,6 +133,10 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
+#: includes/Email/ShopReviewNotification.php:100
+msgid "Comment:"
+msgstr ""
+
 #: includes/Admin/SettingsPage.php:80
 msgid ""
 "Configure review request timing, review page text, and public testimonial "
@@ -138,11 +147,16 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
+#: includes/Email/ShopReviewNotification.php:93
+#, php-format
+msgid "Customer: %s"
+msgstr ""
+
 #: includes/Admin/ShopReviewsPage.php:128
 msgid "Date"
 msgstr ""
 
-#: includes/Settings/Settings.php:119
+#: includes/Settings/Settings.php:121
 msgid "Days after completed order before review email is sent"
 msgstr ""
 
@@ -158,7 +172,7 @@ msgstr ""
 msgid "Displayed in the email heading area."
 msgstr ""
 
-#: includes/Settings/Settings.php:58
+#: includes/Settings/Settings.php:60
 msgid "Easy to shop"
 msgstr ""
 
@@ -181,8 +195,12 @@ msgstr ""
 msgid "Email type"
 msgstr ""
 
-#: includes/Settings/Settings.php:114
+#: includes/Settings/Settings.php:116
 msgid "Enable review requests"
+msgstr ""
+
+#: includes/Settings/Settings.php:177
+msgid "Enable shop review notifications"
 msgstr ""
 
 #: includes/Email/ReviewEmail.php:85
@@ -197,15 +215,15 @@ msgstr ""
 msgid "Enabled"
 msgstr ""
 
-#: includes/Plugin.php:189
+#: includes/Plugin.php:193
 msgid "Enter your display name for the store review."
 msgstr ""
 
-#: includes/Settings/Settings.php:210
+#: includes/Settings/Settings.php:224
 msgid "Expired token message"
 msgstr ""
 
-#: includes/Settings/Settings.php:53
+#: includes/Settings/Settings.php:55
 msgid "Fast delivery"
 msgstr ""
 
@@ -214,7 +232,7 @@ msgid ""
 "Feel free to share how you experienced the store, delivery, and service."
 msgstr ""
 
-#: includes/Settings/Settings.php:548
+#: includes/Settings/Settings.php:601
 msgid ""
 "Fru Kvist may show my comment on the website with the name I provide here "
 "and, optionally, my location."
@@ -224,11 +242,11 @@ msgstr ""
 msgid "Good"
 msgstr ""
 
-#: includes/Settings/Settings.php:57
+#: includes/Settings/Settings.php:59
 msgid "Good advice and guidance"
 msgstr ""
 
-#: includes/Settings/Settings.php:56
+#: includes/Settings/Settings.php:58
 msgid "Helpful customer service"
 msgstr ""
 
@@ -254,11 +272,11 @@ msgstr ""
 msgid "Hvordan var bestilling #{order_number}?"
 msgstr ""
 
-#: includes/Settings/Settings.php:215
+#: includes/Settings/Settings.php:229
 msgid "Invalid token message"
 msgstr ""
 
-#: includes/Settings/Settings.php:368
+#: includes/Settings/Settings.php:384
 msgid "It is not too late to review these products as well."
 msgstr ""
 
@@ -274,12 +292,17 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
+#: includes/Email/ShopReviewNotification.php:94
+#, php-format
+msgid "Location: %s"
+msgstr ""
+
 #. Name of the plugin
 #: includes/Admin/SettingsPage.php:77
 msgid "Luma Reviews Plus"
 msgstr ""
 
-#: includes/Plugin.php:72
+#: includes/Plugin.php:73
 msgid "Luma Reviews Plus requires WooCommerce to be active."
 msgstr ""
 
@@ -287,21 +310,40 @@ msgstr ""
 msgid "Luma Reviews Plus review request sent manually."
 msgstr ""
 
-#: includes/Settings/Settings.php:450
+#: includes/Settings/Settings.php:486
 msgid "Minimal"
+msgstr ""
+
+#: includes/Email/ShopReviewNotification.php:85
+#, php-format
+msgid "New shop review received for order #%s"
+msgstr ""
+
+#: includes/Settings/Settings.php:185
+msgid "New shop-experience reviews will be emailed to this address."
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
+#: includes/Email/ShopReviewNotification.php:97
 msgid "No"
+msgstr ""
+
+#: includes/Email/ShopReviewNotification.php:101
+msgid "No comment provided."
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:140
 msgid "No shop reviews found yet."
 msgstr ""
 
-#: includes/Settings/Settings.php:449
+#: includes/Email/ShopReviewNotification.php:96
+#: includes/Settings/Settings.php:485
 msgid "None"
+msgstr ""
+
+#: includes/Email/ShopReviewNotification.php:94
+msgid "Not provided"
 msgstr ""
 
 #: templates/product-review-item.php:57 templates/shop-experience-review.php:47
@@ -312,6 +354,14 @@ msgstr ""
 msgid "One tag per line."
 msgstr ""
 
+#: includes/Email/ShopReviewNotification.php:109
+msgid "Open order:"
+msgstr ""
+
+#: includes/Email/ShopReviewNotification.php:103
+msgid "Open shop reviews:"
+msgstr ""
+
 #: templates/product-review-item.php:21 templates/shop-experience-review.php:16
 msgid "Optional"
 msgstr ""
@@ -320,7 +370,12 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: includes/Settings/Settings.php:59
+#: includes/Email/ShopReviewNotification.php:92
+#, php-format
+msgid "Order: #%s"
+msgstr ""
+
+#: includes/Settings/Settings.php:61
 msgid "Other"
 msgstr ""
 
@@ -345,7 +400,7 @@ msgstr ""
 msgid "Please add a comment for %s."
 msgstr ""
 
-#: includes/Plugin.php:192
+#: includes/Plugin.php:196
 msgid "Please review the highlighted fields below before submitting."
 msgstr ""
 
@@ -353,11 +408,11 @@ msgstr ""
 msgid "Product review"
 msgstr ""
 
-#: includes/Settings/Settings.php:160
+#: includes/Settings/Settings.php:162
 msgid "Product reviews section description"
 msgstr ""
 
-#: includes/Settings/Settings.php:155
+#: includes/Settings/Settings.php:157
 msgid "Product reviews section heading"
 msgstr ""
 
@@ -369,11 +424,16 @@ msgstr ""
 msgid "Public consent"
 msgstr ""
 
-#: includes/Settings/Settings.php:225
+#: includes/Settings/Settings.php:239
 msgid "Public consent text"
 msgstr ""
 
-#: includes/Settings/Settings.php:133
+#: includes/Email/ShopReviewNotification.php:97
+#, php-format
+msgid "Public consent: %s"
+msgstr ""
+
+#: includes/Settings/Settings.php:135
 msgid "Public summary style"
 msgstr ""
 
@@ -391,11 +451,15 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
+#: includes/Email/ShopReviewNotification.php:95
+msgid "Rating: %d/5"
+msgstr ""
+
 #: includes/Admin/ShopReviewsPage.php:145
 msgid "Remove public approval"
 msgstr ""
 
-#: includes/Settings/Settings.php:180
+#: includes/Settings/Settings.php:194
 msgid "Require product review comment"
 msgstr ""
 
@@ -403,15 +467,15 @@ msgstr ""
 msgid "Required if you review this product."
 msgstr ""
 
-#: includes/Settings/Settings.php:144
+#: includes/Settings/Settings.php:146
 msgid "Review page heading"
 msgstr ""
 
-#: includes/Settings/Settings.php:149
+#: includes/Settings/Settings.php:151
 msgid "Review page introduction text"
 msgstr ""
 
-#: includes/Settings/Settings.php:139
+#: includes/Settings/Settings.php:141
 msgid "Review page slug"
 msgstr ""
 
@@ -431,6 +495,10 @@ msgstr ""
 msgid "Reviews Plus"
 msgstr ""
 
+#: includes/Settings/Settings.php:179
+msgid "Send an admin email when a new shop-experience review is submitted."
+msgstr ""
+
 #: includes/Email/ReviewEmailScheduler.php:125
 msgid "Send review request"
 msgstr ""
@@ -445,20 +513,24 @@ msgstr ""
 msgid "Share your review"
 msgstr ""
 
+#: includes/Settings/Settings.php:183
+msgid "Shop review notification email"
+msgstr ""
+
 #: includes/Admin/ShopReviewsPage.php:65 includes/Admin/ShopReviewsPage.php:66
 #: includes/Admin/ShopReviewsPage.php:125
 msgid "Shop Reviews"
 msgstr ""
 
-#: includes/Settings/Settings.php:170
+#: includes/Settings/Settings.php:172
 msgid "Shop-experience section description"
 msgstr ""
 
-#: includes/Settings/Settings.php:165
+#: includes/Settings/Settings.php:167
 msgid "Shop-experience section heading"
 msgstr ""
 
-#: includes/Settings/Settings.php:175
+#: includes/Settings/Settings.php:189
 msgid "Shop-experience tags"
 msgstr ""
 
@@ -487,20 +559,25 @@ msgstr ""
 msgid "Submit at least one valid review to continue."
 msgstr ""
 
-#: includes/Settings/Settings.php:200
+#: includes/Settings/Settings.php:214
 msgid "Submit button text"
 msgstr ""
 
-#: includes/Settings/Settings.php:65
+#: includes/Settings/Settings.php:67
 msgid "Submit reviews"
 msgstr ""
 
-#: includes/Settings/Settings.php:205
+#: includes/Settings/Settings.php:219
 msgid "Success message"
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:132
 msgid "Tags"
+msgstr ""
+
+#: includes/Email/ShopReviewNotification.php:96
+#, php-format
+msgid "Tags: %s"
 msgstr ""
 
 #. Author of the plugin
@@ -513,7 +590,7 @@ msgid ""
 "products and the shopping experience."
 msgstr ""
 
-#: includes/Settings/Settings.php:66
+#: includes/Settings/Settings.php:68
 msgid "Thank you. Your review has been submitted."
 msgstr ""
 
@@ -541,11 +618,11 @@ msgstr ""
 msgid "This product will not be reviewed."
 msgstr ""
 
-#: includes/Settings/Settings.php:67
+#: includes/Settings/Settings.php:69
 msgid "This review link has expired."
 msgstr ""
 
-#: includes/Settings/Settings.php:68
+#: includes/Settings/Settings.php:70
 msgid "This review link is invalid."
 msgstr ""
 
@@ -553,14 +630,12 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: includes/Settings/Settings.php:126
+#: includes/Settings/Settings.php:128
 msgid "Token expiry in days"
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Tokenized WooCommerce review requests with native product reviews and "
-"verified shop-experience reviews."
+#: includes/Email/ShopReviewNotification.php:98
+msgid "Token ID: %d"
 msgstr ""
 
 #: includes/Frontend/PublicTrustRenderer.php:225
@@ -584,16 +659,23 @@ msgstr ""
 msgid "What worked well?"
 msgstr ""
 
+#. Description of the plugin
+msgid ""
+"WooCommerce review requests with native product reviews and verified shop-"
+"experience reviews."
+msgstr ""
+
 #: templates/product-review-item.php:25
 msgid "Would you like to review this product?"
 msgstr ""
 
-#: includes/Plugin.php:188
+#: includes/Plugin.php:192
 msgid "Write a short comment for this product."
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
+#: includes/Email/ShopReviewNotification.php:97
 msgid "Yes"
 msgstr ""
 

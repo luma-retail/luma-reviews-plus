@@ -46,6 +46,17 @@ class Sanitizer {
 
 
     /**
+     * Sanitizes an email address.
+     *
+     * @param mixed $value Raw value.
+     * @return string
+     */
+    public static function email( $value ) {
+        return \sanitize_email( (string) $value );
+    }
+
+
+    /**
      * Sanitizes textarea text.
      *
      * @param mixed $value Raw value.

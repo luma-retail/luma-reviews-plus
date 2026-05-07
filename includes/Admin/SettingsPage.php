@@ -177,6 +177,10 @@ class SettingsPage {
                 echo '</select>';
                 break;
 
+            case 'email':
+                echo '<input type="email" class="regular-text" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( (string) $value ) . '" />';
+                break;
+
             case 'text':
             default:
                 echo '<input type="text" class="regular-text" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( (string) $value ) . '" />';

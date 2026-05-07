@@ -92,6 +92,8 @@ class ShopReviewHandler {
             $location = Helpers::get_order_location( $order );
         }
 
+        $existing_review = $this->shop_review_repository->get_by_order_id( $order->get_id() );
+
         $review_id = $this->shop_review_repository->save_review(
             array(
                 'order_id'                    => $order->get_id(),
@@ -106,7 +108,9 @@ class ShopReviewHandler {
             )
         );
 
-        do_action( 'luma_reviews_plus_shop_review_created', $review_id, $order->get_id(), $token->id );
+        if ( $review_id > 0 && ! $existing_review ) {
+            do_action( 'luma_reviews_plus_shop_review_created', $review_id, $order->get_id(), $token->id );
+        }
 
         return array(
             'errors'    => array(),
