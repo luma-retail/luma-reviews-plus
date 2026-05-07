@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-06 15:57+0000\n"
-"PO-Revision-Date: 2026-05-07 14:19+0000\n"
+"PO-Revision-Date: 2026-05-07 14:46+0000\n"
 "Last-Translator: Terje Johansen\n"
 "Language-Team: Norsk bokmål\n"
 "Language: nb_NO\n"
@@ -15,9 +15,18 @@ msgstr ""
 "X-Loco-Version: 2.8.4; wp-6.9.4; php-8.3.30\n"
 "X-Domain: luma-reviews-plus"
 
+#: includes/Email/ShopReviewNotification.php:170
+#, php-format
+msgid "%1$s (%2$s)"
+msgstr ""
+
 #: templates/product-review-item.php:48 templates/shop-experience-review.php:38
 msgid "%d out of 5 stars"
 msgstr "%d av 5 stjerner"
+
+#: includes/Email/ShopReviewNotification.php:128
+msgid "%d/5"
+msgstr ""
 
 #: includes/Frontend/PublicTrustRenderer.php:213
 #, php-format
@@ -33,7 +42,7 @@ msgid_plural "%s weeks ago"
 msgstr[0] "%s uke siden"
 msgstr[1] "%s uker siden"
 
-#: includes/Email/ShopReviewNotification.php:90
+#: includes/Email/ShopReviewNotification.php:124
 #, php-format
 msgid "A new shop-experience review was submitted on %s."
 msgstr "En ny anmeldelse av butikkopplevelse ble sendt inn %s."
@@ -134,12 +143,9 @@ msgstr "Velg e-postformat."
 
 #: templates/product-review-item.php:64 templates/shop-experience-review.php:54
 #: includes/Admin/ShopReviewsPage.php:133
+#: includes/Email/ShopReviewNotification.php:131
 msgid "Comment"
 msgstr "Kommentar"
-
-#: includes/Email/ShopReviewNotification.php:100
-msgid "Comment:"
-msgstr "Kommentar:"
 
 #: includes/Admin/SettingsPage.php:80
 msgid ""
@@ -153,9 +159,10 @@ msgstr ""
 msgid "Customer"
 msgstr "Kunde"
 
-#: includes/Email/ShopReviewNotification.php:93
-#, php-format
-msgid "Customer: %s"
+#: includes/Email/ShopReviewNotification.php:134
+#, fuzzy
+#| msgid "Customer: %s"
+msgid "Customer:"
 msgstr "Kunde: %s"
 
 #: includes/Admin/ShopReviewsPage.php:128
@@ -305,11 +312,6 @@ msgstr "Legg igjen din vurdering"
 msgid "Location"
 msgstr "Sted"
 
-#: includes/Email/ShopReviewNotification.php:94
-#, php-format
-msgid "Location: %s"
-msgstr "Sted: %s"
-
 #. Name of the plugin
 #: includes/Admin/SettingsPage.php:77
 msgid "Luma Reviews Plus"
@@ -327,7 +329,7 @@ msgstr "Luma Anmeldelser Plus forespørsel om vurdering sendt manuelt."
 msgid "Minimal"
 msgstr "Minimal"
 
-#: includes/Email/ShopReviewNotification.php:85
+#: includes/Email/ShopReviewNotification.php:89
 #, php-format
 msgid "New shop review received for order #%s"
 msgstr "Ny butikkvurdering mottatt for bestilling #%s"
@@ -340,11 +342,10 @@ msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
-#: includes/Email/ShopReviewNotification.php:97
 msgid "No"
 msgstr "Nei"
 
-#: includes/Email/ShopReviewNotification.php:101
+#: includes/Email/ShopReviewNotification.php:119
 msgid "No comment provided."
 msgstr "Ingen kommentar gitt."
 
@@ -352,14 +353,9 @@ msgstr "Ingen kommentar gitt."
 msgid "No shop reviews found yet."
 msgstr "Ingen butikkvurderinger funnet ennå."
 
-#: includes/Email/ShopReviewNotification.php:96
 #: includes/Settings/Settings.php:485
 msgid "None"
 msgstr "Ingen"
-
-#: includes/Email/ShopReviewNotification.php:94
-msgid "Not provided"
-msgstr "Ikke oppgitt"
 
 #: templates/product-review-item.php:57 templates/shop-experience-review.php:47
 msgid "Not that bad"
@@ -369,13 +365,9 @@ msgstr "Ikke så verst"
 msgid "One tag per line."
 msgstr "Én tag per linje."
 
-#: includes/Email/ShopReviewNotification.php:109
-msgid "Open order:"
-msgstr "Gå til ordre"
-
-#: includes/Email/ShopReviewNotification.php:103
-msgid "Open shop reviews:"
-msgstr "Gå til butikkvurderinger:"
+#: includes/Email/ShopReviewNotification.php:143
+msgid "Open shop reviews for publishing"
+msgstr "Åpne butikkvurderinger for å publisere"
 
 #: templates/product-review-item.php:21 templates/shop-experience-review.php:16
 msgid "Optional"
@@ -385,10 +377,9 @@ msgstr "Valgfritt"
 msgid "Order"
 msgstr "Bestilling"
 
-#: includes/Email/ShopReviewNotification.php:92
-#, php-format
-msgid "Order: #%s"
-msgstr "Bestilling: #%s"
+#: includes/Email/ShopReviewNotification.php:135
+msgid "Order:"
+msgstr "Ordre:"
 
 #: includes/Settings/Settings.php:61
 msgid "Other"
@@ -443,11 +434,6 @@ msgstr "Samtykke til offentlig visning"
 msgid "Public consent text"
 msgstr "Tekst for offentlig samtykke"
 
-#: includes/Email/ShopReviewNotification.php:97
-#, fuzzy, php-format
-msgid "Public consent: %s"
-msgstr "Offentlig samtykke: %s"
-
 #: includes/Settings/Settings.php:135
 #, fuzzy
 msgid "Public summary style"
@@ -464,12 +450,9 @@ msgstr "Vurdert %s av 5"
 
 #: templates/product-review-item.php:37 templates/product-review-item.php:39
 #: includes/Admin/ShopReviewsPage.php:131
+#: includes/Email/ShopReviewNotification.php:126
 msgid "Rating"
 msgstr "Vurdering"
-
-#: includes/Email/ShopReviewNotification.php:95
-msgid "Rating: %d/5"
-msgstr "Vurdering: %d/5"
 
 #: includes/Admin/ShopReviewsPage.php:145
 msgid "Remove public approval"
@@ -595,10 +578,9 @@ msgstr "Suksessmelding"
 msgid "Tags"
 msgstr "Tagger"
 
-#: includes/Email/ShopReviewNotification.php:96
-#, php-format
-msgid "Tags: %s"
-msgstr "Tagger: %s"
+#: includes/Email/ShopReviewNotification.php:139
+msgid "Tags:"
+msgstr "Tagger:"
 
 #. Author of the plugin
 msgid "Terje Johansen"
@@ -658,10 +640,6 @@ msgstr "I dag"
 msgid "Token expiry in days"
 msgstr "Token utløper i dager"
 
-#: includes/Email/ShopReviewNotification.php:98
-msgid "Token ID: %d"
-msgstr "Token-ID: %d"
-
 #: includes/Frontend/PublicTrustRenderer.php:225
 msgid "Two weeks ago"
 msgstr "For to uker siden"
@@ -705,7 +683,6 @@ msgstr "Skriv en kort kommentar for dette produktet."
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
-#: includes/Email/ShopReviewNotification.php:97
 msgid "Yes"
 msgstr "Ja"
 

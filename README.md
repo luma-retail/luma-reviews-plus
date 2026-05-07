@@ -67,6 +67,12 @@ The public summary styles are loaded conditionally, so pages that do not render 
 - It does not send review data to Trustpilot, Google, or other third parties in v1.
 - It does not include photo reviews, replies, advanced analytics, or public review archives in v1.
 
+## Product Roadmap
+
+- Structured data on the frontend.
+- Statistics.
+- Customer image uploads.
+
 ## Typical Use Case
 
 1. A WooCommerce order reaches an eligible status.

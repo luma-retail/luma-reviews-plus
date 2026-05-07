@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-07 14:17+0000\n"
+"POT-Creation-Date: 2026-05-07 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,8 +16,17 @@ msgstr ""
 "X-Loco-Version: 2.8.4; wp-6.9.4; php-8.3.30\n"
 "X-Domain: luma-reviews-plus"
 
+#: includes/Email/ShopReviewNotification.php:170
+#, php-format
+msgid "%1$s (%2$s)"
+msgstr ""
+
 #: templates/product-review-item.php:48 templates/shop-experience-review.php:38
 msgid "%d out of 5 stars"
+msgstr ""
+
+#: includes/Email/ShopReviewNotification.php:128
+msgid "%d/5"
 msgstr ""
 
 #: includes/Frontend/PublicTrustRenderer.php:213
@@ -34,7 +43,7 @@ msgid_plural "%s weeks ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Email/ShopReviewNotification.php:90
+#: includes/Email/ShopReviewNotification.php:124
 #, php-format
 msgid "A new shop-experience review was submitted on %s."
 msgstr ""
@@ -130,11 +139,8 @@ msgstr ""
 
 #: templates/product-review-item.php:64 templates/shop-experience-review.php:54
 #: includes/Admin/ShopReviewsPage.php:133
+#: includes/Email/ShopReviewNotification.php:131
 msgid "Comment"
-msgstr ""
-
-#: includes/Email/ShopReviewNotification.php:100
-msgid "Comment:"
 msgstr ""
 
 #: includes/Admin/SettingsPage.php:80
@@ -147,9 +153,8 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:93
-#, php-format
-msgid "Customer: %s"
+#: includes/Email/ShopReviewNotification.php:134
+msgid "Customer:"
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:128
@@ -292,11 +297,6 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:94
-#, php-format
-msgid "Location: %s"
-msgstr ""
-
 #. Name of the plugin
 #: includes/Admin/SettingsPage.php:77
 msgid "Luma Reviews Plus"
@@ -314,7 +314,7 @@ msgstr ""
 msgid "Minimal"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:85
+#: includes/Email/ShopReviewNotification.php:89
 #, php-format
 msgid "New shop review received for order #%s"
 msgstr ""
@@ -325,11 +325,10 @@ msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
-#: includes/Email/ShopReviewNotification.php:97
 msgid "No"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:101
+#: includes/Email/ShopReviewNotification.php:119
 msgid "No comment provided."
 msgstr ""
 
@@ -337,13 +336,8 @@ msgstr ""
 msgid "No shop reviews found yet."
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:96
 #: includes/Settings/Settings.php:485
 msgid "None"
-msgstr ""
-
-#: includes/Email/ShopReviewNotification.php:94
-msgid "Not provided"
 msgstr ""
 
 #: templates/product-review-item.php:57 templates/shop-experience-review.php:47
@@ -354,12 +348,8 @@ msgstr ""
 msgid "One tag per line."
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:109
-msgid "Open order:"
-msgstr ""
-
-#: includes/Email/ShopReviewNotification.php:103
-msgid "Open shop reviews:"
+#: includes/Email/ShopReviewNotification.php:143
+msgid "Open shop reviews for publishing"
 msgstr ""
 
 #: templates/product-review-item.php:21 templates/shop-experience-review.php:16
@@ -370,9 +360,8 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:92
-#, php-format
-msgid "Order: #%s"
+#: includes/Email/ShopReviewNotification.php:135
+msgid "Order:"
 msgstr ""
 
 #: includes/Settings/Settings.php:61
@@ -428,11 +417,6 @@ msgstr ""
 msgid "Public consent text"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:97
-#, php-format
-msgid "Public consent: %s"
-msgstr ""
-
 #: includes/Settings/Settings.php:135
 msgid "Public summary style"
 msgstr ""
@@ -448,11 +432,8 @@ msgstr ""
 
 #: templates/product-review-item.php:37 templates/product-review-item.php:39
 #: includes/Admin/ShopReviewsPage.php:131
+#: includes/Email/ShopReviewNotification.php:126
 msgid "Rating"
-msgstr ""
-
-#: includes/Email/ShopReviewNotification.php:95
-msgid "Rating: %d/5"
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:145
@@ -575,9 +556,8 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:96
-#, php-format
-msgid "Tags: %s"
+#: includes/Email/ShopReviewNotification.php:139
+msgid "Tags:"
 msgstr ""
 
 #. Author of the plugin
@@ -634,10 +614,6 @@ msgstr ""
 msgid "Token expiry in days"
 msgstr ""
 
-#: includes/Email/ShopReviewNotification.php:98
-msgid "Token ID: %d"
-msgstr ""
-
 #: includes/Frontend/PublicTrustRenderer.php:225
 msgid "Two weeks ago"
 msgstr ""
@@ -675,7 +651,6 @@ msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:157
 #: includes/Admin/ShopReviewsPage.php:158
-#: includes/Email/ShopReviewNotification.php:97
 msgid "Yes"
 msgstr ""
 
