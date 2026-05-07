@@ -79,9 +79,9 @@ msgstr ""
 msgid "Average"
 msgstr "Gjennomsnitt"
 
-#: includes/Frontend/PublicTrustRenderer.php:82
-msgid "Based on %d verified shopping experiences."
-msgstr "Basert på %d verifiserte handleopplevelser."
+#: includes/Frontend/PublicTrustRenderer.php:134
+msgid "Based on %d customer reviews after purchase."
+msgstr "Basert på %d omtaler fra kunder som har handlet hos oss."
 
 #: includes/Settings/Settings.php:53
 msgid "Beautifully packaged"
@@ -130,10 +130,15 @@ msgstr ""
 msgid "Customer"
 msgstr "Kunde"
 
-#: includes/Frontend/PublicTrustRenderer.php:77
+#: includes/Frontend/PublicTrustRenderer.php:124
 #, php-format
-msgid "Customers rate the shopping experience %1$s / 5."
-msgstr "Kunder vurderer handleopplevelsen %1$s / 5."
+msgid "Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase."
+msgstr "Kundene våre gir oss %1$s av 5 stjerner, basert på %2$d omtaler fra kunder som har handlet hos oss."
+
+#: includes/Frontend/PublicTrustRenderer.php:129
+#, php-format
+msgid "Our customers give us %1$s out of 5 stars."
+msgstr "Kundene våre gir oss %1$s av 5 stjerner."
 
 #: includes/Admin/ShopReviewsPage.php:128
 msgid "Date"
@@ -299,6 +304,13 @@ msgstr "Ikke så verst"
 msgid "One tag per line."
 msgstr "Én tag per linje."
 
+#: includes/Frontend/PublicTrustRenderer.php:205
+#, php-format
+msgid "%s day ago"
+msgid_plural "%s days ago"
+msgstr[0] "%s dag siden"
+msgstr[1] "%s dager siden"
+
 #: templates/product-review-item.php:21 templates/shop-experience-review.php:16
 msgid "Optional"
 msgstr "Valgfritt"
@@ -311,9 +323,32 @@ msgstr "Bestilling"
 msgid "Other"
 msgstr "Annet"
 
+#: includes/Frontend/PublicTrustRenderer.php:217
+#, php-format
+msgid "%s week ago"
+msgid_plural "%s weeks ago"
+msgstr[0] "%s uke siden"
+msgstr[1] "%s uker siden"
+
 #: templates/product-review-item.php:54 templates/shop-experience-review.php:44
 msgid "Perfect"
 msgstr "Perfekt"
+
+#: includes/Frontend/PublicTrustRenderer.php:200
+msgid "Yesterday"
+msgstr "I går"
+
+#: includes/Frontend/PublicTrustRenderer.php:213
+msgid "Last week"
+msgstr "Sist uke"
+
+#: includes/Frontend/PublicTrustRenderer.php:217
+msgid "Two weeks ago"
+msgstr "For to uker siden"
+
+#: includes/Frontend/PublicTrustRenderer.php:196
+msgid "Today"
+msgstr "I dag"
 
 #: includes/Reviews/ProductReviewHandler.php:71
 #, php-format

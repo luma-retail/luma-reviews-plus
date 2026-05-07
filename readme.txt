@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,37 @@ Key features:
 * Prevents duplicate product reviews for the same order item.
 * Supports verified, tokenized review links without requiring customer login.
 * Supports store-specific timing logic through extension hooks.
+* Includes a frontend shortcode for published shop-review summaries with conditional CSS loading.
+
+== Show shop reviews on the frontend ==
+
+Use the shortcode below on any page, post, or shortcode-enabled block:
+
+[luma_shop_reviews_summary]
+
+Useful examples:
+
+* `[luma_shop_reviews_summary]`
+* `[luma_shop_reviews_summary style="none"]`
+* `[luma_shop_reviews_summary style="minimal" quote_count="6"]`
+* `[luma_shop_reviews_summary show_quotes="no"]`
+
+Available shortcode attributes:
+
+* `style` accepts `inherit`, `none`, or `minimal`
+* `show_rating` accepts `yes` or `no`
+* `show_count` accepts `yes` or `no`
+* `show_quotes` accepts `yes` or `no`
+* `quote_count` controls how many quotes are shown
+* `minimum_rating` controls the minimum rating required for quote display
+
+Styling behavior:
+
+* `inherit` uses the plugin setting under WooCommerce > Settings > Products > Reviews Plus.
+* `none` loads no plugin CSS, so the theme can style everything.
+* `minimal` loads a lightweight summary stylesheet only when the shortcode is present.
+
+The summary stylesheet is only loaded on requests where the shortcode is rendered.
 
 Why use this plugin:
 
@@ -47,6 +78,10 @@ Luma Reviews Plus does not replace WooCommerce reviews, and in v1 it does not se
 
 == Frequently Asked Questions ==
 
+= How do I show published shop reviews on the frontend? =
+
+Use the `[luma_shop_reviews_summary]` shortcode on a page, post, or shortcode-enabled block area. You can also control the output with attributes such as `style`, `show_quotes`, `quote_count`, and `minimum_rating`.
+
 = Does this replace normal WooCommerce product reviews? =
 
 No. Product reviews are still stored as native WordPress comments with WooCommerce-compatible review metadata.
@@ -64,6 +99,14 @@ Yes. Customers can optionally leave a separate shop-experience review in additio
 Yes. The plugin is designed with hooks so a site-specific addon can adjust timing, for example by scheduling review requests after package delivery.
 
 == Changelog ==
+
+= 0.2.0 =
+
+* Added public shop-review summary styling modes: `none` and `minimal`.
+* Added conditional loading for the public summary stylesheet.
+* Refined the frontend summary markup for easier theme styling.
+* Added simple star rendering, warmer summary copy, and human-readable relative dates for quotes.
+* Documented frontend shortcode usage and parameters.
 
 = 0.1.0 =
 

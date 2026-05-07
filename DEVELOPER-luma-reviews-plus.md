@@ -970,6 +970,52 @@ quote_count="3"
 minimum_rating="4"
 ```
 
+### Public summary styling contract
+
+Public summary styling must use a mode-based contract rather than a simple boolean flag.
+
+V1 setting:
+
+```text
+Key: public_summary_style
+Location: WooCommerce → Settings → Products → Reviews Plus
+Label: Public summary style
+Type: select
+Options: none, minimal
+Default: minimal
+```
+
+V1 shortcode attribute:
+
+```text
+style="inherit"
+style="none"
+style="minimal"
+```
+
+Shortcode style resolution rules:
+
+- Default shortcode value is `inherit`.
+- If the shortcode provides `style`, that resolved mode wins.
+- If the shortcode uses `inherit`, the plugin setting controls the mode.
+- V1 must only ship the `none` and `minimal` style modes.
+- The architecture must allow additional style modes later without changing option storage shape.
+
+Runtime asset-loading rules:
+
+- Public summary styles must live in a dedicated stylesheet separate from the review-page frontend stylesheet.
+- No public summary stylesheet should be loaded on requests where the public summary shortcode is not used.
+- If the resolved style mode is `none`, no public summary stylesheet should be enqueued.
+- If the resolved style mode is `minimal`, only the dedicated minimal summary stylesheet should be enqueued.
+- Shortcode presence should be detected early for normal page/post content so styles can load before output.
+- The shortcode renderer may still enqueue the resolved stylesheet as a fallback for non-standard render paths.
+
+V1 styling intent:
+
+- `none` means no plugin CSS for the public summary.
+- `minimal` means light structural styling only, with the active theme doing most of the visual work.
+- V1 should avoid opinionated decorative styling for the public summary.
+
 The renderer should support theme overrides later, but V1 may use a template file.
 
 Recommended frontend copy pattern:

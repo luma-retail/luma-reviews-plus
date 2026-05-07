@@ -25,6 +25,42 @@ This plugin is a good fit if you want more control than a basic follow-up email,
 - Includes an admin screen for moderating shop reviews.
 - Includes a shortcode for showing aggregate shop-review trust content on the frontend.
 
+## Show Reviews On The Frontend
+
+The easiest way to show published shop reviews on the frontend is the built-in shortcode:
+
+```text
+[luma_shop_reviews_summary]
+```
+
+You can place it in any post, page, or block that accepts shortcodes.
+
+Common shortcode examples:
+
+```text
+[luma_shop_reviews_summary]
+[luma_shop_reviews_summary style="none"]
+[luma_shop_reviews_summary style="minimal" quote_count="6"]
+[luma_shop_reviews_summary show_quotes="no"]
+```
+
+Available shortcode attributes:
+
+- `style`: `inherit`, `none`, or `minimal`
+- `show_rating`: `yes` or `no`
+- `show_count`: `yes` or `no`
+- `show_quotes`: `yes` or `no`
+- `quote_count`: how many published quotes to show
+- `minimum_rating`: minimum rating required for quotes to appear
+
+How styling works:
+
+- `inherit` uses the plugin setting under WooCommerce > Settings > Products > Reviews Plus.
+- `none` loads no plugin CSS for the summary, so your theme handles all styling.
+- `minimal` loads a lightweight summary stylesheet only on pages where the shortcode is used.
+
+The public summary styles are loaded conditionally, so pages that do not render the shortcode do not load the summary stylesheet.
+
 ## What It Does Not Try To Do
 
 - It does not replace WooCommerce reviews.

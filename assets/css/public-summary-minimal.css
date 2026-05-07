@@ -1,0 +1,65 @@
+.luma-shop-reviews-summary {
+    margin: 0;
+}
+
+.luma-shop-reviews-summary__body > * + * {
+    margin-top: 12px;
+}
+
+.luma-shop-reviews-summary__rating,
+.luma-shop-reviews-summary__count {
+    margin: 0;
+}
+
+.luma-shop-reviews-summary__quotes {
+    display: grid;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.luma-reviews-plus-card {
+    height: 100%;
+}
+
+.luma-shop-reviews-summary__quote {
+    margin: 0;
+    height: 100%;
+    padding: 0 0 0 16px;
+    border-left: 3px solid currentColor;
+}
+
+.luma-shop-reviews-summary__quote > * + * {
+    margin-top: 10px;
+}
+
+.luma-shop-reviews-summary__quote p,
+.luma-shop-reviews-summary__quote footer,
+.luma-shop-reviews-summary__cite {
+    margin: 0;
+}
+
+.luma-shop-reviews-summary__quote footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.luma-shop-reviews-summary__cite {
+    display: block;
+    font-style: normal;
+}
+
+.luma-shop-reviews-summary__cite span {
+    opacity: 0.8;
+}
+
+.luma-shop-reviews-summary__stars {
+    line-height: 1;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.luma-shop-reviews-summary__date {
+    font-size: 0.9em;
+    opacity: 0.75;
+}

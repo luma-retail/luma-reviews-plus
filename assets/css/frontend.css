@@ -126,21 +126,6 @@
     margin-top: 24px;
 }
 
-.luma-shop-reviews-summary {
-    padding: 24px;
-}
-
-.luma-shop-reviews-summary__quotes {
-    display: grid;
-    gap: 16px;
-    margin-top: 18px;
-}
-
-.luma-shop-reviews-summary__quote {
-    margin: 0;
-    padding: 18px 0;
-}
-
 @media (max-width: 680px) {
     .luma-reviews-plus-product-item {
         grid-template-columns: 1fr;

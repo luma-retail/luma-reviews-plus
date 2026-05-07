@@ -122,7 +122,7 @@ class Plugin {
         $controller             = new ReviewPageController( $settings, $token_repository, $product_review_log_repository, $shop_review_repository, $product_review_handler, $shop_review_handler, $form_renderer );
         $controller->register();
 
-        $public_trust_renderer = new PublicTrustRenderer( $shop_review_repository );
+        $public_trust_renderer = new PublicTrustRenderer( $shop_review_repository, $settings );
         $public_trust_renderer->register();
 
         \add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
@@ -177,6 +177,7 @@ class Plugin {
      */
     public function register_assets() {
         \wp_register_style( 'luma-reviews-plus-frontend', LUMA_REVIEWS_PLUS_URL . 'assets/css/frontend.css', array(), LUMA_REVIEWS_PLUS_VERSION );
+        \wp_register_style( 'luma-reviews-plus-public-summary-minimal', LUMA_REVIEWS_PLUS_URL . 'assets/css/public-summary-minimal.css', array(), LUMA_REVIEWS_PLUS_VERSION );
         \wp_register_script( 'luma-reviews-plus-frontend', LUMA_REVIEWS_PLUS_URL . 'assets/js/frontend.js', array(), LUMA_REVIEWS_PLUS_VERSION, true );
         \wp_localize_script(
             'luma-reviews-plus-frontend',

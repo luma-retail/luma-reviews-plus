@@ -77,7 +77,7 @@ msgid "Average"
 msgstr ""
 
 #: includes/Frontend/PublicTrustRenderer.php:82
-msgid "Based on %d verified shopping experiences."
+msgid "Based on %d customer reviews after purchase."
 msgstr ""
 
 #: includes/Settings/Settings.php:53
@@ -126,7 +126,12 @@ msgstr ""
 
 #: includes/Frontend/PublicTrustRenderer.php:77
 #, php-format
-msgid "Customers rate the shopping experience %1$s / 5."
+msgid "Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase."
+msgstr ""
+
+#: includes/Frontend/PublicTrustRenderer.php:129
+#, php-format
+msgid "Our customers give us %1$s out of 5 stars."
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:128
@@ -287,6 +292,13 @@ msgstr ""
 msgid "One tag per line."
 msgstr ""
 
+#: includes/Frontend/PublicTrustRenderer.php:205
+#, php-format
+msgid "%s day ago"
+msgid_plural "%s days ago"
+msgstr[0] ""
+msgstr[1] ""
+
 #: templates/product-review-item.php:21 templates/shop-experience-review.php:16
 msgid "Optional"
 msgstr ""
@@ -299,8 +311,31 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
+#: includes/Frontend/PublicTrustRenderer.php:217
+#, php-format
+msgid "%s week ago"
+msgid_plural "%s weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
 #: templates/product-review-item.php:54 templates/shop-experience-review.php:44
 msgid "Perfect"
+msgstr ""
+
+#: includes/Frontend/PublicTrustRenderer.php:200
+msgid "Yesterday"
+msgstr ""
+
+#: includes/Frontend/PublicTrustRenderer.php:213
+msgid "Last week"
+msgstr ""
+
+#: includes/Frontend/PublicTrustRenderer.php:217
+msgid "Two weeks ago"
+msgstr ""
+
+#: includes/Frontend/PublicTrustRenderer.php:196
+msgid "Today"
 msgstr ""
 
 #: includes/Reviews/ProductReviewHandler.php:71

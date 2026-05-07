@@ -41,6 +41,7 @@ class Settings {
             'review_requests_enabled'             => 1,
             'review_email_delay_days'            => 5,
             'token_expiry_days'                  => 90,
+            'public_summary_style'               => 'minimal',
             'review_page_slug'                   => 'review',
             'review_page_heading'                => __( 'Share your review', 'luma-reviews-plus' ),
             'review_page_intro'                  => __( 'Thank you for your purchase. We would love to hear how you experienced the products and the shopping experience.', 'luma-reviews-plus' ),
@@ -126,6 +127,12 @@ class Settings {
                 'type'  => 'number',
                 'min'   => 1,
                 'max'   => 3650,
+            ),
+            array(
+                'key'     => 'public_summary_style',
+                'label'   => __( 'Public summary style', 'luma-reviews-plus' ),
+                'type'    => 'select',
+                'options' => $this->get_public_summary_style_options(),
             ),
             array(
                 'key'   => 'review_page_slug',
@@ -238,6 +245,7 @@ class Settings {
         $clean['review_requests_enabled']             = Sanitizer::bool_to_int( $input['review_requests_enabled'] ?? 0 );
         $clean['review_email_delay_days']            = max( 0, Sanitizer::absint( $input['review_email_delay_days'] ?? $defaults['review_email_delay_days'] ) );
         $clean['token_expiry_days']                  = max( 1, Sanitizer::absint( $input['token_expiry_days'] ?? $defaults['token_expiry_days'] ) );
+        $clean['public_summary_style']               = $this->sanitize_public_summary_style( $input['public_summary_style'] ?? $defaults['public_summary_style'] );
         $clean['review_page_slug']                   = Sanitizer::slug( $input['review_page_slug'] ?? $defaults['review_page_slug'] );
         $clean['review_page_heading']                = Sanitizer::text( $input['review_page_heading'] ?? $defaults['review_page_heading'] );
         $clean['review_page_intro']                  = Sanitizer::rich_text( $input['review_page_intro'] ?? $defaults['review_page_intro'] );
@@ -288,6 +296,16 @@ class Settings {
      */
     public function get_token_expiry_days() {
         return (int) apply_filters( 'luma_reviews_plus_token_expiry_days', absint( $this->get_setting( 'token_expiry_days', 90 ) ) );
+    }
+
+
+    /**
+     * Returns the default public summary style mode.
+     *
+     * @return string
+     */
+    public function get_public_summary_style() {
+        return $this->sanitize_public_summary_style( $this->get_setting( 'public_summary_style', 'minimal' ) );
     }
 
 
@@ -418,6 +436,36 @@ class Settings {
      */
     public function allow_partial_product_reviews() {
         return (bool) $this->get_setting( 'allow_partial_product_reviews', 1 );
+    }
+
+
+    /**
+     * Returns the available public summary style options.
+     *
+     * @return array
+     */
+    protected function get_public_summary_style_options() {
+        return array(
+            'none'    => __( 'None', 'luma-reviews-plus' ),
+            'minimal' => __( 'Minimal', 'luma-reviews-plus' ),
+        );
+    }
+
+
+    /**
+     * Sanitizes the public summary style mode.
+     *
+     * @param mixed $style Raw style mode.
+     * @return string
+     */
+    protected function sanitize_public_summary_style( $style ) {
+        $style = Sanitizer::text( $style );
+
+        if ( ! array_key_exists( $style, $this->get_public_summary_style_options() ) ) {
+            return 'minimal';
+        }
+
+        return $style;
     }
 
 
