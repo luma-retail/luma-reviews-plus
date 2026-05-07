@@ -72,6 +72,7 @@ The public summary styles are loaded conditionally, so pages that do not render 
 - Structured data on the frontend.
 - Statistics.
 - Customer image uploads.
+- Consider slider or other way to show more quotes in the summary without taking too much space.
 
 ## Typical Use Case
 

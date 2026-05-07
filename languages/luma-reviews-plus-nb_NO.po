@@ -249,11 +249,11 @@ msgstr "Del gjerne hvordan du opplevde butikken, leveringen og servicen."
 
 #: includes/Settings/Settings.php:601
 msgid ""
-"Fru Kvist may show my comment on the website with the name I provide here "
-"and, optionally, my location."
+"Fru Kvist may show my comment on the website with the display name I provide "
+"here."
 msgstr ""
-"Fru Kvist kan vise min kommentar på nettstedet med navnet jeg oppgir her og, "
-"eventuelt, min plassering."
+"Fru Kvist kan vise kommentaren min på nettstedet med visningsnavnet jeg oppgir "
+"her."
 
 #: templates/product-review-item.php:55 templates/shop-experience-review.php:45
 msgid "Good"

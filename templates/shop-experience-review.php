@@ -75,11 +75,6 @@ $shop_state  = in_array( $shop_values['section_state'] ?? '', array( 'reviewing'
         <p class="luma-reviews-plus-field-error" hidden></p>
     </p>
 
-    <p class="form-row form-row-wide">
-        <label for="luma-shop-display-location"><?php esc_html_e( 'Location', 'luma-reviews-plus' ); ?></label>
-        <input id="luma-shop-display-location" type="text" name="shop_review[display_location]" value="<?php echo esc_attr( (string) ( $shop_values['display_location'] ?? '' ) ); ?>" />
-    </p>
-
     <label class="luma-reviews-plus-checkbox">
         <input type="checkbox" name="shop_review[public_consent]" value="1" <?php checked( ! empty( $shop_values['public_consent'] ) ); ?> />
         <span><?php echo esc_html( $this->settings->get_public_consent_text() ); ?></span>

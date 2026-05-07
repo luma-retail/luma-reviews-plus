@@ -239,8 +239,8 @@ msgstr ""
 
 #: includes/Settings/Settings.php:601
 msgid ""
-"Fru Kvist may show my comment on the website with the name I provide here "
-"and, optionally, my location."
+"Fru Kvist may show my comment on the website with the display name I provide "
+"here."
 msgstr ""
 
 #: templates/product-review-item.php:55 templates/shop-experience-review.php:45

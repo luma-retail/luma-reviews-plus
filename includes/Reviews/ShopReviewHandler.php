@@ -67,7 +67,7 @@ class ShopReviewHandler {
         $allowed_tags  = $this->settings->get_shop_review_tags();
         $selected_tags = array_values( array_intersect( $allowed_tags, array_map( 'sanitize_text_field', (array) ( $submitted['tags'] ?? array() ) ) ) );
         $display_name  = sanitize_text_field( (string) ( $submitted['display_name'] ?? '' ) );
-        $location      = sanitize_text_field( (string) ( $submitted['display_location'] ?? '' ) );
+        $location      = Helpers::get_order_location( $order );
         $errors        = array();
 
         if ( '' === $display_name ) {
@@ -86,10 +86,6 @@ class ShopReviewHandler {
                 'saved'     => false,
                 'review_id' => 0,
             );
-        }
-
-        if ( '' === $location ) {
-            $location = Helpers::get_order_location( $order );
         }
 
         $existing_review = $this->shop_review_repository->get_by_order_id( $order->get_id() );

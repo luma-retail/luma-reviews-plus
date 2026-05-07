@@ -598,7 +598,7 @@ class Settings {
      * @return string
      */
     protected function get_default_public_consent_text() {
-        return __( 'Fru Kvist may show my comment on the website with the name I provide here and, optionally, my location.', 'luma-reviews-plus' );
+        return __( 'Fru Kvist may show my comment on the website with the display name I provide here.', 'luma-reviews-plus' );
     }
 
 

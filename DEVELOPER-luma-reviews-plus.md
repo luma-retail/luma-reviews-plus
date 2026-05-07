@@ -709,7 +709,7 @@ V1 fields:
 - Optional tags.
 - Optional public consent.
 - Optional display name.
-- Optional display location.
+- Display location derived from the order billing city.
 
 Suggested tags:
 
@@ -1073,7 +1073,7 @@ For public shop-experience testimonials:
 - Ask for explicit consent.
 - Store consent state.
 - Allow admin approval before display.
-- Display only first name and optional location unless otherwise configured.
+- Display the chosen display name and, when available, the order billing city unless otherwise configured.
 
 Default public display name should not expose full customer identity.
 
