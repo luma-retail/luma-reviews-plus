@@ -7,7 +7,9 @@
 ?>
 <div class="woocommerce luma-reviews-plus-content">
     <h1><?php echo esc_html( $this->settings->get_review_page_heading() ); ?></h1>
-    <div class="luma-reviews-plus-intro"><?php echo wp_kses_post( wpautop( $this->replace_page_placeholders( $this->settings->get_review_page_intro(), $context ) ) ); ?></div>
+    <?php if ( ! empty( $context['show_intro'] ) ) : ?>
+        <div class="luma-reviews-plus-intro"><?php echo wp_kses_post( wpautop( $this->replace_page_placeholders( $this->settings->get_review_page_intro(), $context ) ) ); ?></div>
+    <?php endif; ?>
 
     <?php foreach ( $context['messages'] as $message ) : ?>
         <div class="luma-reviews-plus-message"><?php echo esc_html( $message ); ?></div>
@@ -22,7 +24,13 @@
 
             <?php if ( ! empty( $context['review_items'] ) ) : ?>
                 <section class="luma-reviews-plus-section">
-                    <h2><?php echo esc_html( $this->settings->get_product_reviews_heading() ); ?></h2>
+                    <h2>
+                        <?php if ( ! empty( $context['show_follow_up_product_heading'] ) ) : ?>
+                            <?php echo esc_html( $this->settings->get_follow_up_product_reviews_heading() ); ?>
+                        <?php else : ?>
+                            <?php echo esc_html( $this->settings->get_product_reviews_heading() ); ?>
+                        <?php endif; ?>
+                    </h2>
                     <p class="luma-reviews-plus-helper"><?php esc_html_e( 'You do not need to review everything. Only review what you want to give feedback on.', 'luma-reviews-plus' ); ?></p>
 
                     <?php foreach ( $context['review_items'] as $item ) : ?>

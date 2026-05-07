@@ -181,6 +181,8 @@ class ReviewPageController {
             'shop_review'            => null,
             'posted_product_reviews' => array(),
             'posted_shop_review'     => array(),
+            'show_intro'             => true,
+            'show_follow_up_product_heading' => false,
         );
 
         if ( '' === $token_raw ) {
@@ -292,6 +294,7 @@ class ReviewPageController {
 
         $context['shop_review']  = $this->shop_review_repository->get_by_order_id( $context['order']->get_id() );
         $context['review_items'] = $this->get_reviewable_items( $context['order'] );
+        $context['show_intro']   = false;
         $context['messages'][]   = $this->settings->get_success_message();
 
         if ( empty( $context['review_items'] ) ) {
@@ -299,6 +302,7 @@ class ReviewPageController {
             do_action( 'luma_reviews_plus_token_completed', $context['token']->id, $context['order']->get_id() );
         } else {
             $this->token_repository->mark_status( $context['token']->id, 'partially_reviewed' );
+            $context['show_follow_up_product_heading'] = true;
         }
 
         $context['posted_product_reviews'] = array();

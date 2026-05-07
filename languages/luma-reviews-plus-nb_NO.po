@@ -1,0 +1,609 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luma Reviews Plus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-06 15:57+0000\n"
+"PO-Revision-Date: 2026-05-06 16:01+0000\n"
+"Last-Translator: Terje Johansen\n"
+"Language-Team: Norsk bokmål\n"
+"Language: nb_NO\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.4; wp-6.9.4; php-8.3.30\n"
+"X-Domain: luma-reviews-plus"
+
+#: templates/product-review-item.php:48 templates/shop-experience-review.php:38
+msgid "%d out of 5 stars"
+msgstr "%d av 5 stjerner"
+
+#: includes/Frontend/ReviewPageController.php:276
+msgid "A store review requires at least one product review."
+msgstr "En butikkvurdering krever minst én produktvurdering."
+
+#: includes/Settings/Settings.php:54
+msgid "Accurate stock information"
+msgstr "Nøyaktig lagerinformasjon"
+
+#: includes/Admin/ShopReviewsPage.php:136
+msgid "Actions"
+msgstr "Handlinger"
+
+#: includes/Settings/Settings.php:213
+msgid "All items already reviewed message"
+msgstr "Melding om alle varer allerede vurdert"
+
+#: includes/Settings/Settings.php:68
+msgid "All products in this order have already been reviewed."
+msgstr "Alle produkter i denne bestillingen er allerede vurdert."
+
+#: includes/Settings/Settings.php:188
+msgid "Allow partial product review submissions"
+msgstr "Tillat delvise produktvurderinger"
+
+#: includes/Settings/Settings.php:183
+msgid "Allow shop-experience review without product review"
+msgstr "Tillat butikkopplevelsesvurdering uten produktvurdering"
+
+#: includes/Admin/ShopReviewsPage.php:145
+msgid "Approve for public display"
+msgstr "Godkjenn for offentlig visning"
+
+#: includes/Settings/Settings.php:178
+msgid "Auto-approve product reviews"
+msgstr "Automatisk godkjenning av produktvurderinger"
+
+#: includes/Settings/Settings.php:144
+msgid "Available placeholder: {first_name} (customer first name)"
+msgstr "Tilgjengelig plassholder: {first_name} (kundens fornavn)"
+
+#: includes/Email/ReviewEmail.php:105
+msgid ""
+"Available placeholders: {first_name}, {order_number}, {review_link}, "
+"{review_button}, {site_title}."
+msgstr ""
+"Tilgjengelige plassholdere: {first_name}, {order_number}, {review_link}, "
+"{review_button}, {site_title}."
+
+#: includes/Email/ReviewEmail.php:91
+msgid ""
+"Available placeholders: {first_name}, {order_number}, {review_link}, "
+"{site_title}."
+msgstr ""
+"Tilgjengelige plassholdere: {first_name}, {order_number}, {review_link}, "
+"{site_title}."
+
+#: templates/product-review-item.php:56 templates/shop-experience-review.php:46
+msgid "Average"
+msgstr "Gjennomsnitt"
+
+#: includes/Frontend/PublicTrustRenderer.php:82
+msgid "Based on %d verified shopping experiences."
+msgstr "Basert på %d verifiserte handleopplevelser."
+
+#: includes/Settings/Settings.php:53
+msgid "Beautifully packaged"
+msgstr "Vakkert pakket"
+
+#: includes/Email/ReviewEmail.php:103
+msgid "Body text"
+msgstr "Brødtekst"
+
+#: includes/Plugin.php:185
+msgid "Choose a rating for the shopping experience, or skip the store review."
+msgstr ""
+"Velg en vurdering for handleopplevelsen, eller hopp over butikkvurderingen."
+
+#: includes/Plugin.php:186
+msgid "Choose a rating for this product, or skip it."
+msgstr "Velg en vurdering for dette produktet, eller hopp over det."
+
+#: includes/Plugin.php:190
+msgid ""
+"Choose at least one product if you also want to submit the store review."
+msgstr "Velg minst ett produkt hvis du også vil sende inn butikkvurderingen."
+
+#: includes/Plugin.php:189
+msgid "Choose at least one product or the store review before submitting."
+msgstr "Velg minst ett produkt eller butikkvurdering før innsending."
+
+#: includes/Email/ReviewEmail.php:111
+msgid "Choose the email format."
+msgstr "Velg e-postformat."
+
+#: templates/product-review-item.php:64 templates/shop-experience-review.php:54
+#: includes/Admin/ShopReviewsPage.php:133
+msgid "Comment"
+msgstr "Kommentar"
+
+#: includes/Admin/SettingsPage.php:80
+msgid ""
+"Configure review request timing, review page text, and public testimonial "
+"behavior."
+msgstr ""
+"Konfigurer tidspunkt for vurderingsforespørsel, tekst på vurderingssiden, og "
+"oppførsel for offentlig attestasjon."
+
+#: includes/Admin/ShopReviewsPage.php:130 includes/Utils/Helpers.php:91
+msgid "Customer"
+msgstr "Kunde"
+
+#: includes/Frontend/PublicTrustRenderer.php:77
+#, php-format
+msgid "Customers rate the shopping experience %1$s / 5."
+msgstr "Kunder vurderer handleopplevelsen %1$s / 5."
+
+#: includes/Admin/ShopReviewsPage.php:128
+msgid "Date"
+msgstr "Dato"
+
+#: includes/Settings/Settings.php:118
+msgid "Days after completed order before review email is sent"
+msgstr "Dager etter fullført bestilling før vurderings-e-post sendes"
+
+#: includes/Admin/ShopReviewsPage.php:161
+msgid "Delete review"
+msgstr "Slett vurdering"
+
+#: templates/shop-experience-review.php:72
+msgid "Display name"
+msgstr "Visningsnavn"
+
+#: includes/Email/ReviewEmail.php:98
+msgid "Displayed in the email heading area."
+msgstr "Vist i e-postoverskriftsområdet."
+
+#: includes/Settings/Settings.php:57
+msgid "Easy to shop"
+msgstr "Enkelt å handle"
+
+#: includes/Admin/SettingsPage.php:104
+#, php-format
+msgid ""
+"Edit the review request email subject, heading, and body in <a href=\"%s\">"
+"WooCommerce email settings</a>."
+msgstr ""
+"Rediger emnet, overskriften og innholdet i e-posten for "
+"anmeldelsesanmodningen i <a href=\"%s\">WooCommerce e-postinnstillinger</a>."
+
+#: includes/Admin/SettingsPage.php:103
+msgid "Email content"
+msgstr "E-postinnhold"
+
+#: includes/Email/ReviewEmail.php:96
+msgid "Email heading"
+msgstr "E-postoverskrift"
+
+#: includes/Email/ReviewEmail.php:109
+msgid "Email type"
+msgstr "E-posttype"
+
+#: includes/Settings/Settings.php:113
+msgid "Enable review requests"
+msgstr "Aktiver vurderingsforespørsler"
+
+#: includes/Email/ReviewEmail.php:85
+msgid "Enable this email notification"
+msgstr "Aktiver denne e-postvarslingen"
+
+#: includes/Email/ReviewEmail.php:83
+msgid "Enable/Disable"
+msgstr "Aktiver/Deaktiver"
+
+#: includes/Admin/SettingsPage.php:156
+msgid "Enabled"
+msgstr "Aktivert"
+
+#: includes/Plugin.php:188
+msgid "Enter your display name for the store review."
+msgstr "Skriv inn ditt visningsnavn for butikkvurderingen."
+
+#: includes/Settings/Settings.php:203
+msgid "Expired token message"
+msgstr "Utløpt token-melding"
+
+#: includes/Settings/Settings.php:52
+msgid "Fast delivery"
+msgstr "Rask levering"
+
+#: includes/Settings/Settings.php:50
+msgid ""
+"Feel free to share how you experienced the store, delivery, and service."
+msgstr "Del gjerne hvordan du opplevde butikken, leveringen og servicen."
+
+#: includes/Settings/Settings.php:490
+msgid ""
+"Fru Kvist may show my comment on the website with the name I provide here "
+"and, optionally, my location."
+msgstr ""
+"Fru Kvist kan vise min kommentar på nettstedet med navnet jeg oppgir her og, "
+"eventuelt, min plassering."
+
+#: templates/product-review-item.php:55 templates/shop-experience-review.php:45
+msgid "Good"
+msgstr "Bra"
+
+#: includes/Settings/Settings.php:56
+msgid "Good advice and guidance"
+msgstr "Godt råd og veiledning"
+
+#: includes/Settings/Settings.php:55
+msgid "Helpful customer service"
+msgstr "Hjelpsom kundeservice"
+
+#: includes/Email/ReviewEmail.php:179
+msgid ""
+"Hi {first_name},\\n\\nThank you for your purchase from {site_title}. Feel "
+"free to share your reviews here: {review_link}"
+msgstr ""
+"Hei {first_name},\\n\\nTakk for kjøpet ditt fra {site_title}. Del gjerne "
+"dine vurderinger her: {review_link}"
+
+#: includes/Settings/Settings.php:49
+msgid "How was your shopping experience with Fru Kvist?"
+msgstr "Hvordan var handleopplevelsen din med Fru Kvist?"
+
+#: includes/Settings/Settings.php:47
+msgid "How were the products you bought?"
+msgstr "Hvordan var produktene du kjøpte?"
+
+#: templates/review-page.php:29
+msgid "It is not too late to review these products as well."
+msgstr "Det er ikke for sent å gi en vurdering av disse produktene også."
+
+#: includes/Email/ReviewEmail.php:159
+msgid "Hvordan var bestilling #{order_number}?"
+msgstr "Hvordan var bestillingen #{order_number}?"
+
+#: includes/Settings/Settings.php:208
+msgid "Invalid token message"
+msgstr "Ugyldig token-melding"
+
+#: includes/Email/ReviewEmail.php:295
+msgid "Leave your review"
+msgstr "Legg igjen din vurdering"
+
+#: templates/shop-experience-review.php:79
+msgid "Location"
+msgstr "Sted"
+
+#. Name of the plugin
+#: includes/Admin/SettingsPage.php:77
+msgid "Luma Reviews Plus"
+msgstr "Luma Anmeldelser Plus"
+
+#: includes/Plugin.php:72
+msgid "Luma Reviews Plus requires WooCommerce to be active."
+msgstr "Luma Anmeldelser Plus krever at WooCommerce er aktivt."
+
+#: includes/Email/ReviewEmailScheduler.php:143
+msgid "Luma Reviews Plus review request sent manually."
+msgstr "Luma Anmeldelser Plus forespørsel om vurdering sendt manuelt."
+
+#: includes/Admin/ShopReviewsPage.php:157
+#: includes/Admin/ShopReviewsPage.php:158
+msgid "No"
+msgstr "Nei"
+
+#: includes/Admin/ShopReviewsPage.php:140
+msgid "No shop reviews found yet."
+msgstr "Ingen butikkvurderinger funnet ennå."
+
+#: templates/product-review-item.php:57 templates/shop-experience-review.php:47
+msgid "Not that bad"
+msgstr "Ikke så verst"
+
+#: includes/Admin/SettingsPage.php:165
+msgid "One tag per line."
+msgstr "Én tag per linje."
+
+#: templates/product-review-item.php:21 templates/shop-experience-review.php:16
+msgid "Optional"
+msgstr "Valgfritt"
+
+#: includes/Admin/ShopReviewsPage.php:129
+msgid "Order"
+msgstr "Bestilling"
+
+#: includes/Settings/Settings.php:58
+msgid "Other"
+msgstr "Annet"
+
+#: templates/product-review-item.php:54 templates/shop-experience-review.php:44
+msgid "Perfect"
+msgstr "Perfekt"
+
+#: includes/Reviews/ProductReviewHandler.php:71
+#, php-format
+msgid "Please add a comment for %s."
+msgstr "Vennligst legg igjen en kommentar for %s."
+
+#: includes/Plugin.php:191
+msgid "Please review the highlighted fields below before submitting."
+msgstr "Vennligst gjennomgå de uthevede feltene nedenfor før innsending."
+
+#: templates/product-review-item.php:20
+msgid "Product review"
+msgstr "Produktvurdering"
+
+#: includes/Settings/Settings.php:153
+msgid "Product reviews section description"
+msgstr "Beskrivelse av seksjonen for produktvurderinger"
+
+#: includes/Settings/Settings.php:148
+msgid "Product reviews section heading"
+msgstr "Overskrift for seksjonen for produktvurderinger"
+
+#: includes/Admin/ShopReviewsPage.php:135
+msgid "Public approved"
+msgstr "Offentlig godkjent"
+
+#: includes/Admin/ShopReviewsPage.php:134
+msgid "Public consent"
+msgstr "Samtykke til offentlig visning"
+
+#: includes/Settings/Settings.php:218
+msgid "Public consent text"
+msgstr "Tekst for offentlig samtykke"
+
+#: templates/product-review-item.php:53 templates/shop-experience-review.php:43
+msgid "Rate..."
+msgstr "Vurder..."
+
+#: templates/product-review-item.php:37 templates/product-review-item.php:39
+#: includes/Admin/ShopReviewsPage.php:131
+msgid "Rating"
+msgstr "Vurdering"
+
+#: includes/Admin/ShopReviewsPage.php:145
+msgid "Remove public approval"
+msgstr "Fjern offentlig godkjenning"
+
+#: includes/Settings/Settings.php:173
+msgid "Require product review comment"
+msgstr "Krev kommentar for produktvurdering"
+
+#: templates/product-review-item.php:66
+msgid "Required if you review this product."
+msgstr "Påkrevd hvis du vurderer dette produktet."
+
+#: includes/Settings/Settings.php:137
+msgid "Review page heading"
+msgstr "Overskrift for vurderingssiden"
+
+#: includes/Settings/Settings.php:142
+msgid "Review page introduction text"
+msgstr "Innledende tekst for vurderingssiden"
+
+#: includes/Settings/Settings.php:132
+msgid "Review page slug"
+msgstr "Slug for vurderingssiden"
+
+#: includes/Email/ReviewEmail.php:54
+msgid "Review request"
+msgstr "Forespørsel om vurdering"
+
+#: templates/shop-experience-review.php:17
+msgid "Review the shopping experience"
+msgstr "Vurder handleopplevelsen"
+
+#: templates/product-review-item.php:22
+msgid "Review this product"
+msgstr "Vurder dette produktet"
+
+#: includes/Admin/SettingsPage.php:57
+msgid "Reviews Plus"
+msgstr "Reviews Plus"
+
+#: includes/Email/ReviewEmailScheduler.php:125
+msgid "Send review request"
+msgstr "Send forespørsel om vurdering"
+
+#: includes/Email/ReviewEmail.php:55
+msgid ""
+"Sent to customers after an eligible order to request product and shop "
+"reviews."
+msgstr ""
+"Sendes til kunder etter en kvalifisert bestilling for å be om produkt- og "
+"butikkvurderinger."
+
+#: includes/Settings/Settings.php:45
+msgid "Share your review"
+msgstr "Del din vurdering"
+
+#: includes/Admin/ShopReviewsPage.php:65 includes/Admin/ShopReviewsPage.php:66
+#: includes/Admin/ShopReviewsPage.php:125
+msgid "Shop Reviews"
+msgstr "Butikkvurderinger"
+
+#: includes/Settings/Settings.php:163
+msgid "Shop-experience section description"
+msgstr "Beskrivelse av seksjonen for butikkopplevelse"
+
+#: includes/Settings/Settings.php:158
+msgid "Shop-experience section heading"
+msgstr "Overskrift for seksjonen for butikkopplevelse"
+
+#: includes/Settings/Settings.php:168
+msgid "Shop-experience tags"
+msgstr "Tags for butikkopplevelse"
+
+#: templates/product-review-item.php:23
+msgid "Skip"
+msgstr "Hopp over"
+
+#: templates/shop-experience-review.php:18
+msgid "Skip store review"
+msgstr "Hopp over butikkvurdering"
+
+#: templates/shop-experience-review.php:27
+#: templates/shop-experience-review.php:29
+msgid "Store rating"
+msgstr "Butikkvurdering"
+
+#: templates/shop-experience-review.php:15
+msgid "Store review"
+msgstr "Butikkvurdering"
+
+#: includes/Email/ReviewEmail.php:89
+msgid "Subject"
+msgstr "Emne"
+
+#: includes/Frontend/ReviewPageController.php:287
+msgid "Submit at least one valid review to continue."
+msgstr "Send inn minst én gyldig vurdering for å fortsette."
+
+#: includes/Settings/Settings.php:193
+msgid "Submit button text"
+msgstr "Tekst på send inn-knappen"
+
+#: includes/Settings/Settings.php:64
+msgid "Submit reviews"
+msgstr "Send vurderinger"
+
+#: includes/Settings/Settings.php:198
+msgid "Success message"
+msgstr "Suksessmelding"
+
+#: includes/Admin/ShopReviewsPage.php:132
+msgid "Tags"
+msgstr "Tagger"
+
+#. Author of the plugin
+msgid "Terje Johansen"
+msgstr "Terje Johansen"
+
+#: includes/Settings/Settings.php:46
+msgid ""
+"Thank you for your purchase. We would love to hear how you experienced the "
+"products and the shopping experience."
+msgstr ""
+"Takk for kjøpet. Vi vil gjerne høre hvordan du opplevde produktene og "
+"handleopplevelsen."
+
+#: includes/Settings/Settings.php:65
+msgid "Thank you. Your review has been submitted."
+msgstr "Takk. Din vurdering er sendt inn."
+
+#: includes/Frontend/ReviewPageController.php:210
+msgid "The order could not be found."
+msgstr "Bestillingen kunne ikke finnes."
+
+#: includes/Frontend/ReviewPageController.php:260
+msgid "The security check failed. Please reload the page and try again."
+msgstr ""
+"Sikkerhetskontrollen mislyktes. Vennligst last inn siden på nytt og prøv "
+"igjen."
+
+#: templates/shop-experience-review.php:21
+msgid "The shopping experience will not be reviewed."
+msgstr "Handleopplevelsen vil ikke bli vurdert."
+
+#: templates/shop-experience-review.php:20
+msgid "The store review is optional."
+msgstr "Butikkvurderingen er valgfri."
+
+#: includes/Frontend/ReviewPageController.php:216
+msgid "This order is no longer available for review."
+msgstr "Denne bestillingen er ikke lenger tilgjengelig for vurdering."
+
+#: templates/product-review-item.php:26
+msgid "This product will not be reviewed."
+msgstr "Dette produktet vil ikke bli vurdert."
+
+#: includes/Settings/Settings.php:66
+msgid "This review link has expired."
+msgstr "Denne vurderingslenken har utløpt."
+
+#: includes/Settings/Settings.php:67
+msgid "This review link is invalid."
+msgstr "Denne vurderingslenken er ugyldig."
+
+#: includes/Settings/Settings.php:125
+msgid "Token expiry in days"
+msgstr "Token utløper i dager"
+
+#. Description of the plugin
+msgid ""
+"Tokenized WooCommerce review requests with native product reviews and "
+"verified shop-experience reviews."
+msgstr ""
+"Tokeniserte WooCommerce-vurderingsforespørsler med innebygde "
+"produktvurderinger og verifiserte butikkopplevelsesvurderinger."
+
+#: includes/Frontend/PublicTrustRenderer.php:74
+#, php-format
+msgid "Trusted online shopping at %s"
+msgstr "Pålitelig netthandel hos %s"
+
+#: includes/Reviews/ProductReviewHandler.php:92
+#, php-format
+msgid "Unable to save review for %s."
+msgstr "Kan ikke lagre vurdering for %s."
+
+#: templates/product-review-item.php:58 templates/shop-experience-review.php:48
+msgid "Very poor"
+msgstr "Veldig dårlig"
+
+#: includes/Email/ReviewEmail.php:169
+msgid "We would love to hear what you think"
+msgstr "Vi vil gjerne høre hva du synes"
+
+#: templates/shop-experience-review.php:60
+msgid "What worked well?"
+msgstr "Hva fungerte bra?"
+
+#: templates/product-review-item.php:25
+msgid "Would you like to review this product?"
+msgstr "Ønsker du å vurdere dette produktet?"
+
+#: includes/Plugin.php:187
+msgid "Write a short comment for this product."
+msgstr "Skriv en kort kommentar for dette produktet."
+
+#: includes/Admin/ShopReviewsPage.php:157
+#: includes/Admin/ShopReviewsPage.php:158
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/Settings/Settings.php:48
+msgid "You can review one or more products from this order."
+msgstr "Du kan vurdere ett eller flere produkter fra denne bestillingen."
+
+#: includes/Email/ReviewEmail.php:281
+msgid "You can use this link if the button does not work:"
+msgstr "Du kan bruke denne lenken hvis knappen ikke fungerer:"
+
+#: includes/Admin/ShopReviewsPage.php:119
+msgid "You do not have permission to access this page."
+msgstr "Du har ikke tillatelse til å få tilgang til denne siden."
+
+#: templates/review-page.php:26
+msgid ""
+"You do not need to review everything. Only review what you want to give "
+"feedback on."
+msgstr ""
+"Du trenger ikke å vurdere alt. Vurder bare det du ønsker å gi tilbakemelding "
+"på."
+
+#: templates/shop-experience-review.php:74
+msgid ""
+"You may remove your last name or add something like your Instagram name, but "
+"your first name must remain."
+msgstr ""
+"Du kan fjerne etternavnet ditt eller legge til noe som Instagram-navnet ditt,"
+" men fornavnet må forbli."
+
+#: includes/Frontend/ReviewPageController.php:265
+msgid "You must review all products in this order in the same submission."
+msgstr "Du må vurdere alle produkter i denne bestillingen i samme innsending."
+
+#: includes/Reviews/ShopReviewHandler.php:80
+msgid ""
+"Your display name must include your first name so we can match the review to "
+"the order."
+msgstr ""
+"Ditt visningsnavn må inkludere fornavnet ditt slik at vi kan matche "
+"vurderingen med bestillingen."

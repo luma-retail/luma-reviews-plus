@@ -342,6 +342,16 @@ class Settings {
 
 
     /**
+     * Returns the follow-up heading shown after a partial submission.
+     *
+     * @return string
+     */
+    public function get_follow_up_product_reviews_heading() {
+        return __( 'It is not too late to review these products as well.', 'luma-reviews-plus' );
+    }
+
+
+    /**
      * Returns the product review intro text.
      *
      * @return string
