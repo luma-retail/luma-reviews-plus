@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-06 15:57+0000\n"
-"PO-Revision-Date: 2026-05-07 14:46+0000\n"
+"PO-Revision-Date: 2026-05-11 09:32+0000\n"
 "Last-Translator: Terje Johansen\n"
 "Language-Team: Norsk bokmål\n"
 "Language: nb_NO\n"
@@ -163,7 +163,7 @@ msgstr "Kunde"
 #, fuzzy
 #| msgid "Customer: %s"
 msgid "Customer:"
-msgstr "Kunde: %s"
+msgstr "Kunde:"
 
 #: includes/Admin/ShopReviewsPage.php:128
 msgid "Date"
@@ -252,8 +252,8 @@ msgid ""
 "Fru Kvist may show my comment on the website with the display name I provide "
 "here."
 msgstr ""
-"Fru Kvist kan vise kommentaren min på nettstedet med visningsnavnet jeg oppgir "
-"her."
+"Fru Kvist kan vise kommentaren min på nettstedet med visningsnavnet jeg "
+"oppgir her."
 
 #: templates/product-review-item.php:55 templates/shop-experience-review.php:45
 msgid "Good"
@@ -307,10 +307,6 @@ msgstr "Sist uke"
 #: includes/Email/ReviewEmail.php:295
 msgid "Leave your review"
 msgstr "Legg igjen din vurdering"
-
-#: templates/shop-experience-review.php:79
-msgid "Location"
-msgstr "Sted"
 
 #. Name of the plugin
 #: includes/Admin/SettingsPage.php:77
@@ -722,7 +718,7 @@ msgstr ""
 msgid "You must review all products in this order in the same submission."
 msgstr "Du må vurdere alle produkter i denne bestillingen i samme innsending."
 
-#: includes/Reviews/ShopReviewHandler.php:80
+#: includes/Reviews/ShopReviewHandler.php:78
 msgid ""
 "Your display name must include your first name so we can match the review to "
 "the order."
