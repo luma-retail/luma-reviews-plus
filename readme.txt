@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,11 @@ Yes. Customers can optionally leave a separate shop-experience review in additio
 Yes. The plugin is designed with hooks so a site-specific addon can adjust timing, for example by scheduling review requests after package delivery.
 
 == Changelog ==
+
+= 0.3.2 =
+
+* Relaxed shop-review display-name matching so customers with multiple first names only need one given name.
+* Ignored one-letter and punctuated one-letter first-name fragments when validating shop-review display names.
 
 = 0.2.0 =
 

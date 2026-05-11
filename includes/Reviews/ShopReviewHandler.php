@@ -74,9 +74,7 @@ class ShopReviewHandler {
             $display_name = Helpers::get_order_customer_name( $order );
         }
 
-        $first_name = trim( (string) $order->get_billing_first_name() );
-
-        if ( '' !== $first_name && false === stripos( $display_name, $first_name ) ) {
+        if ( ! Helpers::display_name_matches_order_first_name( $display_name, $order ) ) {
             $errors[] = __( 'Your display name must include your first name so we can match the review to the order.', 'luma-reviews-plus' );
         }
 
