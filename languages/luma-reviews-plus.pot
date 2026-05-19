@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-07 14:46+0000\n"
+"POT-Creation-Date: 2026-05-11 09:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -291,10 +291,6 @@ msgstr ""
 
 #: includes/Email/ReviewEmail.php:295
 msgid "Leave your review"
-msgstr ""
-
-#: templates/shop-experience-review.php:79
-msgid "Location"
 msgstr ""
 
 #. Name of the plugin
@@ -686,7 +682,7 @@ msgstr ""
 msgid "You must review all products in this order in the same submission."
 msgstr ""
 
-#: includes/Reviews/ShopReviewHandler.php:80
+#: includes/Reviews/ShopReviewHandler.php:78
 msgid ""
 "Your display name must include your first name so we can match the review to "
 "the order."

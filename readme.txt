@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.3.2
+Stable tag: 0.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,11 @@ Yes. Customers can optionally leave a separate shop-experience review in additio
 Yes. The plugin is designed with hooks so a site-specific addon can adjust timing, for example by scheduling review requests after package delivery.
 
 == Changelog ==
+
+= 0.3.3 =
+
+* Added extension hooks so site-specific addons can persist custom settings in the shared settings group.
+* Added support for Fru Kvist delivery-based review scheduling through the companion addon contract.
 
 = 0.3.2 =
 

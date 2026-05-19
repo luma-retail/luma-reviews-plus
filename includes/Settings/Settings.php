@@ -37,7 +37,7 @@ class Settings {
      * @return array
      */
     public function get_defaults() {
-        return array(
+        $defaults = array(
             'review_requests_enabled'             => 1,
             'review_email_delay_days'            => 5,
             'token_expiry_days'                  => 90,
@@ -71,6 +71,8 @@ class Settings {
             'already_reviewed_message'           => __( 'All products in this order have already been reviewed.', 'luma-reviews-plus' ),
             'public_consent_text'                => $this->get_default_public_consent_text(),
         );
+
+        return apply_filters( 'luma_reviews_plus_settings_defaults', $defaults );
     }
 
 
@@ -281,7 +283,7 @@ class Settings {
         $clean['already_reviewed_message']           = Sanitizer::text( $input['already_reviewed_message'] ?? $defaults['already_reviewed_message'] );
         $clean['public_consent_text']                = Sanitizer::text( $input['public_consent_text'] ?? $defaults['public_consent_text'] );
 
-        return $clean;
+        return apply_filters( 'luma_reviews_plus_sanitized_settings', $clean, $input, $defaults );
     }
 
 
