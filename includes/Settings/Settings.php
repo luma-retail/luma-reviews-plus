@@ -51,6 +51,7 @@ class Settings {
             'shop_review_intro'                  => __( 'Feel free to share how you experienced the store, delivery, and service.', 'luma-reviews-plus' ),
             'shop_review_notifications_enabled'  => 1,
             'shop_review_notification_email'     => \sanitize_email( (string) \get_option( 'admin_email', '' ) ),
+            'show_admin_order_review_flag'       => 0,
             'shop_review_tags'                   => array(
                 __( 'Fast delivery', 'luma-reviews-plus' ),
                 __( 'Beautifully packaged', 'luma-reviews-plus' ),
@@ -187,6 +188,12 @@ class Settings {
                 'description' => __( 'New shop-experience reviews will be emailed to this address.', 'luma-reviews-plus' ),
             ),
             array(
+                'key'         => 'show_admin_order_review_flag',
+                'label'       => __( 'Show review flag on admin order pages', 'luma-reviews-plus' ),
+                'type'        => 'checkbox',
+                'description' => __( 'Show a WooCommerce admin order notice when the customer reviewed the previous order.', 'luma-reviews-plus' ),
+            ),
+            array(
                 'key'   => 'shop_review_tags',
                 'label' => __( 'Shop-experience tags', 'luma-reviews-plus' ),
                 'type'  => 'textarea_array',
@@ -197,9 +204,10 @@ class Settings {
                 'type'  => 'checkbox',
             ),
             array(
-                'key'   => 'auto_approve_product_reviews',
-                'label' => __( 'Auto-approve product reviews', 'luma-reviews-plus' ),
-                'type'  => 'checkbox',
+                'key'         => 'auto_approve_product_reviews',
+                'label'       => __( 'Auto-approve product reviews', 'luma-reviews-plus' ),
+                'type'        => 'checkbox',
+                'description' => __( 'Only applies to product reviews submitted through Reviews Plus from verified order review links. It does not change approval behavior for normal storefront product reviews.', 'luma-reviews-plus' ),
             ),
             array(
                 'key'   => 'allow_shop_review_without_products',
@@ -271,6 +279,7 @@ class Settings {
         $clean['shop_review_intro']                  = Sanitizer::rich_text( $input['shop_review_intro'] ?? $defaults['shop_review_intro'] );
         $clean['shop_review_notifications_enabled']  = Sanitizer::bool_to_int( $input['shop_review_notifications_enabled'] ?? 0 );
         $clean['shop_review_notification_email']     = $this->sanitize_notification_email( $input['shop_review_notification_email'] ?? $defaults['shop_review_notification_email'] );
+        $clean['show_admin_order_review_flag']       = Sanitizer::bool_to_int( $input['show_admin_order_review_flag'] ?? 0 );
         $clean['shop_review_tags']                   = $this->sanitize_tags( $input['shop_review_tags'] ?? $defaults['shop_review_tags'] );
         $clean['product_review_comment_required']    = Sanitizer::bool_to_int( $input['product_review_comment_required'] ?? 0 );
         $clean['auto_approve_product_reviews']       = Sanitizer::bool_to_int( $input['auto_approve_product_reviews'] ?? 0 );
@@ -434,6 +443,16 @@ class Settings {
      */
     public function get_shop_review_notification_email() {
         return $this->sanitize_notification_email( $this->get_setting( 'shop_review_notification_email', '' ) );
+    }
+
+
+    /**
+     * Returns whether the admin order review flag should be shown.
+     *
+     * @return bool
+     */
+    public function should_show_admin_order_review_flag() {
+        return (bool) $this->get_setting( 'show_admin_order_review_flag', 0 );
     }
 
 

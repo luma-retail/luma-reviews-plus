@@ -23,6 +23,7 @@ This plugin is a good fit if you want more control than a basic follow-up email,
 - Prevents duplicate product reviews for the same order item.
 - Saves a separate shop-experience review with rating, comment, tags, and consent.
 - Includes an admin screen for moderating shop reviews.
+- Can optionally show a WooCommerce admin order-page flag when the customer reviewed the previous order.
 - Includes a shortcode for showing aggregate shop-review trust content on the frontend.
 
 ## Show Reviews On The Frontend
@@ -126,6 +127,10 @@ The plugin is designed to support store-specific addons.
 
 Notable extension points include:
 
+- `luma_reviews_plus_get_order_review_flag_data( $order )`
+- `luma_reviews_plus_get_order_review_flag_message( $order )`
+- `luma_reviews_plus_order_review_flag_data`
+- `luma_reviews_plus_order_review_flag_message`
 - `luma_reviews_plus_settings_fields`
 - `luma_reviews_plus_eligible_order_statuses`
 - `luma_reviews_plus_reviewable_order_items`
@@ -135,6 +140,20 @@ Notable extension points include:
 - `luma_reviews_plus_review_request_unscheduled`
 
 This makes it possible to build addons that adjust review timing based on delivery events, custom logistics flows, or store-specific fulfillment rules.
+
+It also makes it possible to build admin-side integrations, such as picklists or warehouse screens, that can show whether the customer reviewed the previous order.
+
+Example:
+
+```php
+$message = function_exists( 'luma_reviews_plus_get_order_review_flag_message' )
+	? luma_reviews_plus_get_order_review_flag_message( $order )
+	: '';
+
+if ( '' !== $message ) {
+	echo '<div class="notice inline notice-info"><p>' . esc_html( $message ) . '</p></div>';
+}
+```
 
 ## Installation
 

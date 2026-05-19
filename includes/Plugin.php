@@ -2,6 +2,7 @@
 
 namespace Luma\ReviewsPlus;
 
+use Luma\ReviewsPlus\Admin\OrderReviewFlagService;
 use Luma\ReviewsPlus\Admin\ShopReviewsPage;
 use Luma\ReviewsPlus\Admin\SettingsPage;
 use Luma\ReviewsPlus\Database\ProductReviewLogRepository;
@@ -116,6 +117,9 @@ class Plugin {
 
         $shop_review_notification = new ShopReviewNotification( $settings, $shop_review_repository );
         $shop_review_notification->register();
+
+        $order_review_flag_service = new OrderReviewFlagService( $settings, $product_review_log_repository, $shop_review_repository );
+        $order_review_flag_service->register();
 
         \add_filter( 'woocommerce_email_classes', array( $this, 'register_review_email' ) );
         \add_filter( 'woocommerce_locate_template', array( $this, 'locate_email_template' ), 10, 3 );

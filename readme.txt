@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.3.3
+Stable tag: 0.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,7 @@ Key features:
 * Prevents duplicate product reviews for the same order item.
 * Supports verified, tokenized review links without requiring customer login.
 * Supports store-specific timing logic through extension hooks.
+* Can optionally show a WooCommerce admin order-page flag when the customer reviewed the previous order.
 * Includes a frontend shortcode for published shop-review summaries with conditional CSS loading.
 
 == Show shop reviews on the frontend ==
@@ -98,10 +99,27 @@ Yes. Customers can optionally leave a separate shop-experience review in additio
 
 Yes. The plugin is designed with hooks so a site-specific addon can adjust timing, for example by scheduling review requests after package delivery.
 
+= Can staff see whether the customer reviewed the previous order? =
+
+Yes. You can optionally enable an admin order-page flag under WooCommerce > Settings > Products > Reviews Plus. The plugin also exposes helper functions and filter hooks so other admin-side plugins can reuse the same message.
+
+Example:
+
+`$message = function_exists( 'luma_reviews_plus_get_order_review_flag_message' ) ? luma_reviews_plus_get_order_review_flag_message( $order ) : '';`
+
+`if ( '' !== $message ) { echo '<div class="notice inline notice-info"><p>' . esc_html( $message ) . '</p></div>'; }`
+
 == Changelog ==
+
+= 0.3.4 =
+
+* Added an optional WooCommerce admin order-page review flag for customers who reviewed the previous order.
+* Added a public helper/filter contract so companion plugins and other admin tools can reuse the review flag message.
 
 = 0.3.3 =
 
+* Added an optional WooCommerce admin order-page review flag for customers who reviewed the previous order.
+* Added a public helper/filter contract so companion plugins and other admin tools can reuse the review flag message.
 * Added extension hooks so site-specific addons can persist custom settings in the shared settings group.
 * Added support for Fru Kvist delivery-based review scheduling through the companion addon contract.
 

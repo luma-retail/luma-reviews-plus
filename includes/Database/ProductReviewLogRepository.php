@@ -70,6 +70,20 @@ class ProductReviewLogRepository {
 
 
     /**
+     * Returns whether an order has at least one logged product review.
+     *
+     * @param int $order_id Order ID.
+     * @return bool
+     */
+    public function has_reviews_for_order( $order_id ) {
+        $table = $this->table_manager->get_product_reviews_table_name();
+        $found = $this->wpdb->get_var( $this->wpdb->prepare( "SELECT id FROM {$table} WHERE order_id = %d LIMIT 1", absint( $order_id ) ) );
+
+        return ! empty( $found );
+    }
+
+
+    /**
      * Persists a created product review link.
      *
      * @param array $data Review log data.
