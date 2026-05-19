@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Luma Reviews Plus
  * Description: WooCommerce review requests with native product reviews and verified shop-experience reviews.
- * Version: 0.3.4
+ * Version: 0.3.5
  *  * Plugin URI: https://github.com/luma-retail/luma-reviews-plus
  * Author: Terje Johansen
  * Requires Plugins: woocommerce
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'LUMA_REVIEWS_PLUS_VERSION', '0.3.4' );
+define( 'LUMA_REVIEWS_PLUS_VERSION', '0.3.5' );
 define( 'LUMA_REVIEWS_PLUS_FILE', __FILE__ );
 define( 'LUMA_REVIEWS_PLUS_PATH', \plugin_dir_path( __FILE__ ) );
 define( 'LUMA_REVIEWS_PLUS_URL', \plugin_dir_url( __FILE__ ) );
