@@ -149,7 +149,7 @@ class ShopReviewsPage {
         foreach ( $reviews as $review ) {
             $can_be_published = $this->can_review_be_published( $review );
             $approve_action   = empty( $review->approved_for_public_display ) ? 'approve' : 'unapprove';
-            $approve_label    = empty( $review->approved_for_public_display ) ? __( 'Approve for public display', 'luma-reviews-plus' ) : __( 'Remove public approval', 'luma-reviews-plus' );
+            $approve_label    = empty( $review->approved_for_public_display ) ? __( 'Publish', 'luma-reviews-plus' ) : __( 'Unpublish', 'luma-reviews-plus' );
             $approve_url      = wp_nonce_url( admin_url( 'admin.php?page=luma-reviews-plus-shop-reviews&luma_reviews_plus_action=' . $approve_action . '&review_id=' . absint( $review->id ) ), 'luma_reviews_plus_shop_review_action_' . absint( $review->id ) );
             $feature_action = empty( $review->is_featured ) ? 'feature' : 'unfeature';
             $feature_label  = empty( $review->is_featured ) ? __( 'Mark as featured', 'luma-reviews-plus' ) : __( 'Remove featured mark', 'luma-reviews-plus' );
@@ -176,7 +176,7 @@ class ShopReviewsPage {
             if ( ! empty( $review->approved_for_public_display ) || $can_be_published ) {
                 echo '<a class="button button-secondary" href="' . esc_url( $approve_url ) . '">' . esc_html( $approve_label ) . '</a> ';
             } else {
-                echo '<span class="description">' . esc_html__( 'Requires consent and comment to publish', 'luma-reviews-plus' ) . '</span> ';
+                echo '<span class="description">' . esc_html__( 'Needs consent and comment', 'luma-reviews-plus' ) . '</span> ';
             }
             echo '<a class="button button-link-delete" href="' . esc_url( $delete_url ) . '">' . esc_html__( 'Delete review', 'luma-reviews-plus' ) . '</a>';
             echo '</td>';
