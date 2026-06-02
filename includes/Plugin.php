@@ -200,5 +200,15 @@ class Plugin {
                 'reviewErrorsSummary'     => __( 'Please review the highlighted fields below before submitting.', 'luma-reviews-plus' ),
             )
         );
+        \wp_localize_script(
+            'luma-reviews-plus-frontend',
+            'lumaReviewsPlusPublic',
+            array(
+                'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
+                'moreLabel'    => __( 'Show more reviews', 'luma-reviews-plus' ),
+                'loadingLabel' => __( 'Loading...', 'luma-reviews-plus' ),
+                'errorLabel'   => __( 'Could not load more reviews right now. Please try again.', 'luma-reviews-plus' ),
+            )
+        );
     }
 }

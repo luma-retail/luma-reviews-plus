@@ -43,6 +43,8 @@ Common shortcode examples:
 [luma_shop_reviews_summary style="none"]
 [luma_shop_reviews_summary style="minimal" quote_count="6"]
 [luma_shop_reviews_summary show_quotes="no"]
+[luma_shop_reviews_summary featured_only="yes" quote_count="5"]
+[luma_shop_reviews_summary quote_count="24" load_more_count="24"]
 ```
 
 Available shortcode attributes:
@@ -53,6 +55,9 @@ Available shortcode attributes:
 - `show_quotes`: `yes` or `no`
 - `quote_count`: how many published quotes to show
 - `minimum_rating`: minimum rating required for quotes to appear
+- `featured_only`: `yes` or `no` (show only featured shop reviews)
+- `show_more`: `yes` or `no` (enable AJAX load-more button when more quotes exist)
+- `load_more_count`: how many extra quotes to load each click (defaults to `quote_count`)
 
 How styling works:
 

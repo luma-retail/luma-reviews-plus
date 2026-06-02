@@ -30,6 +30,13 @@ class PublicTrustRenderer {
     const STYLE_HANDLE = 'luma-reviews-plus-public-summary-minimal';
 
     /**
+     * Frontend script handle.
+     *
+     * @var string
+     */
+    const SCRIPT_HANDLE = 'luma-reviews-plus-frontend';
+
+    /**
      * Shop review repository.
      *
      * @var ShopReviewRepository
@@ -64,6 +71,8 @@ class PublicTrustRenderer {
     public function register() {
         \add_shortcode( self::SHORTCODE, array( $this, 'render_shortcode' ) );
         \add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_assets' ), 20 );
+        \add_action( 'wp_ajax_luma_reviews_plus_load_shop_quotes', array( $this, 'handle_load_more_ajax' ) );
+        \add_action( 'wp_ajax_nopriv_luma_reviews_plus_load_shop_quotes', array( $this, 'handle_load_more_ajax' ) );
     }
 
 
@@ -96,6 +105,9 @@ class PublicTrustRenderer {
                 'show_quotes'   => 'yes',
                 'quote_count'   => 3,
                 'minimum_rating' => 4,
+                'featured_only' => 'no',
+                'show_more'     => 'yes',
+                'load_more_count' => 0,
                 'style'         => 'inherit',
             ),
             $atts,
@@ -108,55 +120,118 @@ class PublicTrustRenderer {
             $this->enqueue_style( $resolved_style );
         }
 
-        $data = $this->shop_review_repository->get_summary_data( \absint( $atts['quote_count'] ), \absint( $atts['minimum_rating'] ) );
+        $quote_count     = max( 1, \absint( $atts['quote_count'] ) );
+        $minimum_rating  = max( 1, min( 5, \absint( $atts['minimum_rating'] ) ) );
+        $featured_only   = $this->is_yes_value( $atts['featured_only'] );
+        $show_quotes     = $this->is_yes_value( $atts['show_quotes'] );
+        $show_more       = $this->is_yes_value( $atts['show_more'] );
+        $load_more_count = max( 1, \absint( $atts['load_more_count'] ) );
+
+        if ( 0 === \absint( $atts['load_more_count'] ) ) {
+            $load_more_count = $quote_count;
+        }
+
+        $data = $this->shop_review_repository->get_summary_data( $quote_count, $minimum_rating, $featured_only );
         $data = \apply_filters( 'luma_reviews_plus_public_summary_data', $data );
+
+        $loaded_quotes = is_array( $data['quotes'] ?? null ) ? count( $data['quotes'] ) : 0;
+        $total_quotes  = $show_quotes ? $this->shop_review_repository->count_public_quotes( $minimum_rating, $featured_only ) : 0;
+        $has_more      = $show_quotes && $show_more && $loaded_quotes < $total_quotes;
 
         if ( empty( $data['review_count'] ) ) {
             return '';
+        }
+
+        if ( $show_quotes && $has_more ) {
+            $this->enqueue_script();
         }
 
         ob_start();
         ?>
         <div class="luma-shop-reviews-summary">
             <div class="luma-shop-reviews-summary__body">
-                <?php if ( 'yes' === $atts['show_rating'] && 'yes' === $atts['show_count'] ) : ?>
+                <?php if ( $this->is_yes_value( $atts['show_rating'] ) && $this->is_yes_value( $atts['show_count'] ) ) : ?>
                     <p class="luma-shop-reviews-summary__rating luma-shop-reviews-summary__summary-line">
                         <?php echo esc_html( sprintf( __( 'Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ), \absint( $data['review_count'] ) ) ); ?>
                     </p>
                 <?php else : ?>
-                    <?php if ( 'yes' === $atts['show_rating'] ) : ?>
+                    <?php if ( $this->is_yes_value( $atts['show_rating'] ) ) : ?>
                         <p class="luma-shop-reviews-summary__rating">
                             <?php echo esc_html( sprintf( __( 'Our customers give us %1$s out of 5 stars.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ) ) ); ?>
                         </p>
                     <?php endif; ?>
-                    <?php if ( 'yes' === $atts['show_count'] ) : ?>
+                    <?php if ( $this->is_yes_value( $atts['show_count'] ) ) : ?>
                         <p class="luma-shop-reviews-summary__count">
                             <?php echo esc_html( sprintf( __( 'Based on %d customer reviews after purchase.', 'luma-reviews-plus' ), \absint( $data['review_count'] ) ) ); ?>
                         </p>
                     <?php endif; ?>
                 <?php endif; ?>
-                <?php if ( 'yes' === $atts['show_quotes'] && ! empty( $data['quotes'] ) ) : ?>
-                    <div class="luma-shop-reviews-summary__quotes">
-                        <?php foreach ( $data['quotes'] as $quote ) : ?>
-                            <div class="luma-reviews-plus-card">
-                                <blockquote class="luma-shop-reviews-summary__quote">
-                                    <?php echo $this->get_quote_rating_html( $quote->rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                    <p><?php echo esc_html( $quote->comment ); ?></p>
-                                    <footer>
-                                        <cite class="luma-shop-reviews-summary__cite"><?php echo esc_html( $quote->display_name ); ?><?php if ( ! empty( $quote->display_location ) ) : ?><span>, <?php echo esc_html( $quote->display_location ); ?></span><?php endif; ?></cite>
-                                        <?php if ( ! empty( $quote->created_at ) ) : ?>
-                                            <time class="luma-shop-reviews-summary__date" datetime="<?php echo esc_attr( gmdate( 'c', (int) mysql2date( 'U', $quote->created_at, false ) ) ); ?>"><?php echo esc_html( $this->get_human_quote_date( $quote->created_at ) ); ?></time>
-                                        <?php endif; ?>
-                                    </footer>
-                                </blockquote>
-                            </div>
-                        <?php endforeach; ?>
+                <?php if ( $show_quotes && ! empty( $data['quotes'] ) ) : ?>
+                    <div class="luma-shop-reviews-summary__quotes" data-luma-shop-quotes data-offset="<?php echo esc_attr( $loaded_quotes ); ?>" data-total="<?php echo esc_attr( $total_quotes ); ?>" data-minimum-rating="<?php echo esc_attr( $minimum_rating ); ?>" data-featured-only="<?php echo esc_attr( $featured_only ? '1' : '0' ); ?>" data-load-count="<?php echo esc_attr( $load_more_count ); ?>">
+                        <?php echo $this->render_quotes_html( $data['quotes'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     </div>
+                    <?php if ( $has_more ) : ?>
+                        <p class="luma-shop-reviews-summary__actions">
+                            <button type="button" class="button luma-shop-reviews-summary__load-more" data-luma-shop-quotes-load-more data-nonce="<?php echo esc_attr( wp_create_nonce( 'luma_reviews_plus_load_shop_quotes' ) ); ?>">
+                                <?php esc_html_e( 'Show more reviews', 'luma-reviews-plus' ); ?>
+                            </button>
+                        </p>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         </div>
         <?php
         return (string) ob_get_clean();
+    }
+
+
+    /**
+     * Loads additional quote cards by AJAX.
+     *
+     * @return void
+     */
+    public function handle_load_more_ajax() {
+        $nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+
+        if ( ! wp_verify_nonce( $nonce, 'luma_reviews_plus_load_shop_quotes' ) ) {
+            wp_send_json_error( array( 'message' => __( 'Invalid request.', 'luma-reviews-plus' ) ), 400 );
+        }
+
+        $offset         = isset( $_POST['offset'] ) ? max( 0, absint( wp_unslash( $_POST['offset'] ) ) ) : 0;
+        $limit          = isset( $_POST['limit'] ) ? max( 1, absint( wp_unslash( $_POST['limit'] ) ) ) : 3;
+        $minimum_rating = isset( $_POST['minimum_rating'] ) ? max( 1, min( 5, absint( wp_unslash( $_POST['minimum_rating'] ) ) ) ) : 4;
+        $featured_only  = isset( $_POST['featured_only'] ) && '1' === sanitize_text_field( wp_unslash( $_POST['featured_only'] ) );
+        $total_quotes   = $this->shop_review_repository->count_public_quotes( $minimum_rating, $featured_only );
+
+        if ( $offset >= $total_quotes ) {
+            wp_send_json_success(
+                array(
+                    'html'       => '',
+                    'next_offset' => $offset,
+                    'has_more'   => false,
+                )
+            );
+        }
+
+        $quotes = $this->shop_review_repository->get_public_quotes(
+            array(
+                'offset'         => $offset,
+                'limit'          => $limit,
+                'minimum_rating' => $minimum_rating,
+                'featured_only'  => $featured_only,
+            )
+        );
+
+        $loaded_now  = is_array( $quotes ) ? count( $quotes ) : 0;
+        $next_offset = $offset + $loaded_now;
+
+        wp_send_json_success(
+            array(
+                'html'        => $this->render_quotes_html( $quotes ),
+                'next_offset' => $next_offset,
+                'has_more'    => $next_offset < $total_quotes,
+            )
+        );
     }
 
 
@@ -178,6 +253,36 @@ class PublicTrustRenderer {
             esc_attr( sprintf( __( 'Rated %s out of 5', 'luma-reviews-plus' ), number_format_i18n( $rating, 1 ) ) ),
             esc_html( str_repeat( '★', $rating ) . str_repeat( '☆', 5 - $rating ) )
         );
+    }
+
+
+    /**
+     * Returns rendered quote cards markup.
+     *
+     * @param array $quotes Quote rows.
+     * @return string
+     */
+    protected function render_quotes_html( array $quotes ) {
+        ob_start();
+
+        foreach ( $quotes as $quote ) {
+            ?>
+            <div class="luma-reviews-plus-card">
+                <blockquote class="luma-shop-reviews-summary__quote">
+                    <?php echo $this->get_quote_rating_html( $quote->rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <p><?php echo esc_html( $quote->comment ); ?></p>
+                    <footer>
+                        <cite class="luma-shop-reviews-summary__cite"><?php echo esc_html( $quote->display_name ); ?><?php if ( ! empty( $quote->display_location ) ) : ?><span>, <?php echo esc_html( $quote->display_location ); ?></span><?php endif; ?></cite>
+                        <?php if ( ! empty( $quote->created_at ) ) : ?>
+                            <time class="luma-shop-reviews-summary__date" datetime="<?php echo esc_attr( gmdate( 'c', (int) mysql2date( 'U', $quote->created_at, false ) ) ); ?>"><?php echo esc_html( $this->get_human_quote_date( $quote->created_at ) ); ?></time>
+                        <?php endif; ?>
+                    </footer>
+                </blockquote>
+            </div>
+            <?php
+        }
+
+        return (string) ob_get_clean();
     }
 
 
@@ -331,6 +436,17 @@ class PublicTrustRenderer {
 
 
     /**
+     * Returns whether an attribute value means yes.
+     *
+     * @param mixed $value Attribute value.
+     * @return bool
+     */
+    protected function is_yes_value( $value ) {
+        return 'yes' === strtolower( sanitize_key( (string) $value ) );
+    }
+
+
+    /**
      * Enqueues the stylesheet for a resolved style mode.
      *
      * @param string $style Resolved style mode.
@@ -346,5 +462,19 @@ class PublicTrustRenderer {
         }
 
         \wp_enqueue_style( self::STYLE_HANDLE );
+    }
+
+
+    /**
+     * Enqueues the frontend script.
+     *
+     * @return void
+     */
+    protected function enqueue_script() {
+        if ( ! \wp_script_is( self::SCRIPT_HANDLE, 'registered' ) ) {
+            return;
+        }
+
+        \wp_enqueue_script( self::SCRIPT_HANDLE );
     }
 }

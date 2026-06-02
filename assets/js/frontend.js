@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var i18n = window.lumaReviewsPlusI18n || {};
+    var publicI18n = window.lumaReviewsPlusPublic || {};
 
     document.querySelectorAll('.luma-reviews-plus-message').forEach(function (message) {
         message.setAttribute('role', 'status');
@@ -170,6 +171,81 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateStars(select.value);
                 clearError(select);
                 select.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+        });
+    });
+
+    document.querySelectorAll('[data-luma-shop-quotes-load-more]').forEach(function (button) {
+        var quotesContainer = button.closest('.luma-shop-reviews-summary__body').querySelector('[data-luma-shop-quotes]');
+
+        if (!quotesContainer || !publicI18n.ajaxUrl) {
+            return;
+        }
+
+        button.addEventListener('click', function () {
+            if (button.disabled) {
+                return;
+            }
+
+            var offset = parseInt(quotesContainer.getAttribute('data-offset') || '0', 10);
+            var total = parseInt(quotesContainer.getAttribute('data-total') || '0', 10);
+            var limit = parseInt(quotesContainer.getAttribute('data-load-count') || '3', 10);
+            var minimumRating = parseInt(quotesContainer.getAttribute('data-minimum-rating') || '4', 10);
+            var featuredOnly = quotesContainer.getAttribute('data-featured-only') === '1' ? '1' : '0';
+            var nonce = button.getAttribute('data-nonce') || '';
+
+            if (offset >= total) {
+                button.hidden = true;
+                return;
+            }
+
+            var formData = new window.FormData();
+            formData.append('action', 'luma_reviews_plus_load_shop_quotes');
+            formData.append('nonce', nonce);
+            formData.append('offset', String(offset));
+            formData.append('limit', String(limit > 0 ? limit : 3));
+            formData.append('minimum_rating', String(minimumRating > 0 ? minimumRating : 4));
+            formData.append('featured_only', featuredOnly);
+
+            button.disabled = true;
+            button.classList.add('is-loading');
+            button.textContent = publicI18n.loadingLabel || button.textContent;
+
+            window.fetch(publicI18n.ajaxUrl, {
+                method: 'POST',
+                credentials: 'same-origin',
+                body: formData
+            }).then(function (response) {
+                return response.json();
+            }).then(function (payload) {
+                var message;
+
+                if (!payload || !payload.success || !payload.data) {
+                    message = publicI18n.errorLabel || '';
+                    if (message) {
+                        window.alert(message);
+                    }
+                    return;
+                }
+
+                if (payload.data.html) {
+                    quotesContainer.insertAdjacentHTML('beforeend', payload.data.html);
+                }
+
+                quotesContainer.setAttribute('data-offset', String(payload.data.next_offset || offset));
+
+                if (!payload.data.has_more) {
+                    button.hidden = true;
+                }
+            }).catch(function () {
+                var message = publicI18n.errorLabel || '';
+                if (message) {
+                    window.alert(message);
+                }
+            }).finally(function () {
+                button.disabled = false;
+                button.classList.remove('is-loading');
+                button.textContent = publicI18n.moreLabel || 'Show more';
             });
         });
     });

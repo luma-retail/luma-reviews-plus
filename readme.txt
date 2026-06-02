@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.3.5
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,8 @@ Useful examples:
 * `[luma_shop_reviews_summary style="none"]`
 * `[luma_shop_reviews_summary style="minimal" quote_count="6"]`
 * `[luma_shop_reviews_summary show_quotes="no"]`
+* `[luma_shop_reviews_summary featured_only="yes" quote_count="5"]`
+* `[luma_shop_reviews_summary quote_count="24" load_more_count="24"]`
 
 Available shortcode attributes:
 
@@ -51,6 +53,9 @@ Available shortcode attributes:
 * `show_quotes` accepts `yes` or `no`
 * `quote_count` controls how many quotes are shown
 * `minimum_rating` controls the minimum rating required for quote display
+* `featured_only` accepts `yes` or `no` to show only manually featured shop reviews
+* `show_more` accepts `yes` or `no` to enable or disable AJAX pagination
+* `load_more_count` controls how many more quotes are loaded per click (defaults to `quote_count`)
 
 Styling behavior:
 
@@ -110,6 +115,12 @@ Example:
 `if ( '' !== $message ) { echo '<div class="notice inline notice-info"><p>' . esc_html( $message ) . '</p></div>'; }`
 
 == Changelog ==
+
+= 0.4.0 =
+
+* Added featured shop reviews in WooCommerce admin with AJAX star toggling.
+* Added shortcode support for `featured_only="yes"` to show only featured public quotes.
+* Added AJAX "Show more reviews" pagination for shortcode quotes.
 
 = 0.3.5 =
 

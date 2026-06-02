@@ -163,6 +163,24 @@ class ShopReviewRepository {
 
 
     /**
+     * Updates featured state.
+     *
+     * @param int $review_id Review ID.
+     * @param int $is_featured Featured state.
+     * @return void
+     */
+    public function set_featured( $review_id, $is_featured ) {
+        $this->wpdb->update(
+            $this->table_manager->get_shop_reviews_table_name(),
+            array( 'is_featured' => empty( $is_featured ) ? 0 : 1 ),
+            array( 'id' => absint( $review_id ) ),
+            array( '%d' ),
+            array( '%d' )
+        );
+    }
+
+
+    /**
      * Deletes a review by ID.
      *
      * @param int $review_id Review ID.
@@ -180,14 +198,15 @@ class ShopReviewRepository {
      * @param int $minimum_rating Minimum quote rating.
      * @return array
      */
-    public function get_summary_data( $quote_count = 3, $minimum_rating = 4 ) {
+    public function get_summary_data( $quote_count = 3, $minimum_rating = 4, $featured_only = false ) {
         $table   = $this->table_manager->get_shop_reviews_table_name();
         $summary = $this->wpdb->get_row( "SELECT AVG(rating) AS average_rating, COUNT(*) AS review_count FROM {$table}" );
-        $quotes  = $this->wpdb->get_results(
-            $this->wpdb->prepare(
-                "SELECT * FROM {$table} WHERE approved_for_public_display = 1 AND public_consent = 1 AND comment <> '' AND rating >= %d ORDER BY created_at DESC LIMIT %d",
-                absint( $minimum_rating ),
-                absint( $quote_count )
+        $quotes  = $this->get_public_quotes(
+            array(
+                'limit'          => absint( $quote_count ),
+                'offset'         => 0,
+                'minimum_rating' => absint( $minimum_rating ),
+                'featured_only'  => ! empty( $featured_only ),
             )
         );
 
@@ -204,6 +223,68 @@ class ShopReviewRepository {
 
 
     /**
+     * Returns paginated public quotes.
+     *
+     * @param array $args Query arguments.
+     * @return array
+     */
+    public function get_public_quotes( array $args = array() ) {
+        $defaults = array(
+            'limit'          => 3,
+            'offset'         => 0,
+            'minimum_rating' => 4,
+            'featured_only'  => false,
+        );
+        $args     = wp_parse_args( $args, $defaults );
+
+        $limit          = max( 1, absint( $args['limit'] ) );
+        $offset         = max( 0, absint( $args['offset'] ) );
+        $minimum_rating = max( 1, min( 5, absint( $args['minimum_rating'] ) ) );
+        $featured_only  = ! empty( $args['featured_only'] );
+        $table          = $this->table_manager->get_shop_reviews_table_name();
+        $where_sql      = $this->build_public_quotes_where_sql( $featured_only );
+
+        $quotes = $this->wpdb->get_results(
+            $this->wpdb->prepare(
+                "SELECT * FROM {$table} {$where_sql} ORDER BY created_at DESC LIMIT %d OFFSET %d",
+                $minimum_rating,
+                $limit,
+                $offset
+            )
+        );
+
+        foreach ( $quotes as $quote ) {
+            $quote->tags = $this->decode_tags( $quote->tags_json );
+        }
+
+        return $quotes;
+    }
+
+
+    /**
+     * Counts public quotes.
+     *
+     * @param int  $minimum_rating Minimum quote rating.
+     * @param bool $featured_only Whether only featured quotes should be counted.
+     * @return int
+     */
+    public function count_public_quotes( $minimum_rating = 4, $featured_only = false ) {
+        $table          = $this->table_manager->get_shop_reviews_table_name();
+        $minimum_rating = max( 1, min( 5, absint( $minimum_rating ) ) );
+        $where_sql      = $this->build_public_quotes_where_sql( ! empty( $featured_only ) );
+
+        return absint(
+            $this->wpdb->get_var(
+                $this->wpdb->prepare(
+                    "SELECT COUNT(*) FROM {$table} {$where_sql}",
+                    $minimum_rating
+                )
+            )
+        );
+    }
+
+
+    /**
      * Decodes stored tags JSON.
      *
      * @param string|null $tags_json Stored JSON.
@@ -213,5 +294,22 @@ class ShopReviewRepository {
         $tags = json_decode( (string) $tags_json, true );
 
         return is_array( $tags ) ? array_values( array_filter( $tags ) ) : array();
+    }
+
+
+    /**
+     * Returns a WHERE clause for public quotes.
+     *
+     * @param bool $featured_only Whether only featured quotes should be included.
+     * @return string
+     */
+    protected function build_public_quotes_where_sql( $featured_only ) {
+        $where_sql = "WHERE approved_for_public_display = 1 AND public_consent = 1 AND comment <> '' AND rating >= %d";
+
+        if ( $featured_only ) {
+            $where_sql .= ' AND is_featured = 1';
+        }
+
+        return $where_sql;
     }
 }

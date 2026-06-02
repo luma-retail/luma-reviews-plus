@@ -111,13 +111,15 @@ class TableManager {
                 display_name varchar(100) NULL,
                 display_location varchar(100) NULL,
                 approved_for_public_display tinyint(1) unsigned NOT NULL DEFAULT 0,
+                is_featured tinyint(1) unsigned NOT NULL DEFAULT 0,
                 created_at datetime NOT NULL,
                 updated_at datetime NULL,
                 PRIMARY KEY  (id),
                 UNIQUE KEY order_id (order_id),
                 KEY customer_id (customer_id),
                 KEY rating (rating),
-                KEY approved_for_public_display (approved_for_public_display)
+                KEY approved_for_public_display (approved_for_public_display),
+                KEY is_featured (is_featured)
             ) {$charset_collate};",
         );
 
