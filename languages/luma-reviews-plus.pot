@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 10:16+0000\n"
+"POT-Creation-Date: 2026-06-02 13:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -29,14 +29,14 @@ msgstr ""
 msgid "%d/5"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:213
+#: includes/Frontend/PublicTrustRenderer.php:318
 #, php-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Frontend/PublicTrustRenderer.php:229
+#: includes/Frontend/PublicTrustRenderer.php:334
 #, php-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Accurate stock information"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:136
+#: includes/Admin/ShopReviewsPage.php:142
 msgid "Actions"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Allow shop-experience review without product review"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:145
+#: includes/Admin/ShopReviewsPage.php:151
 msgid "Approve for public display"
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Average"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:134
+#: includes/Frontend/PublicTrustRenderer.php:165
 msgid "Based on %d customer reviews after purchase."
 msgstr ""
 
@@ -138,7 +138,7 @@ msgid "Choose the email format."
 msgstr ""
 
 #: templates/product-review-item.php:64 templates/shop-experience-review.php:54
-#: includes/Admin/ShopReviewsPage.php:133
+#: includes/Admin/ShopReviewsPage.php:138
 #: includes/Email/ShopReviewNotification.php:131
 msgid "Comment"
 msgstr ""
@@ -149,7 +149,11 @@ msgid ""
 "behavior."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:130 includes/Utils/Helpers.php:91
+#: includes/Plugin.php:210
+msgid "Could not load more reviews right now. Please try again."
+msgstr ""
+
+#: includes/Admin/ShopReviewsPage.php:135 includes/Utils/Helpers.php:91
 msgid "Customer"
 msgstr ""
 
@@ -173,7 +177,7 @@ msgstr ""
 msgid "Customer:"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:128
+#: includes/Admin/ShopReviewsPage.php:133
 msgid "Date"
 msgstr ""
 
@@ -181,7 +185,7 @@ msgstr ""
 msgid "Days after completed order before review email is sent"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:161
+#: includes/Admin/ShopReviewsPage.php:176
 msgid "Delete review"
 msgstr ""
 
@@ -248,6 +252,10 @@ msgstr ""
 msgid "Fast delivery"
 msgstr ""
 
+#: includes/Admin/ShopReviewsPage.php:141
+msgid "Featured"
+msgstr ""
+
 #: includes/Settings/Settings.php:51
 msgid ""
 "Feel free to share how you experienced the store, delivery, and service."
@@ -293,6 +301,11 @@ msgstr ""
 msgid "Hvordan var bestilling #{order_number}?"
 msgstr ""
 
+#: includes/Admin/ShopReviewsPage.php:201
+#: includes/Frontend/PublicTrustRenderer.php:197
+msgid "Invalid request."
+msgstr ""
+
 #: includes/Settings/Settings.php:239
 msgid "Invalid token message"
 msgstr ""
@@ -301,12 +314,16 @@ msgstr ""
 msgid "It is not too late to review these products as well."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:221
+#: includes/Frontend/PublicTrustRenderer.php:326
 msgid "Last week"
 msgstr ""
 
 #: includes/Email/ReviewEmail.php:295
 msgid "Leave your review"
+msgstr ""
+
+#: includes/Plugin.php:209
+msgid "Loading..."
 msgstr ""
 
 #. Name of the plugin
@@ -322,6 +339,11 @@ msgstr ""
 msgid "Luma Reviews Plus review request sent manually."
 msgstr ""
 
+#: includes/Admin/ShopReviewsPage.php:154
+#: includes/Admin/ShopReviewsPage.php:217
+msgid "Mark as featured"
+msgstr ""
+
 #: includes/Settings/Settings.php:507
 msgid "Minimal"
 msgstr ""
@@ -335,8 +357,8 @@ msgstr ""
 msgid "New shop-experience reviews will be emailed to this address."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:157
-#: includes/Admin/ShopReviewsPage.php:158
+#: includes/Admin/ShopReviewsPage.php:167
+#: includes/Admin/ShopReviewsPage.php:168
 msgid "No"
 msgstr ""
 
@@ -344,12 +366,16 @@ msgstr ""
 msgid "No comment provided."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:140
+#: includes/Admin/ShopReviewsPage.php:146
 msgid "No shop reviews found yet."
 msgstr ""
 
 #: includes/Settings/Settings.php:506
 msgid "None"
+msgstr ""
+
+#: includes/Admin/ShopReviewsPage.php:194
+msgid "Not allowed."
 msgstr ""
 
 #: templates/product-review-item.php:57 templates/shop-experience-review.php:47
@@ -375,7 +401,7 @@ msgstr ""
 msgid "Optional"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:129
+#: includes/Admin/ShopReviewsPage.php:134
 msgid "Order"
 msgstr ""
 
@@ -387,14 +413,14 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:124
+#: includes/Frontend/PublicTrustRenderer.php:155
 #, php-format
 msgid ""
 "Our customers give us %1$s out of 5 stars based on %2$d customer reviews "
 "after purchase."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:129
+#: includes/Frontend/PublicTrustRenderer.php:160
 #, php-format
 msgid "Our customers give us %1$s out of 5 stars."
 msgstr ""
@@ -424,11 +450,11 @@ msgstr ""
 msgid "Product reviews section heading"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:135
+#: includes/Admin/ShopReviewsPage.php:140
 msgid "Public approved"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:134
+#: includes/Admin/ShopReviewsPage.php:139
 msgid "Public consent"
 msgstr ""
 
@@ -444,18 +470,23 @@ msgstr ""
 msgid "Rate..."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:178
+#: includes/Frontend/PublicTrustRenderer.php:253
 #, php-format
 msgid "Rated %s out of 5"
 msgstr ""
 
 #: templates/product-review-item.php:37 templates/product-review-item.php:39
-#: includes/Admin/ShopReviewsPage.php:131
+#: includes/Admin/ShopReviewsPage.php:136
 #: includes/Email/ShopReviewNotification.php:126
 msgid "Rating"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:145
+#: includes/Admin/ShopReviewsPage.php:154
+#: includes/Admin/ShopReviewsPage.php:217
+msgid "Remove featured mark"
+msgstr ""
+
+#: includes/Admin/ShopReviewsPage.php:151
 msgid "Remove public approval"
 msgstr ""
 
@@ -467,8 +498,8 @@ msgstr ""
 msgid "Required if you review this product."
 msgstr ""
 
-#: includes/Admin/OrderReviewFlagService.php:147
-msgid "Review flag:"
+#: includes/Admin/ShopReviewsPage.php:207
+msgid "Review not found."
 msgstr ""
 
 #: includes/Settings/Settings.php:149
@@ -521,8 +552,8 @@ msgstr ""
 msgid "Shop review notification email"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:65 includes/Admin/ShopReviewsPage.php:66
-#: includes/Admin/ShopReviewsPage.php:125
+#: includes/Admin/ShopReviewsPage.php:66 includes/Admin/ShopReviewsPage.php:67
+#: includes/Admin/ShopReviewsPage.php:130
 msgid "Shop Reviews"
 msgstr ""
 
@@ -542,6 +573,10 @@ msgstr ""
 msgid ""
 "Show a WooCommerce admin order notice when the customer reviewed the "
 "previous order."
+msgstr ""
+
+#: includes/Plugin.php:208 includes/Frontend/PublicTrustRenderer.php:176
+msgid "Show more reviews"
 msgstr ""
 
 #: includes/Settings/Settings.php:192
@@ -585,7 +620,7 @@ msgstr ""
 msgid "Success message"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:132
+#: includes/Admin/ShopReviewsPage.php:137
 msgid "Tags"
 msgstr ""
 
@@ -639,7 +674,7 @@ msgstr ""
 msgid "This review link is invalid."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:204
+#: includes/Frontend/PublicTrustRenderer.php:309
 msgid "Today"
 msgstr ""
 
@@ -647,7 +682,7 @@ msgstr ""
 msgid "Token expiry in days"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:225
+#: includes/Frontend/PublicTrustRenderer.php:330
 msgid "Two weeks ago"
 msgstr ""
 
@@ -682,12 +717,12 @@ msgstr ""
 msgid "Write a short comment for this product."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:157
-#: includes/Admin/ShopReviewsPage.php:158
+#: includes/Admin/ShopReviewsPage.php:167
+#: includes/Admin/ShopReviewsPage.php:168
 msgid "Yes"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:208
+#: includes/Frontend/PublicTrustRenderer.php:313
 msgid "Yesterday"
 msgstr ""
 
@@ -699,7 +734,7 @@ msgstr ""
 msgid "You can use this link if the button does not work:"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:119
+#: includes/Admin/ShopReviewsPage.php:124
 msgid "You do not have permission to access this page."
 msgstr ""
 
