@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,7 +116,14 @@ Example:
 
 == Changelog ==
 
-= 0.4.2 = 
+= 0.4.3 =
+
+* Hid public-approval action when public consent is missing.
+* Hid public-approval action when comment text is empty.
+* Enforced server-side public-approval guard so non-consented or empty-comment shop reviews cannot be published.
+* Made comment text more prominent and tag text less prominent in the shop reviews admin table.
+
+= 0.4.2 =
 
 * Updated translations
 

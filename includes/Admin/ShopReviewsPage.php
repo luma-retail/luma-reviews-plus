@@ -147,9 +147,10 @@ class ShopReviewsPage {
         }
 
         foreach ( $reviews as $review ) {
-            $approve_action = empty( $review->approved_for_public_display ) ? 'approve' : 'unapprove';
-            $approve_label  = empty( $review->approved_for_public_display ) ? __( 'Approve for public display', 'luma-reviews-plus' ) : __( 'Remove public approval', 'luma-reviews-plus' );
-            $approve_url    = wp_nonce_url( admin_url( 'admin.php?page=luma-reviews-plus-shop-reviews&luma_reviews_plus_action=' . $approve_action . '&review_id=' . absint( $review->id ) ), 'luma_reviews_plus_shop_review_action_' . absint( $review->id ) );
+            $can_be_published = $this->can_review_be_published( $review );
+            $approve_action   = empty( $review->approved_for_public_display ) ? 'approve' : 'unapprove';
+            $approve_label    = empty( $review->approved_for_public_display ) ? __( 'Approve for public display', 'luma-reviews-plus' ) : __( 'Remove public approval', 'luma-reviews-plus' );
+            $approve_url      = wp_nonce_url( admin_url( 'admin.php?page=luma-reviews-plus-shop-reviews&luma_reviews_plus_action=' . $approve_action . '&review_id=' . absint( $review->id ) ), 'luma_reviews_plus_shop_review_action_' . absint( $review->id ) );
             $feature_action = empty( $review->is_featured ) ? 'feature' : 'unfeature';
             $feature_label  = empty( $review->is_featured ) ? __( 'Mark as featured', 'luma-reviews-plus' ) : __( 'Remove featured mark', 'luma-reviews-plus' );
             $feature_nonce  = wp_create_nonce( 'luma_reviews_plus_toggle_featured_' . absint( $review->id ) );
@@ -162,8 +163,8 @@ class ShopReviewsPage {
             echo '<td><a href="' . esc_url( $order_url ) . '">#' . esc_html( $review->order_id ) . '</a></td>';
             echo '<td>' . esc_html( $review->display_name ) . '</td>';
             echo '<td>' . esc_html( $review->rating ) . '/5</td>';
-            echo '<td>' . esc_html( implode( ', ', (array) $review->tags ) ) . '</td>';
-            echo '<td>' . esc_html( $review->comment ) . '</td>';
+            echo '<td class="luma-reviews-plus-shop-reviews__tags">' . esc_html( implode( ', ', (array) $review->tags ) ) . '</td>';
+            echo '<td class="luma-reviews-plus-shop-reviews__comment">' . esc_html( $review->comment ) . '</td>';
             echo '<td>' . ( ! empty( $review->public_consent ) ? esc_html__( 'Yes', 'luma-reviews-plus' ) : esc_html__( 'No', 'luma-reviews-plus' ) ) . '</td>';
             echo '<td>' . ( ! empty( $review->approved_for_public_display ) ? esc_html__( 'Yes', 'luma-reviews-plus' ) : esc_html__( 'No', 'luma-reviews-plus' ) ) . '</td>';
             echo '<td>';
@@ -172,7 +173,11 @@ class ShopReviewsPage {
             echo '</a>';
             echo '</td>';
             echo '<td>';
-            echo '<a class="button button-secondary" href="' . esc_url( $approve_url ) . '">' . esc_html( $approve_label ) . '</a> ';
+            if ( ! empty( $review->approved_for_public_display ) || $can_be_published ) {
+                echo '<a class="button button-secondary" href="' . esc_url( $approve_url ) . '">' . esc_html( $approve_label ) . '</a> ';
+            } else {
+                echo '<span class="description">' . esc_html__( 'Requires consent and comment to publish', 'luma-reviews-plus' ) . '</span> ';
+            }
             echo '<a class="button button-link-delete" href="' . esc_url( $delete_url ) . '">' . esc_html__( 'Delete review', 'luma-reviews-plus' ) . '</a>';
             echo '</td>';
             echo '</tr>';
@@ -228,6 +233,19 @@ class ShopReviewsPage {
     protected function render_featured_toggle_script() {
         ?>
         <style>
+            .luma-reviews-plus-shop-reviews__tags {
+                color: #8a8f98;
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .luma-reviews-plus-shop-reviews__comment {
+                color: #1d2327;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.45;
+            }
+
             .luma-reviews-plus-feature-toggle {
                 color: #8a8f98;
                 text-decoration: none;
@@ -304,5 +322,20 @@ class ShopReviewsPage {
             })();
         </script>
         <?php
+    }
+
+
+    /**
+     * Returns whether a review can be approved for public display.
+     *
+     * @param object $review Review row.
+     * @return bool
+     */
+    protected function can_review_be_published( $review ) {
+        if ( empty( $review->public_consent ) ) {
+            return false;
+        }
+
+        return '' !== trim( (string) ( $review->comment ?? '' ) );
     }
 }

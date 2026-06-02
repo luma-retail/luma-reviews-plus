@@ -114,6 +114,11 @@ class ShopReviewRepository {
             'approved_for_public_display' => empty( $data['approved_for_public_display'] ) ? 0 : 1,
         );
 
+        // Enforce publish constraints at repository level.
+        if ( ! $this->is_public_approval_allowed_from_data( $payload ) ) {
+            $payload['approved_for_public_display'] = 0;
+        }
+
         if ( $existing ) {
             $payload['updated_at'] = Helpers::current_time_mysql();
             $this->wpdb->update( $table, $payload, array( 'id' => absint( $existing->id ) ) );
@@ -149,16 +154,29 @@ class ShopReviewRepository {
      *
      * @param int $review_id Review ID.
      * @param int $approved Approval state.
-     * @return void
+        * @return bool
      */
     public function set_public_approval( $review_id, $approved ) {
-        $this->wpdb->update(
+        $review_id = absint( $review_id );
+        $approved  = empty( $approved ) ? 0 : 1;
+
+        if ( 1 === $approved ) {
+            $review = $this->get_by_id( $review_id );
+
+            if ( ! $review || ! $this->is_public_approval_allowed_for_review( $review ) ) {
+                return false;
+            }
+        }
+
+        $result = $this->wpdb->update(
             $this->table_manager->get_shop_reviews_table_name(),
-            array( 'approved_for_public_display' => empty( $approved ) ? 0 : 1 ),
-            array( 'id' => absint( $review_id ) ),
+            array( 'approved_for_public_display' => $approved ),
+            array( 'id' => $review_id ),
             array( '%d' ),
             array( '%d' )
         );
+
+        return false !== $result;
     }
 
 
@@ -311,5 +329,33 @@ class ShopReviewRepository {
         }
 
         return $where_sql;
+    }
+
+
+    /**
+     * Returns whether a review row can be approved for public display.
+     *
+     * @param object $review Review row.
+     * @return bool
+     */
+    protected function is_public_approval_allowed_for_review( $review ) {
+        $public_consent = ! empty( $review->public_consent );
+        $comment        = trim( (string) ( $review->comment ?? '' ) );
+
+        return $public_consent && '' !== $comment;
+    }
+
+
+    /**
+     * Returns whether payload data can be approved for public display.
+     *
+     * @param array $payload Normalized review payload.
+     * @return bool
+     */
+    protected function is_public_approval_allowed_from_data( array $payload ) {
+        $public_consent = ! empty( $payload['public_consent'] );
+        $comment        = trim( (string) ( $payload['comment'] ?? '' ) );
+
+        return $public_consent && '' !== $comment;
     }
 }
