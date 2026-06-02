@@ -63,6 +63,7 @@ class Settings {
             ),
             'product_review_comment_required'    => 0,
             'auto_approve_product_reviews'       => 0,
+            'auto_approve_shop_reviews'          => 0,
             'allow_shop_review_without_products' => 1,
             'allow_partial_product_reviews'      => 1,
             'submit_button_text'                 => __( 'Submit reviews', 'luma-reviews-plus' ),
@@ -210,6 +211,12 @@ class Settings {
                 'description' => __( 'Only applies to product reviews submitted through Reviews Plus from verified order review links. It does not change approval behavior for normal storefront product reviews.', 'luma-reviews-plus' ),
             ),
             array(
+                'key'         => 'auto_approve_shop_reviews',
+                'label'       => __( 'Auto-approve new shop-experience reviews for public display', 'luma-reviews-plus' ),
+                'type'        => 'checkbox',
+                'description' => __( 'Only applies when a new shop-experience review is created from a verified review link. Existing reviews keep their current public approval state.', 'luma-reviews-plus' ),
+            ),
+            array(
                 'key'   => 'allow_shop_review_without_products',
                 'label' => __( 'Allow shop-experience review without product review', 'luma-reviews-plus' ),
                 'type'  => 'checkbox',
@@ -283,6 +290,7 @@ class Settings {
         $clean['shop_review_tags']                   = $this->sanitize_tags( $input['shop_review_tags'] ?? $defaults['shop_review_tags'] );
         $clean['product_review_comment_required']    = Sanitizer::bool_to_int( $input['product_review_comment_required'] ?? 0 );
         $clean['auto_approve_product_reviews']       = Sanitizer::bool_to_int( $input['auto_approve_product_reviews'] ?? 0 );
+        $clean['auto_approve_shop_reviews']          = Sanitizer::bool_to_int( $input['auto_approve_shop_reviews'] ?? 0 );
         $clean['allow_shop_review_without_products'] = Sanitizer::bool_to_int( $input['allow_shop_review_without_products'] ?? 0 );
         $clean['allow_partial_product_reviews']      = Sanitizer::bool_to_int( $input['allow_partial_product_reviews'] ?? 0 );
         $clean['submit_button_text']                 = Sanitizer::text( $input['submit_button_text'] ?? $defaults['submit_button_text'] );
@@ -473,6 +481,16 @@ class Settings {
      */
     public function should_auto_approve_product_reviews() {
         return (bool) $this->get_setting( 'auto_approve_product_reviews', 0 );
+    }
+
+
+    /**
+     * Returns whether new shop reviews should auto-approve for public display.
+     *
+     * @return bool
+     */
+    public function should_auto_approve_shop_reviews() {
+        return (bool) $this->get_setting( 'auto_approve_shop_reviews', 0 );
     }
 
 

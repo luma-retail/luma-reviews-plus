@@ -87,6 +87,9 @@ class ShopReviewHandler {
         }
 
         $existing_review = $this->shop_review_repository->get_by_order_id( $order->get_id() );
+        $approved_for_public_display = $existing_review
+            ? ( ! empty( $existing_review->approved_for_public_display ) ? 1 : 0 )
+            : ( $this->settings->should_auto_approve_shop_reviews() ? 1 : 0 );
 
         $review_id = $this->shop_review_repository->save_review(
             array(
@@ -98,7 +101,7 @@ class ShopReviewHandler {
                 'public_consent'              => ! empty( $submitted['public_consent'] ),
                 'display_name'                => $display_name,
                 'display_location'            => $location,
-                'approved_for_public_display' => 0,
+                'approved_for_public_display' => $approved_for_public_display,
             )
         );
 

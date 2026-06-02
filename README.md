@@ -23,6 +23,7 @@ This plugin is a good fit if you want more control than a basic follow-up email,
 - Prevents duplicate product reviews for the same order item.
 - Saves a separate shop-experience review with rating, comment, tags, and consent.
 - Includes an admin screen for moderating shop reviews.
+- Includes an optional setting to auto-approve new shop-experience reviews for public display.
 - Can optionally show a WooCommerce admin order-page flag when the customer reviewed the previous order.
 - Includes a shortcode for showing aggregate shop-review trust content on the frontend.
 
