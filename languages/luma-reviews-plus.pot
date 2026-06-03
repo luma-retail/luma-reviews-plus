@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 13:47+0000\n"
+"POT-Creation-Date: 2026-06-03 11:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -29,14 +29,14 @@ msgstr ""
 msgid "%d/5"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:318
+#: includes/Frontend/PublicTrustRenderer.php:330
 #, php-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Frontend/PublicTrustRenderer.php:334
+#: includes/Frontend/PublicTrustRenderer.php:346
 #, php-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Average"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:165
+#: includes/Frontend/PublicTrustRenderer.php:177
 msgid "Based on %d customer reviews after purchase."
 msgstr ""
 
@@ -279,6 +279,10 @@ msgstr ""
 msgid "Helpful customer service"
 msgstr ""
 
+#: includes/Frontend/PublicTrustRenderer.php:162
+msgid "Here are the latest published reviews with comments."
+msgstr ""
+
 #: includes/Email/ReviewEmail.php:179
 msgid ""
 "Hi {first_name},\\n\\nThank you for your purchase from {site_title}. Feel "
@@ -302,7 +306,7 @@ msgid "Hvordan var bestilling #{order_number}?"
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:206
-#: includes/Frontend/PublicTrustRenderer.php:197
+#: includes/Frontend/PublicTrustRenderer.php:209
 msgid "Invalid request."
 msgstr ""
 
@@ -314,7 +318,7 @@ msgstr ""
 msgid "It is not too late to review these products as well."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:326
+#: includes/Frontend/PublicTrustRenderer.php:338
 msgid "Last week"
 msgstr ""
 
@@ -423,14 +427,15 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:155
+#: includes/Frontend/PublicTrustRenderer.php:159
 #, php-format
 msgid ""
 "Our customers give us %1$s out of 5 stars based on %2$d customer reviews "
 "after purchase."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:160
+#: includes/Frontend/PublicTrustRenderer.php:157
+#: includes/Frontend/PublicTrustRenderer.php:172
 #, php-format
 msgid "Our customers give us %1$s out of 5 stars."
 msgstr ""
@@ -484,7 +489,7 @@ msgstr ""
 msgid "Rate..."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:253
+#: includes/Frontend/PublicTrustRenderer.php:265
 #, php-format
 msgid "Rated %s out of 5"
 msgstr ""
@@ -585,7 +590,7 @@ msgid ""
 "previous order."
 msgstr ""
 
-#: includes/Plugin.php:208 includes/Frontend/PublicTrustRenderer.php:176
+#: includes/Plugin.php:208 includes/Frontend/PublicTrustRenderer.php:188
 msgid "Show more reviews"
 msgstr ""
 
@@ -684,7 +689,7 @@ msgstr ""
 msgid "This review link is invalid."
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:309
+#: includes/Frontend/PublicTrustRenderer.php:321
 msgid "Today"
 msgstr ""
 
@@ -692,7 +697,7 @@ msgstr ""
 msgid "Token expiry in days"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:330
+#: includes/Frontend/PublicTrustRenderer.php:342
 msgid "Two weeks ago"
 msgstr ""
 
@@ -736,7 +741,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: includes/Frontend/PublicTrustRenderer.php:313
+#: includes/Frontend/PublicTrustRenderer.php:325
 msgid "Yesterday"
 msgstr ""
 

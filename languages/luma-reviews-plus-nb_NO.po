@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-06 15:57+0000\n"
-"PO-Revision-Date: 2026-06-02 13:48+0000\n"
+"PO-Revision-Date: 2026-06-03 11:25+0000\n"
 "Last-Translator: Terje Johansen\n"
 "Language-Team: Norsk bokmål\n"
 "Language: nb_NO\n"
@@ -29,14 +29,14 @@ msgstr "%d av 5 stjerner"
 msgid "%d/5"
 msgstr "%d/5"
 
-#: includes/Frontend/PublicTrustRenderer.php:318
+#: includes/Frontend/PublicTrustRenderer.php:330
 #, php-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
 msgstr[0] "%s dag siden"
 msgstr[1] "%s dager siden"
 
-#: includes/Frontend/PublicTrustRenderer.php:334
+#: includes/Frontend/PublicTrustRenderer.php:346
 #, php-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
@@ -78,7 +78,7 @@ msgstr "Tillat butikkopplevelsesvurdering uten produktvurdering"
 
 #: includes/Settings/Settings.php:215
 msgid "Auto-approve new shop-experience reviews for public display"
-msgstr ""
+msgstr "Godkjenn nye butikkomtaler automatisk"
 
 #: includes/Settings/Settings.php:209
 msgid "Auto-approve product reviews"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Average"
 msgstr "Gjennomsnitt"
 
-#: includes/Frontend/PublicTrustRenderer.php:165
+#: includes/Frontend/PublicTrustRenderer.php:177
 msgid "Based on %d customer reviews after purchase."
 msgstr "Basert på %d omtaler fra kunder som har handlet hos oss."
 
@@ -294,6 +294,10 @@ msgstr "Godt råd og veiledning"
 msgid "Helpful customer service"
 msgstr "Hjelpsom kundeservice"
 
+#: includes/Frontend/PublicTrustRenderer.php:162
+msgid "Here are the latest published reviews with comments."
+msgstr "Her er de siste publiserte vurderingene med kommentarer."
+
 #: includes/Email/ReviewEmail.php:179
 msgid ""
 "Hi {first_name},\\n\\nThank you for your purchase from {site_title}. Feel "
@@ -320,7 +324,7 @@ msgid "Hvordan var bestilling #{order_number}?"
 msgstr "Hvordan var bestillingen #{order_number}?"
 
 #: includes/Admin/ShopReviewsPage.php:206
-#: includes/Frontend/PublicTrustRenderer.php:197
+#: includes/Frontend/PublicTrustRenderer.php:209
 #, fuzzy
 msgid "Invalid request."
 msgstr "Ugyldig forespørsel."
@@ -333,7 +337,7 @@ msgstr "Ugyldig token-melding"
 msgid "It is not too late to review these products as well."
 msgstr "Det er ikke for sent å gi en vurdering av disse produktene også."
 
-#: includes/Frontend/PublicTrustRenderer.php:326
+#: includes/Frontend/PublicTrustRenderer.php:338
 msgid "Last week"
 msgstr "Sist uke"
 
@@ -425,10 +429,14 @@ msgstr ""
 "vanlige produktvurderinger i butikken."
 
 #: includes/Settings/Settings.php:217
+#, fuzzy
 msgid ""
 "Only applies when a new shop-experience review is created from a verified "
 "review link. Existing reviews keep their current public approval state."
 msgstr ""
+"Gjelder kun når en ny butikkopplevelsesvurdering opprettes fra en verifisert "
+"vurderingslenke. Eksisterende vurderinger beholder sin nåværende offentlige "
+"godkjennelsestilstand."
 
 #: includes/Email/ShopReviewNotification.php:143
 msgid "Open shop reviews for publishing"
@@ -450,14 +458,15 @@ msgstr "Ordre:"
 msgid "Other"
 msgstr "Annet"
 
-#: includes/Frontend/PublicTrustRenderer.php:155
+#: includes/Frontend/PublicTrustRenderer.php:159
 #, php-format
 msgid ""
 "Our customers give us %1$s out of 5 stars based on %2$d customer reviews "
 "after purchase."
 msgstr "Kundene våre gir oss %1$s av 5 stjerner (basert på %2$d omtaler)"
 
-#: includes/Frontend/PublicTrustRenderer.php:160
+#: includes/Frontend/PublicTrustRenderer.php:157
+#: includes/Frontend/PublicTrustRenderer.php:172
 #, php-format
 msgid "Our customers give us %1$s out of 5 stars."
 msgstr "Kundene våre gir oss %1$s av 5 stjerner."
@@ -512,7 +521,7 @@ msgstr "Publiser"
 msgid "Rate..."
 msgstr "Vurder..."
 
-#: includes/Frontend/PublicTrustRenderer.php:253
+#: includes/Frontend/PublicTrustRenderer.php:265
 #, php-format
 msgid "Rated %s out of 5"
 msgstr "Vurdert %s av 5"
@@ -621,7 +630,7 @@ msgstr ""
 "Vis en WooCommerce-administrasjonsordrevarsel når kunden vurderte forrige "
 "bestilling."
 
-#: includes/Plugin.php:208 includes/Frontend/PublicTrustRenderer.php:176
+#: includes/Plugin.php:208 includes/Frontend/PublicTrustRenderer.php:188
 msgid "Show more reviews"
 msgstr "Vis flere omtaler"
 
@@ -725,7 +734,7 @@ msgstr "Denne vurderingslenken har utløpt."
 msgid "This review link is invalid."
 msgstr "Denne vurderingslenken er ugyldig."
 
-#: includes/Frontend/PublicTrustRenderer.php:309
+#: includes/Frontend/PublicTrustRenderer.php:321
 msgid "Today"
 msgstr "I dag"
 
@@ -733,7 +742,7 @@ msgstr "I dag"
 msgid "Token expiry in days"
 msgstr "Token utløper i dager"
 
-#: includes/Frontend/PublicTrustRenderer.php:330
+#: includes/Frontend/PublicTrustRenderer.php:342
 msgid "Two weeks ago"
 msgstr "For to uker siden"
 
@@ -783,7 +792,7 @@ msgstr "Skriv en kort kommentar for dette produktet."
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/Frontend/PublicTrustRenderer.php:313
+#: includes/Frontend/PublicTrustRenderer.php:325
 msgid "Yesterday"
 msgstr "I går"
 
