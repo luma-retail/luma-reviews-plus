@@ -58,7 +58,7 @@ Available shortcode attributes:
 - `minimum_rating`: minimum rating required for quotes to appear
 - `featured_only`: `yes` or `no` (show only featured shop reviews)
 - `show_more`: `yes` or `no` (enable AJAX load-more button when more quotes exist)
-- `load_more_count`: how many extra quotes to load each click (defaults to `quote_count`)
+- `load_more_count`: how many extra quotes to load each click (disabled unless set to a value greater than `0`)
 
 How styling works:
 

@@ -125,18 +125,15 @@ class PublicTrustRenderer {
         $featured_only   = $this->is_yes_value( $atts['featured_only'] );
         $show_quotes     = $this->is_yes_value( $atts['show_quotes'] );
         $show_more       = $this->is_yes_value( $atts['show_more'] );
-        $load_more_count = max( 1, \absint( $atts['load_more_count'] ) );
-
-        if ( 0 === \absint( $atts['load_more_count'] ) ) {
-            $load_more_count = $quote_count;
-        }
+        $load_more_raw   = \absint( $atts['load_more_count'] );
+        $load_more_count = $load_more_raw > 0 ? $load_more_raw : 0;
 
         $data = $this->shop_review_repository->get_summary_data( $quote_count, $minimum_rating, $featured_only );
         $data = \apply_filters( 'luma_reviews_plus_public_summary_data', $data );
 
         $loaded_quotes = is_array( $data['quotes'] ?? null ) ? count( $data['quotes'] ) : 0;
-        $total_quotes  = $show_quotes ? $this->shop_review_repository->count_public_quotes( $minimum_rating, $featured_only ) : 0;
-        $has_more      = $show_quotes && $show_more && $loaded_quotes < $total_quotes;
+        $total_quotes  = $show_quotes && $load_more_count > 0 ? $this->shop_review_repository->count_public_quotes( $minimum_rating, $featured_only ) : 0;
+        $has_more      = $show_quotes && $show_more && $load_more_count > 0 && $loaded_quotes < $total_quotes;
 
         if ( empty( $data['review_count'] ) ) {
             return '';

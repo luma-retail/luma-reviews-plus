@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.4.4
+Stable tag: 0.4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,7 +55,7 @@ Available shortcode attributes:
 * `minimum_rating` controls the minimum rating required for quote display
 * `featured_only` accepts `yes` or `no` to show only manually featured shop reviews
 * `show_more` accepts `yes` or `no` to enable or disable AJAX pagination
-* `load_more_count` controls how many more quotes are loaded per click (defaults to `quote_count`)
+* `load_more_count` controls how many more quotes are loaded per click (disabled unless set to a value greater than `0`)
 
 Styling behavior:
 
@@ -115,6 +115,10 @@ Example:
 `if ( '' !== $message ) { echo '<div class="notice inline notice-info"><p>' . esc_html( $message ) . '</p></div>'; }`
 
 == Changelog ==
+
+= 0.4.5 =
+
+* Fixed public summary load-more behavior so the "Show more reviews" button is only shown when `load_more_count` is explicitly set to a value greater than `0`.
 
 = 0.4.4 =
 
