@@ -134,6 +134,7 @@ class PublicTrustRenderer {
         $loaded_quotes = is_array( $data['quotes'] ?? null ) ? count( $data['quotes'] ) : 0;
         $total_quotes  = $show_quotes && $load_more_count > 0 ? $this->shop_review_repository->count_public_quotes( $minimum_rating, $featured_only ) : 0;
         $has_more      = $show_quotes && $show_more && $load_more_count > 0 && $loaded_quotes < $total_quotes;
+        $has_visible_quotes = $show_quotes && ! empty( $data['quotes'] );
 
         if ( empty( $data['review_count'] ) ) {
             return '';
@@ -149,7 +150,15 @@ class PublicTrustRenderer {
             <div class="luma-shop-reviews-summary__body">
                 <?php if ( $this->is_yes_value( $atts['show_rating'] ) && $this->is_yes_value( $atts['show_count'] ) ) : ?>
                     <p class="luma-shop-reviews-summary__rating luma-shop-reviews-summary__summary-line">
-                        <?php echo esc_html( sprintf( __( 'Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ), \absint( $data['review_count'] ) ) ); ?>
+                        <?php
+                        $summary_line = sprintf( __( 'Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ), \absint( $data['review_count'] ) );
+
+                        if ( $has_visible_quotes ) {
+                            $summary_line .= ' ' . __( 'Here are the latest published reviews with comments.', 'luma-reviews-plus' );
+                        }
+
+                        echo esc_html( $summary_line );
+                        ?>
                     </p>
                 <?php else : ?>
                     <?php if ( $this->is_yes_value( $atts['show_rating'] ) ) : ?>
