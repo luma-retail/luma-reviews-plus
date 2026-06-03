@@ -108,6 +108,7 @@ class PublicTrustRenderer {
                 'featured_only' => 'no',
                 'show_more'     => 'yes',
                 'load_more_count' => 0,
+                'summary_text'  => 'full',
                 'style'         => 'inherit',
             ),
             $atts,
@@ -125,6 +126,7 @@ class PublicTrustRenderer {
         $featured_only   = $this->is_yes_value( $atts['featured_only'] );
         $show_quotes     = $this->is_yes_value( $atts['show_quotes'] );
         $show_more       = $this->is_yes_value( $atts['show_more'] );
+        $summary_text    = $this->resolve_summary_text_mode( $atts['summary_text'] );
         $load_more_raw   = \absint( $atts['load_more_count'] );
         $load_more_count = $load_more_raw > 0 ? $load_more_raw : 0;
 
@@ -151,10 +153,14 @@ class PublicTrustRenderer {
                 <?php if ( $this->is_yes_value( $atts['show_rating'] ) && $this->is_yes_value( $atts['show_count'] ) ) : ?>
                     <p class="luma-shop-reviews-summary__rating luma-shop-reviews-summary__summary-line">
                         <?php
-                        $summary_line = sprintf( __( 'Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ), \absint( $data['review_count'] ) );
+                        if ( 'short' === $summary_text ) {
+                            $summary_line = sprintf( __( 'Our customers give us %1$s out of 5 stars.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ) );
+                        } else {
+                            $summary_line = sprintf( __( 'Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ), \absint( $data['review_count'] ) );
 
-                        if ( $has_visible_quotes ) {
-                            $summary_line .= ' ' . __( 'Here are the latest published reviews with comments.', 'luma-reviews-plus' );
+                            if ( $has_visible_quotes ) {
+                                $summary_line .= ' ' . __( 'Here are the latest published reviews with comments.', 'luma-reviews-plus' );
+                            }
                         }
 
                         echo esc_html( $summary_line );
@@ -438,6 +444,19 @@ class PublicTrustRenderer {
         }
 
         return in_array( $style, array( 'none', 'minimal' ), true ) ? $style : $this->settings->get_public_summary_style();
+    }
+
+
+    /**
+     * Resolves the summary text mode.
+     *
+     * @param mixed $mode Requested summary text mode.
+     * @return string
+     */
+    protected function resolve_summary_text_mode( $mode ) {
+        $mode = \sanitize_key( (string) $mode );
+
+        return in_array( $mode, array( 'full', 'short' ), true ) ? $mode : 'full';
     }
 
 

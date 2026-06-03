@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.4.6
+Stable tag: 0.4.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,7 @@ Useful examples:
 * `[luma_shop_reviews_summary]`
 * `[luma_shop_reviews_summary style="none"]`
 * `[luma_shop_reviews_summary style="minimal" quote_count="6"]`
+* `[luma_shop_reviews_summary summary_text="short"]`
 * `[luma_shop_reviews_summary show_quotes="no"]`
 * `[luma_shop_reviews_summary featured_only="yes" quote_count="5"]`
 * `[luma_shop_reviews_summary quote_count="24" load_more_count="24"]`
@@ -56,6 +57,7 @@ Available shortcode attributes:
 * `featured_only` accepts `yes` or `no` to show only manually featured shop reviews
 * `show_more` accepts `yes` or `no` to enable or disable AJAX pagination
 * `load_more_count` controls how many more quotes are loaded per click (disabled unless set to a value greater than `0`)
+* `summary_text` accepts `full` or `short` (`short` uses: "Our customers give us x out of 5 stars.")
 
 Styling behavior:
 
@@ -115,6 +117,10 @@ Example:
 `if ( '' !== $message ) { echo '<div class="notice inline notice-info"><p>' . esc_html( $message ) . '</p></div>'; }`
 
 == Changelog ==
+
+= 0.4.7 =
+
+* Added `summary_text="short"` shortcode mode for compact front-page trust-summary intro text.
 
 = 0.4.6 =
 
