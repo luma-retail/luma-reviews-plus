@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luma Reviews Plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-03 11:24+0000\n"
+"POT-Creation-Date: 2026-08-12 07:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Accurate stock information"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:142
+#: includes/Admin/ShopReviewsPage.php:159
 msgid "Actions"
 msgstr ""
 
@@ -116,6 +116,10 @@ msgstr ""
 msgid "Body text"
 msgstr ""
 
+#: includes/Admin/ShopReviewsPage.php:210
+msgid "Cancel"
+msgstr ""
+
 #: includes/Plugin.php:194
 msgid "Choose a rating for the shopping experience, or skip the store review."
 msgstr ""
@@ -138,7 +142,7 @@ msgid "Choose the email format."
 msgstr ""
 
 #: templates/product-review-item.php:64 templates/shop-experience-review.php:54
-#: includes/Admin/ShopReviewsPage.php:138
+#: includes/Admin/ShopReviewsPage.php:153
 #: includes/Email/ShopReviewNotification.php:131
 msgid "Comment"
 msgstr ""
@@ -153,8 +157,12 @@ msgstr ""
 msgid "Could not load more reviews right now. Please try again."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:135 includes/Utils/Helpers.php:91
+#: includes/Admin/ShopReviewsPage.php:152 includes/Utils/Helpers.php:91
 msgid "Customer"
+msgstr ""
+
+#: includes/Admin/ShopReviewsPage.php:185
+msgid "Customer display name"
 msgstr ""
 
 #: includes/Admin/OrderReviewFlagService.php:161
@@ -177,7 +185,7 @@ msgstr ""
 msgid "Customer:"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:133
+#: includes/Admin/ShopReviewsPage.php:150
 msgid "Date"
 msgstr ""
 
@@ -185,7 +193,7 @@ msgstr ""
 msgid "Days after completed order before review email is sent"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:181
+#: includes/Admin/ShopReviewsPage.php:217
 msgid "Delete review"
 msgstr ""
 
@@ -199,6 +207,10 @@ msgstr ""
 
 #: includes/Settings/Settings.php:61
 msgid "Easy to shop"
+msgstr ""
+
+#: includes/Admin/ShopReviewsPage.php:208
+msgid "Edit"
 msgstr ""
 
 #: includes/Admin/SettingsPage.php:104
@@ -252,7 +264,7 @@ msgstr ""
 msgid "Fast delivery"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:141
+#: includes/Admin/ShopReviewsPage.php:158
 msgid "Featured"
 msgstr ""
 
@@ -305,7 +317,7 @@ msgstr ""
 msgid "Hvordan var bestilling #{order_number}?"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:206
+#: includes/Admin/ShopReviewsPage.php:242
 #: includes/Frontend/PublicTrustRenderer.php:209
 msgid "Invalid request."
 msgstr ""
@@ -343,8 +355,8 @@ msgstr ""
 msgid "Luma Reviews Plus review request sent manually."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:155
-#: includes/Admin/ShopReviewsPage.php:222
+#: includes/Admin/ShopReviewsPage.php:172
+#: includes/Admin/ShopReviewsPage.php:258
 msgid "Mark as featured"
 msgstr ""
 
@@ -352,7 +364,7 @@ msgstr ""
 msgid "Minimal"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:179
+#: includes/Admin/ShopReviewsPage.php:215
 msgid "Needs consent and comment"
 msgstr ""
 
@@ -365,8 +377,8 @@ msgstr ""
 msgid "New shop-experience reviews will be emailed to this address."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:168
-#: includes/Admin/ShopReviewsPage.php:169
+#: includes/Admin/ShopReviewsPage.php:194
+#: includes/Admin/ShopReviewsPage.php:195
 msgid "No"
 msgstr ""
 
@@ -374,7 +386,7 @@ msgstr ""
 msgid "No comment provided."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:146
+#: includes/Admin/ShopReviewsPage.php:163
 msgid "No shop reviews found yet."
 msgstr ""
 
@@ -382,7 +394,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:199
+#: includes/Admin/ShopReviewsPage.php:235
 msgid "Not allowed."
 msgstr ""
 
@@ -415,7 +427,7 @@ msgstr ""
 msgid "Optional"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:134
+#: includes/Admin/ShopReviewsPage.php:156
 msgid "Order"
 msgstr ""
 
@@ -465,11 +477,11 @@ msgstr ""
 msgid "Product reviews section heading"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:140
+#: includes/Admin/ShopReviewsPage.php:155
 msgid "Public approved"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:139
+#: includes/Admin/ShopReviewsPage.php:154
 msgid "Public consent"
 msgstr ""
 
@@ -481,7 +493,7 @@ msgstr ""
 msgid "Public summary style"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:152
+#: includes/Admin/ShopReviewsPage.php:169
 msgid "Publish"
 msgstr ""
 
@@ -495,13 +507,13 @@ msgid "Rated %s out of 5"
 msgstr ""
 
 #: templates/product-review-item.php:37 templates/product-review-item.php:39
-#: includes/Admin/ShopReviewsPage.php:136
+#: includes/Admin/ShopReviewsPage.php:151
 #: includes/Email/ShopReviewNotification.php:126
 msgid "Rating"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:155
-#: includes/Admin/ShopReviewsPage.php:222
+#: includes/Admin/ShopReviewsPage.php:172
+#: includes/Admin/ShopReviewsPage.php:258
 msgid "Remove featured mark"
 msgstr ""
 
@@ -513,7 +525,7 @@ msgstr ""
 msgid "Required if you review this product."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:212
+#: includes/Admin/ShopReviewsPage.php:248
 msgid "Review not found."
 msgstr ""
 
@@ -545,6 +557,10 @@ msgstr ""
 msgid "Reviews Plus"
 msgstr ""
 
+#: includes/Admin/ShopReviewsPage.php:209
+msgid "Save"
+msgstr ""
+
 #: includes/Settings/Settings.php:183
 msgid "Send an admin email when a new shop-experience review is submitted."
 msgstr ""
@@ -563,12 +579,16 @@ msgstr ""
 msgid "Share your review"
 msgstr ""
 
+#: includes/Admin/ShopReviewsPage.php:190
+msgid "Shop review comment"
+msgstr ""
+
 #: includes/Settings/Settings.php:187
 msgid "Shop review notification email"
 msgstr ""
 
 #: includes/Admin/ShopReviewsPage.php:66 includes/Admin/ShopReviewsPage.php:67
-#: includes/Admin/ShopReviewsPage.php:130
+#: includes/Admin/ShopReviewsPage.php:147
 msgid "Shop Reviews"
 msgstr ""
 
@@ -635,7 +655,7 @@ msgstr ""
 msgid "Success message"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:137
+#: includes/Admin/ShopReviewsPage.php:157
 msgid "Tags"
 msgstr ""
 
@@ -706,7 +726,7 @@ msgstr ""
 msgid "Unable to save review for %s."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:152
+#: includes/Admin/ShopReviewsPage.php:169
 msgid "Unpublish"
 msgstr ""
 
@@ -736,8 +756,8 @@ msgstr ""
 msgid "Write a short comment for this product."
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:168
-#: includes/Admin/ShopReviewsPage.php:169
+#: includes/Admin/ShopReviewsPage.php:194
+#: includes/Admin/ShopReviewsPage.php:195
 msgid "Yes"
 msgstr ""
 
@@ -753,7 +773,7 @@ msgstr ""
 msgid "You can use this link if the button does not work:"
 msgstr ""
 
-#: includes/Admin/ShopReviewsPage.php:124
+#: includes/Admin/ShopReviewsPage.php:141
 msgid "You do not have permission to access this page."
 msgstr ""
 

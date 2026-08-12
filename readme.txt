@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.4.8
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,13 @@ Example:
 
 
 == Changelog ==
+
+= 0.5.0 =
+
+* Added inline edit mode for shop-review customer name and comment in WooCommerce admin.
+* Kept shop-review overview readable by showing text by default with an Edit toggle per row.
+* Added Save and Cancel controls in edit mode and hid publish/delete actions while editing.
+* Added server-side update handling for edited shop-review name/comment with sanitization and nonce checks.
 
 = 0.4.8 = 
 

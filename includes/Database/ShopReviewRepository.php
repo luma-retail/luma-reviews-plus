@@ -199,6 +199,46 @@ class ShopReviewRepository {
 
 
     /**
+     * Updates editable admin fields for a review.
+     *
+     * @param int    $review_id Review ID.
+     * @param string $display_name Display name.
+     * @param string $comment Comment text.
+     * @return bool
+     */
+    public function update_review_content( $review_id, $display_name, $comment ) {
+        $review_id = absint( $review_id );
+        $review    = $this->get_by_id( $review_id );
+
+        if ( ! $review ) {
+            return false;
+        }
+
+        $payload = array(
+            'display_name' => (string) $display_name,
+            'comment'      => (string) $comment,
+            'updated_at'   => Helpers::current_time_mysql(),
+        );
+        $format  = array( '%s', '%s', '%s' );
+
+        if ( ! $this->is_public_approval_allowed_from_data( array( 'public_consent' => ! empty( $review->public_consent ), 'comment' => $payload['comment'] ) ) ) {
+            $payload['approved_for_public_display'] = 0;
+            $format[]                               = '%d';
+        }
+
+        $result = $this->wpdb->update(
+            $this->table_manager->get_shop_reviews_table_name(),
+            $payload,
+            array( 'id' => $review_id ),
+            $format,
+            array( '%d' )
+        );
+
+        return false !== $result;
+    }
+
+
+    /**
      * Deletes a review by ID.
      *
      * @param int $review_id Review ID.
