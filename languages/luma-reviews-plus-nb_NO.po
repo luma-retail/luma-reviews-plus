@@ -15,6 +15,13 @@ msgstr ""
 "X-Loco-Version: 2.8.4; wp-6.9.4; php-8.3.30\n"
 "X-Domain: luma-reviews-plus"
 
+#: includes/Frontend/PublicTrustRenderer.php:216
+#, php-format
+msgid "(%s review)"
+msgid_plural "(%s reviews)"
+msgstr[0] "(%s omtale)"
+msgstr[1] "(%s omtaler)"
+
 #: includes/Email/ShopReviewNotification.php:170
 #, fuzzy, php-format
 msgid "%1$s (%2$s)"
