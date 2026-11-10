@@ -506,6 +506,13 @@ msgstr ""
 msgid "Rated %s out of 5"
 msgstr ""
 
+#: includes/Frontend/PublicTrustRenderer.php:146
+#, php-format
+msgid "— %s review"
+msgid_plural "— %s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
 #: templates/product-review-item.php:37 templates/product-review-item.php:39
 #: includes/Admin/ShopReviewsPage.php:151
 #: includes/Email/ShopReviewNotification.php:126

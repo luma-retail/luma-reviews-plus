@@ -64,7 +64,7 @@ Available shortcode attributes:
 - `load_more_count`: how many extra quotes to load each click (disabled unless set to a value greater than `0`)
 - `summary_text`: `full` or `short` (with `show_count="yes"`, `short` appends the review count in parentheses, e.g. "Our customers give us x out of 5 stars. (x reviews)")
 
-The `[luma_shop_reviews_rating]` shortcode uses WooCommerce's aggregate star rating. Its `show_count` attribute accepts `yes` or `no` and defaults to `no`; when enabled, the review count appears in parentheses.
+The `[luma_shop_reviews_rating]` shortcode shows the aggregate stars followed by the numeric rating (for example, "(4.9 / 5)"). Its `show_count` attribute accepts `yes` or `no` and defaults to `no`; when enabled, the review count follows an em dash.
 
 How styling works:
 

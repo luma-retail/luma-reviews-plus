@@ -538,6 +538,13 @@ msgstr "Vurder..."
 msgid "Rated %s out of 5"
 msgstr "Vurdert %s av 5"
 
+#: includes/Frontend/PublicTrustRenderer.php:146
+#, php-format
+msgid "— %s review"
+msgid_plural "— %s reviews"
+msgstr[0] "— %s omtale"
+msgstr[1] "— %s omtaler"
+
 #: templates/product-review-item.php:37 templates/product-review-item.php:39
 #: includes/Admin/ShopReviewsPage.php:151
 #: includes/Email/ShopReviewNotification.php:126

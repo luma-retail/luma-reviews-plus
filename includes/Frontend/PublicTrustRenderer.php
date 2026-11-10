@@ -91,7 +91,7 @@ class PublicTrustRenderer {
      */
     public function maybe_enqueue_assets() {
         foreach ( $this->get_candidate_post_ids() as $post_id ) {
-            if ( $this->post_requires_rating_style( $post_id ) || $this->post_requires_summary_style( $post_id ) ) {
+            if ( $this->post_requires_summary_style( $post_id ) ) {
                 $this->enqueue_style( 'minimal' );
                 return;
             }
@@ -121,25 +121,29 @@ class PublicTrustRenderer {
             return '';
         }
 
-        $review_count = \absint( $data['review_count'] );
-        $rating_html  = \wc_get_rating_html( (float) $data['average_rating'], $review_count );
-
-        if ( '' === $rating_html ) {
-            return '';
-        }
-
-        $this->enqueue_style( 'minimal' );
+        $review_count    = \absint( $data['review_count'] );
+        $rating         = max( 0, min( 5, (float) $data['average_rating'] ) );
+        $rating_width   = number_format( $rating / 5 * 100, 2, '.', '' );
+        $rating_gradient = sprintf(
+            'linear-gradient(to right, #f1c40f %1$s%%, #d3ced2 %1$s%%)',
+            $rating_width
+        );
 
         ob_start();
         ?>
-        <div class="luma-shop-reviews-rating">
-            <?php echo \wp_kses_post( $rating_html ); ?>
+        <div class="luma-shop-reviews-rating" style="display:inline-flex;align-items:center;gap:0.35em;vertical-align:middle;">
+            <span role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5 stars', 'luma-reviews-plus' ), number_format_i18n( $rating, 1 ) ) ); ?>">
+                <span aria-hidden="true" style="display:inline-block;line-height:1;letter-spacing:0.08em;white-space:nowrap;color:transparent;background:<?php echo esc_attr( $rating_gradient ); ?>;-webkit-background-clip:text;background-clip:text;">★★★★★</span>
+            </span>
+            <span class="luma-shop-reviews-rating__value">
+                <?php echo esc_html( sprintf( '(%1$s / 5)', number_format_i18n( $rating, 1 ) ) ); ?>
+            </span>
             <?php if ( $this->is_yes_value( $atts['show_count'] ) ) : ?>
                 <span class="luma-shop-reviews-rating__count">
                     <?php
                     echo esc_html(
                         sprintf(
-                            _n( '(%s review)', '(%s reviews)', $review_count, 'luma-reviews-plus' ),
+                            _n( '— %s review', '— %s reviews', $review_count, 'luma-reviews-plus' ),
                             number_format_i18n( $review_count )
                         )
                     );
@@ -471,21 +475,6 @@ class PublicTrustRenderer {
         }
 
         return $this->content_requires_summary_style( $post->post_content );
-    }
-
-
-    /**
-     * Returns whether a post contains the compact rating shortcode.
-     *
-     * @param int $post_id Post ID.
-     * @return bool
-     */
-    protected function post_requires_rating_style( $post_id ) {
-        $post = \get_post( \absint( $post_id ) );
-
-        return $post instanceof \WP_Post
-            && '' !== (string) $post->post_content
-            && \has_shortcode( $post->post_content, self::RATING_SHORTCODE );
     }
 
 

@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.6.0
+Stable tag: 0.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,7 +61,7 @@ Available shortcode attributes:
 * `load_more_count` controls how many more quotes are loaded per click (disabled unless set to a value greater than `0`)
 * `summary_text` accepts `full` or `short` (`short` with `show_count="yes"` appends the review count in parentheses, e.g. "Our customers give us x out of 5 stars. (x reviews)")
 
-The `[luma_shop_reviews_rating]` shortcode uses WooCommerce's aggregate star rating. Its `show_count` attribute accepts `yes` or `no` and defaults to `no`; when enabled, the review count appears in parentheses.
+The `[luma_shop_reviews_rating]` shortcode shows the aggregate stars followed by the numeric rating (for example, "(4.9 / 5)"). Its `show_count` attribute accepts `yes` or `no` and defaults to `no`; when enabled, the review count follows an em dash.
 
 Styling behavior:
 
@@ -122,6 +122,11 @@ Example:
 
 
 == Changelog ==
+
+= 0.6.1 =
+
+* Polished the compact shop-rating shortcode with self-contained partial stars, a numeric rating, and an em dash before the review count.
+* Added Norwegian Bokmål translations for singular and plural review counts.
 
 = 0.6.0 =
 
