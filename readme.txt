@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.5.0
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,20 +28,22 @@ Key features:
 * Supports verified, tokenized review links without requiring customer login.
 * Supports store-specific timing logic through extension hooks.
 * Can optionally show a WooCommerce admin order-page flag when the customer reviewed the previous order.
-* Includes a frontend shortcode for published shop-review summaries with conditional CSS loading.
+* Includes frontend shortcodes for published shop-review summaries and a compact WooCommerce star rating.
 
 == Show shop reviews on the frontend ==
 
-Use the shortcode below on any page, post, or shortcode-enabled block:
+Use the summary shortcode on any page, post, or shortcode-enabled block, or use the compact rating shortcode to show just the WooCommerce stars:
 
 [luma_shop_reviews_summary]
 
 Useful examples:
 
 * `[luma_shop_reviews_summary]`
+* `[luma_shop_reviews_rating]`
+* `[luma_shop_reviews_rating show_count="yes"]`
 * `[luma_shop_reviews_summary style="none"]`
 * `[luma_shop_reviews_summary style="minimal" quote_count="6"]`
-* `[luma_shop_reviews_summary summary_text="short"]`
+* `[luma_shop_reviews_summary summary_text="short" show_count="yes"]`
 * `[luma_shop_reviews_summary show_quotes="no"]`
 * `[luma_shop_reviews_summary featured_only="yes" quote_count="5"]`
 * `[luma_shop_reviews_summary quote_count="24" load_more_count="24"]`
@@ -57,7 +59,9 @@ Available shortcode attributes:
 * `featured_only` accepts `yes` or `no` to show only manually featured shop reviews
 * `show_more` accepts `yes` or `no` to enable or disable AJAX pagination
 * `load_more_count` controls how many more quotes are loaded per click (disabled unless set to a value greater than `0`)
-* `summary_text` accepts `full` or `short` (`short` uses: "Our customers give us x out of 5 stars.")
+* `summary_text` accepts `full` or `short` (`short` with `show_count="yes"` appends the review count in parentheses, e.g. "Our customers give us x out of 5 stars. (x reviews)")
+
+The `[luma_shop_reviews_rating]` shortcode uses WooCommerce's aggregate star rating. Its `show_count` attribute accepts `yes` or `no` and defaults to `no`; when enabled, the review count appears in parentheses.
 
 Styling behavior:
 
@@ -118,6 +122,11 @@ Example:
 
 
 == Changelog ==
+
+= 0.6.0 =
+
+* Added a compact shop-rating shortcode using WooCommerce's star display, with an optional review count.
+* Added the review count in parentheses to short summaries and set the default quote minimum rating to 1.
 
 = 0.5.0 =
 

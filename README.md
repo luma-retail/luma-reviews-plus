@@ -25,11 +25,11 @@ This plugin is a good fit if you want more control than a basic follow-up email,
 - Includes an admin screen for moderating shop reviews.
 - Includes an optional setting to auto-approve new shop-experience reviews for public display.
 - Can optionally show a WooCommerce admin order-page flag when the customer reviewed the previous order.
-- Includes a shortcode for showing aggregate shop-review trust content on the frontend.
+- Includes shortcodes for showing aggregate shop-review trust content or a compact star rating on the frontend.
 
 ## Show Reviews On The Frontend
 
-The easiest way to show published shop reviews on the frontend is the built-in shortcode:
+Show published shop reviews with the summary shortcode, or use the compact rating shortcode for a star-only display:
 
 ```text
 [luma_shop_reviews_summary]
@@ -41,9 +41,11 @@ Common shortcode examples:
 
 ```text
 [luma_shop_reviews_summary]
+[luma_shop_reviews_rating]
+[luma_shop_reviews_rating show_count="yes"]
 [luma_shop_reviews_summary style="none"]
 [luma_shop_reviews_summary style="minimal" quote_count="6"]
-[luma_shop_reviews_summary summary_text="short"]
+[luma_shop_reviews_summary summary_text="short" show_count="yes"]
 [luma_shop_reviews_summary show_quotes="no"]
 [luma_shop_reviews_summary featured_only="yes" quote_count="5"]
 [luma_shop_reviews_summary quote_count="24" load_more_count="24"]
@@ -60,7 +62,9 @@ Available shortcode attributes:
 - `featured_only`: `yes` or `no` (show only featured shop reviews)
 - `show_more`: `yes` or `no` (enable AJAX load-more button when more quotes exist)
 - `load_more_count`: how many extra quotes to load each click (disabled unless set to a value greater than `0`)
-- `summary_text`: `full` or `short` (use `short` for a compact line: "Our customers give us x out of 5 stars.")
+- `summary_text`: `full` or `short` (with `show_count="yes"`, `short` appends the review count in parentheses, e.g. "Our customers give us x out of 5 stars. (x reviews)")
+
+The `[luma_shop_reviews_rating]` shortcode uses WooCommerce's aggregate star rating. Its `show_count` attribute accepts `yes` or `no` and defaults to `no`; when enabled, the review count appears in parentheses.
 
 How styling works:
 

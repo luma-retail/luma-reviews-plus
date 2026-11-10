@@ -23,6 +23,13 @@ class PublicTrustRenderer {
     const SHORTCODE = 'luma_shop_reviews_summary';
 
     /**
+     * Rating shortcode tag.
+     *
+     * @var string
+     */
+    const RATING_SHORTCODE = 'luma_shop_reviews_rating';
+
+    /**
      * Summary style handle.
      *
      * @var string
@@ -70,6 +77,7 @@ class PublicTrustRenderer {
      */
     public function register() {
         \add_shortcode( self::SHORTCODE, array( $this, 'render_shortcode' ) );
+        \add_shortcode( self::RATING_SHORTCODE, array( $this, 'render_rating_shortcode' ) );
         \add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_assets' ), 20 );
         \add_action( 'wp_ajax_luma_reviews_plus_load_shop_quotes', array( $this, 'handle_load_more_ajax' ) );
         \add_action( 'wp_ajax_nopriv_luma_reviews_plus_load_shop_quotes', array( $this, 'handle_load_more_ajax' ) );
@@ -77,17 +85,70 @@ class PublicTrustRenderer {
 
 
     /**
-     * Enqueues summary assets when the resolved shortcode mode requires them.
+     * Enqueues public review assets when a shortcode requires them.
      *
      * @return void
      */
     public function maybe_enqueue_assets() {
         foreach ( $this->get_candidate_post_ids() as $post_id ) {
-            if ( $this->post_requires_summary_style( $post_id ) ) {
+            if ( $this->post_requires_rating_style( $post_id ) || $this->post_requires_summary_style( $post_id ) ) {
                 $this->enqueue_style( 'minimal' );
                 return;
             }
         }
+    }
+
+
+    /**
+     * Renders the compact shop-rating shortcode.
+     *
+     * @param array $atts Shortcode attributes.
+     * @return string
+     */
+    public function render_rating_shortcode( $atts ) {
+        $atts = \shortcode_atts(
+            array(
+                'show_count' => 'no',
+            ),
+            $atts,
+            self::RATING_SHORTCODE
+        );
+
+        $data = $this->shop_review_repository->get_summary_data( 1, 1, false );
+        $data = \apply_filters( 'luma_reviews_plus_public_summary_data', $data );
+
+        if ( empty( $data['review_count'] ) ) {
+            return '';
+        }
+
+        $review_count = \absint( $data['review_count'] );
+        $rating_html  = \wc_get_rating_html( (float) $data['average_rating'], $review_count );
+
+        if ( '' === $rating_html ) {
+            return '';
+        }
+
+        $this->enqueue_style( 'minimal' );
+
+        ob_start();
+        ?>
+        <div class="luma-shop-reviews-rating">
+            <?php echo \wp_kses_post( $rating_html ); ?>
+            <?php if ( $this->is_yes_value( $atts['show_count'] ) ) : ?>
+                <span class="luma-shop-reviews-rating__count">
+                    <?php
+                    echo esc_html(
+                        sprintf(
+                            _n( '(%s review)', '(%s reviews)', $review_count, 'luma-reviews-plus' ),
+                            number_format_i18n( $review_count )
+                        )
+                    );
+                    ?>
+                </span>
+            <?php endif; ?>
+        </div>
+        <?php
+        return (string) ob_get_clean();
     }
 
 
@@ -104,7 +165,7 @@ class PublicTrustRenderer {
                 'show_count'    => 'yes',
                 'show_quotes'   => 'yes',
                 'quote_count'   => 3,
-                'minimum_rating' => 4,
+                'minimum_rating' => 1,
                 'featured_only' => 'no',
                 'show_more'     => 'yes',
                 'load_more_count' => 0,
@@ -142,6 +203,12 @@ class PublicTrustRenderer {
             return '';
         }
 
+        $review_count = \absint( $data['review_count'] );
+        $short_count  = sprintf(
+            _n( '(%s review)', '(%s reviews)', $review_count, 'luma-reviews-plus' ),
+            number_format_i18n( $review_count )
+        );
+
         if ( $show_quotes && $has_more ) {
             $this->enqueue_script();
         }
@@ -155,6 +222,7 @@ class PublicTrustRenderer {
                         <?php
                         if ( 'short' === $summary_text ) {
                             $summary_line = sprintf( __( 'Our customers give us %1$s out of 5 stars.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ) );
+                            $summary_line .= ' ' . $short_count;
                         } else {
                             $summary_line = sprintf( __( 'Our customers give us %1$s out of 5 stars based on %2$d customer reviews after purchase.', 'luma-reviews-plus' ), number_format_i18n( $data['average_rating'], 1 ), \absint( $data['review_count'] ) );
 
@@ -174,7 +242,13 @@ class PublicTrustRenderer {
                     <?php endif; ?>
                     <?php if ( $this->is_yes_value( $atts['show_count'] ) ) : ?>
                         <p class="luma-shop-reviews-summary__count">
-                            <?php echo esc_html( sprintf( __( 'Based on %d customer reviews after purchase.', 'luma-reviews-plus' ), \absint( $data['review_count'] ) ) ); ?>
+                            <?php
+                            if ( 'short' === $summary_text ) {
+                                echo esc_html( $short_count );
+                            } else {
+                                echo esc_html( sprintf( __( 'Based on %d customer reviews after purchase.', 'luma-reviews-plus' ), $review_count ) );
+                            }
+                            ?>
                         </p>
                     <?php endif; ?>
                 <?php endif; ?>
@@ -211,7 +285,7 @@ class PublicTrustRenderer {
 
         $offset         = isset( $_POST['offset'] ) ? max( 0, absint( wp_unslash( $_POST['offset'] ) ) ) : 0;
         $limit          = isset( $_POST['limit'] ) ? max( 1, absint( wp_unslash( $_POST['limit'] ) ) ) : 3;
-        $minimum_rating = isset( $_POST['minimum_rating'] ) ? max( 1, min( 5, absint( wp_unslash( $_POST['minimum_rating'] ) ) ) ) : 4;
+        $minimum_rating = isset( $_POST['minimum_rating'] ) ? max( 1, min( 5, absint( wp_unslash( $_POST['minimum_rating'] ) ) ) ) : 1;
         $featured_only  = isset( $_POST['featured_only'] ) && '1' === sanitize_text_field( wp_unslash( $_POST['featured_only'] ) );
         $total_quotes   = $this->shop_review_repository->count_public_quotes( $minimum_rating, $featured_only );
 
@@ -397,6 +471,21 @@ class PublicTrustRenderer {
         }
 
         return $this->content_requires_summary_style( $post->post_content );
+    }
+
+
+    /**
+     * Returns whether a post contains the compact rating shortcode.
+     *
+     * @param int $post_id Post ID.
+     * @return bool
+     */
+    protected function post_requires_rating_style( $post_id ) {
+        $post = \get_post( \absint( $post_id ) );
+
+        return $post instanceof \WP_Post
+            && '' !== (string) $post->post_content
+            && \has_shortcode( $post->post_content, self::RATING_SHORTCODE );
     }
 
 
