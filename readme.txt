@@ -4,7 +4,7 @@ Tags: woocommerce, reviews, email, trust
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.6.1
+Stable tag: 0.6.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,10 @@ Example:
 
 
 == Changelog ==
+
+= 0.6.2 =
+
+* Fixed Norwegian Bokmål translation for singular and plural review counts in short summaries.
 
 = 0.6.1 =
 
